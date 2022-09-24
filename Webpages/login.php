@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        <form name = "loginForm" method = "post" action = "validate.php">
+        <form name = "loginForm" method = "post" action = "https://web.njit.edu/~sma237/CS490/middle/validate.php">
             <label for="user">Username:</label><br>
             <input type="text" id="user" name="user"><br>
             <label for="password">Password:</label><br>
