@@ -1,29 +1,43 @@
 <?php
     // Get username and password from Malcolm's login screen.
+    session_start();
     $username = $_POST['user'];
     $password = $_POST['password'];
 
     // Hash the password data so it's not plain text
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $data = array('username' => $username, 'password' => $hashed_password);
+    $data = array('middle_user' => $username, 'middle_password' => $hashed_password);
 
-    // Start curl post data
-    // Connect to Ege's backend script
-    // https://web.njit.edu/~sma237/CS490/backend/read.php
+    // Encode the data into JSON format
+    $encoded = json_encode($data);
+    // print_r($encoded);
+
     $url = '../backend/query.php';
 
-    // Initialize a cUrl session
-    $connection = curl_init();
+    // Initialized a cURL session
+    $ch = curl_init($url);
 
-    // Set curl variable data requirements
-    curl_setopt($connection, CURLOPT_URL, $url);
-    curl_setopt($connection, CURLOPT_POST, 1);
-    curl_setopt($connection, CURLOPT_POSTFIELDS, $data);
+    if ($ch === false) {
+        echo 'Failed to initialize';
+    }
 
-    // Post the data
-    $result = curl_exec($connection);
-    echo $result;
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    // curl_setopt($ch, CURLOPT_HEADER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
 
-    // Close connection
-    curl_close($connection);
+    // header('Location: ../backend/query.php');
+
+    $result = curl_exec($ch);
+    $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if ($result == false) 
+        echo "Failed ";
+    else 
+        echo "Accepted ";
+    echo "Response: " . $response;
+    echo '[' . $result . ']';
+
 ?>
