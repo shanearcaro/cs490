@@ -1,17 +1,19 @@
 <?php
     // Get username and password from Malcolm's login screen.
     session_start();
-    $username = $_POST['user'];
-    $password = $_POST['password'];
+    $user_data = file_get_contents('php://input');
+    
+    $data = json_decode($user_data);
+    $username = $data->{'username'};
+    $password = $data->{'password'};
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $data = array('middle_user' => $username, 'middle_password' => $hashed_password);
+    $data = array('username' => $username, 'password' => $password);
 
     // Encode the data into JSON format
     $encoded = json_encode($data);
     // print_r($encoded);
 
-    $url = 'https://afsaccess4.njit.edu/~ea353/cs490/auth.php';
+    $url = 'https://afsaccess4.njit.edu/~sma237/CS490/backend/auth.php';
 
     // Initialized a cURL session
     $ch = curl_init($url);
@@ -26,9 +28,8 @@
     // header('Location: ../backend/query.php');
 
     $result = curl_exec($ch);
-    $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    //$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    echo "Response: " . $response;
-    echo '[' . $result . ']';
+    echo json_encode($result);
 
 ?>
