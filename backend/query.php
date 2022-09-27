@@ -1,5 +1,5 @@
 <?php
-    include_once('https://afsaccess4.njit.edu/~sma237/CS490/env/database.php');
+    include_once('../env/database.php');
     $user_data = file_get_contents('php://input');
     echo $user_data;
 
