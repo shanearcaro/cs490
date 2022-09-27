@@ -5,8 +5,8 @@
     </head>
     <body>
         <form name = "loginForm" method = "post" action = "send.php">
-            <label for="user">Username:</label><br>
-            <input type="text" id="user" name="user"><br>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password"><br>
             <input type="submit" name="submit" value="Submit">

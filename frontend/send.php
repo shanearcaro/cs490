@@ -3,7 +3,7 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $data = array('user' => $username, 'password' => $password);
+    $data = array('username' => $username, 'password' => $password);
 
     // Encode the data into JSON format
     $encoded = json_encode($data);
@@ -21,7 +21,20 @@
 
     // header('Location: ../backend/query.php');
 
-    $result = curl_exec($ch);
-    curl_close($ch);
-    echo $result;
+   $result = json_decode(curl_exec($ch));
+   curl_close($ch);
+
+   if (strpos($result, "Student")) {
+	   header("Location: https://afsaccess4.njit.edu/~sma237/CS490/frontend/student.php");
+	   exit();
+   }
+   else if (strpos($result, "Teacher")) {
+	   header("Location: https://afsaccess4.njit.edu/~sma237/CS490/frontend/teacher.php");
+	   exit();
+   }
+   else {
+	   header("Location: https://afsaccess4.njit.edu/~sma237/CS490/frontend/login.php");
+	   exit();
+   }
+
 ?>

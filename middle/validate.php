@@ -6,7 +6,7 @@
     $data = json_decode($user_data);
     $username = $data->{'username'};
     $password = $data->{'password'};
-
+   
     $data = array('username' => $username, 'password' => $password);
 
     // Encode the data into JSON format
@@ -28,7 +28,7 @@
     // header('Location: ../backend/query.php');
 
     $result = curl_exec($ch);
-    //$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     echo json_encode($result);
 
