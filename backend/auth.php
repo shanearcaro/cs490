@@ -1,21 +1,20 @@
 <?php
-include("credentials.php");
-$conn = new mysqli('sql2.njit.edu', 'ea353', 'Password1', 'ea353');
+    include("credentials.php");
+    $connection = mysqli_connect($conn_hostname, $conn_username, $conn_password, $conn_dbname);
+    $user_data = file_get_contents('php://input');
 
-$user_data = file_get_contents('php://input');
+    $username = $userdata['middle_user'];
+    $password = $userdata['middle_pass'];
 
-$username = $userdata['middle_user'];
-$password = $userdata['middle_pass'];
+    $query = "SELECT username, password, isteacher FROM Users where username='${username}'";
+    $result = mysqli_query($connection, $query);
 
-$sql = "SELECT id, username, password, isteacher FROM Users where username = \"". $username . "\"";
+    $size = count(mysqli_fetch_array($result));
 
-$result = $conn->query($sql);
+    $out = json_encode($result);
+    if ($size == 0)
+    $out == json_encode(404);
 
-$size = count(mysqli_fetch_array($result));
-$out = json_encode($result);
-if ($size == 0){
-  $out == json_encode(404);
-}
-echo $out;
-$conn->close();
+    echo $out;
+    mysqli_close($connection);
 ?>
