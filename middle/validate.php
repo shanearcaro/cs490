@@ -17,10 +17,6 @@
     // Initialized a cURL session
     $ch = curl_init($url);
 
-    if ($ch === false) {
-        echo 'Failed to initialize';
-    }
-
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     // curl_setopt($ch, CURLOPT_HEADER, true);
@@ -33,10 +29,6 @@
     $result = curl_exec($ch);
     $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    if ($result == false) 
-        echo "Failed ";
-    else 
-        echo "Accepted ";
     echo "Response: " . $response;
     echo '[' . $result . ']';
 
