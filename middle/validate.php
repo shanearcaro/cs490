@@ -4,7 +4,6 @@
     $username = $_POST['user'];
     $password = $_POST['password'];
 
-    // Hash the password data so it's not plain text
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $data = array('middle_user' => $username, 'middle_password' => $hashed_password);
 
@@ -12,7 +11,7 @@
     $encoded = json_encode($data);
     // print_r($encoded);
 
-    $url = 'https://afsaccess4.njit.edu/~sma237/CS490/backend/query.php';
+    $url = 'https://afsaccess4.njit.edu/~ea353/cs490/auth.php';
 
     // Initialized a cURL session
     $ch = curl_init($url);
