@@ -12,7 +12,7 @@
     $encoded = json_encode($data);
     // print_r($encoded);
 
-    $url = 'https://web.njit.edu/~sma237/CS490/backend/query.php';
+    $url = 'https://afsaccess4/~sma237/CS490/backend/query.php';
 
     // Initialized a cURL session
     $ch = curl_init($url);
