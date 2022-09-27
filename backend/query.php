@@ -1,5 +1,5 @@
 <?php
-    include_once "../env/database.php"
+    include_once "../env/database.php";
 
     // Connect to SQL database
     $connection = mysqli_connect($server, $username, $password, $database);
