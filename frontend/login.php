@@ -4,7 +4,7 @@
          <title>Login Page</title>
     </head>
     <body>
-        <form name = "loginForm" method = "post" action = "https://afsaccess4.njit.edu/~sma237/CS490/middle/validate.php">
+        <form name = "loginForm" method = "post" action = "send.php">
             <label for="user">Username:</label><br>
             <input type="text" id="user" name="user"><br>
             <label for="password">Password:</label><br>
