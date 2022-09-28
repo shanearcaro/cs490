@@ -25,15 +25,15 @@
    curl_close($ch);
 
    if (strpos($result, "Student")) {
-	   header("Location: https://afsaccess4.njit.edu/~sma237/CS490/frontend/student.php");
+	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/student.php");
 	   exit();
    }
    else if (strpos($result, "Teacher")) {
-	   header("Location: https://afsaccess4.njit.edu/~sma237/CS490/frontend/teacher.php");
+	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/teacher.php");
 	   exit();
    }
    else {
-	   header("Location: https://afsaccess4.njit.edu/~sma237/CS490/frontend/login.php");
+	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/login.php");
 	   exit();
    }
 
