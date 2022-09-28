@@ -1,6 +1,6 @@
 <?php
     $server = "sql1.njit.edu";
     $username = "sma237";
-    $password = "***REMOVED***";
+    $password = "*password*";
     $database = "sma237";
 ?>
