@@ -8,7 +8,7 @@
     $password = $data->{'password'};
 
     if (mysqli_connect_error())
-	    echo "Failed to connect to MYSQL: " . mysql_connect_error();
+	    echo "Failed to connect to MYSQL: " . mysqli_connect_error();
 	
     $query = "SELECT * FROM UserAccounts WHERE username='{$username}' AND password='{$password}' LIMIT 1";
     $result = mysqli_query($connection, $query);
