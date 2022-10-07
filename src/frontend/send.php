@@ -25,15 +25,15 @@
    // Contacting the back end will return Student, Teacher, or Bad Login.
    // Update the current page depending on the result from the database.
    if (strpos($result, "Student")) {
-	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/student.php");
+	   header("Location: ./student.php");
 	   exit();
    }
    else if (strpos($result, "Teacher")) {
-	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/teacher.php");
+	   header("Location: ./teacher.php");
 	   exit();
    }
    else {
-	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/login.php");
+	   header("Location: ./teacher.php");
 	   exit();
    }
 
