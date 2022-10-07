@@ -33,19 +33,31 @@ class Database extends TestCase {
     }
 
     public function test_student(): void {
-        $this->assertEquals($this->account("student", "password"), "student");
+        $result = $this->account("student", "password");
+        $actual = "student";
+        $this->assertEquals($result, $actual);
+        printf("Result = " . $result . " Actual = " . $actual . "\n");
     }
 
     public function test_teacher(): void {
-        $this->assertEquals($this->account("teacher", "password"), "teacher");
+        $result = $this->account("teacher", "password");
+        $actual = "teacher";
+        $this->assertEquals($result, $actual);
+        printf("Result = " . $result . " Actual = " . $actual . "\n");
     }
 
     public function test_invalid_login(): void {
-        $this->assertEquals($this->account("invalid", "password"), "invalid");
+        $result = $this->account("invalid", "password");
+        $actual = "invalid";
+        $this->assertEquals($result, $actual);
+        printf("Result = " . $result . " Actual = " . $actual . "\n");
     }
 
     public function test_no_input(): void {
-        $this->assertEquals($this->account("", ""), "invalid");
+        $result = $this->account("", "");
+        $actual = "invalid";
+        $this->assertEquals($result, $actual);
+        printf("Result = " . $result . " Actual = " . $actual . "\n");
     }
 }
 ?>
