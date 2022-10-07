@@ -7,10 +7,13 @@
             "src/"
         ]
     },
+    "config": {
+        "process-timeout": 900
+    },
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit -v --debug --timeout=900"
+        "test": "vendor/bin/phpunit -v --debug"
     }
 }
