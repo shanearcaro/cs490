@@ -36,4 +36,17 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Account Tests
-      run: composer run-script test
+      env:
+        SERVER: sql1.njit.edu
+        USERNAME: sma237
+        PASSWORD: ${{ secrets.DATABASE_CONNECT }}
+        DATABASE: sma237
+      run: |
+        rm -rf src/backend/credentials.php
+        touch src/backend/credentials.php
+        echo '<?php' >> src/backend/credentials.php
+        echo '$server = "$SERVER";' >> src/backend/credentials.php
+        echo '$username = "$USERNAME";' >> src/backend/credentials.php
+        echo '$password = "$PASSWORD";' >> src/backend/credentials.php
+        echo '$server = "$DATABASE";' >> src/backend/credentials.php
+        vendor/binphpunit -v --debug
