@@ -49,4 +49,4 @@ jobs:
         echo '$username = "$USERNAME";' >> src/backend/credentials.php
         echo '$password = "$PASSWORD";' >> src/backend/credentials.php
         echo '$server = "$DATABASE";' >> src/backend/credentials.php
-        vendor/binphpunit -v --debug
+        vendor/bin/phpunit -v --debug
