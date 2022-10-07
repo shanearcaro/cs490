@@ -36,7 +36,4 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Account Tests
-      with:
-        configuration: ./phpunit.xml
-        memory_limit: 256M
       run: ./vendor/bin/phpunit ./tests/Post/Database.php
