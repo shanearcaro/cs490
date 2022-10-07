@@ -36,4 +36,4 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Account Tests
-      run: ./vendor/bin/phpunit ./tests/Post/Database.php
+      run: composer run-script test
