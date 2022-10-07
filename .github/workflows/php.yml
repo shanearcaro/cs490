@@ -35,8 +35,8 @@ jobs:
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
-    - name: PHPUnit tests
-      uses: php-actions/phpunit@v3
+    - name: Account Tests
       with:
         configuration: ./phpunit.xml
         memory_limit: 256M
+      run: ./vendor/bin/phpunit ./tests/Post/Database.php
