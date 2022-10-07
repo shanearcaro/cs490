@@ -11,6 +11,6 @@
         "phpunit/phpunit": "^9"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit -v --debug"
+        "test": "vendor/bin/phpunit -v --debug --timeout=900"
     }
 }
