@@ -1,4 +1,7 @@
 {
+    "name": "cs490/project",
+    "description": "CS490 Senior Project",
+    "license": "MIT",
     "autoload": {
         "classmap": [
             "../src/"

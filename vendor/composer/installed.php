@@ -5,18 +5,18 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '5b098552cbf85293191d11082bedd1a646242490',
-        'name' => '__root__',
+        'reference' => 'b5e55cc5d722a467bf43caeac980a352fcc5d349',
+        'name' => 'cs490/project',
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'cs490/project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '5b098552cbf85293191d11082bedd1a646242490',
+            'reference' => 'b5e55cc5d722a467bf43caeac980a352fcc5d349',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
