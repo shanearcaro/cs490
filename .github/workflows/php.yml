@@ -37,6 +37,7 @@ jobs:
 
     - name: Create .env file
       run: |
+        pwd
         mkdir ../src/.env
         cd ../src/.env
         touch credentails.php
