@@ -39,7 +39,6 @@ jobs:
         envkey_USERNAME: "sma237"
         envkey_PASSWORD: ${{ secrets.DATABASE_CONNECT }}
         envkey_DATABASE: "sma237"
-        directory: src/.env
         file_name: .env
         fail_on_empty: false
 
