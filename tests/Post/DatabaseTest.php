@@ -1,5 +1,4 @@
 <?php
-namespace Tests\Post;
 use PHPUnit\Framework\TestCase;
 
 class Database extends TestCase {
