@@ -32,23 +32,16 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    - name: Create .env file
-      run: |
-        pwd
-        mkdir ../src/.env
-        cd ../src/.env
-        touch credentails.php
-
-    - name: Write to file
-      run: |
-        echo '<?php' >> credentials.php
-        echo '$username = "sma237";' >> credentials.php
-        echo '$password = "Cr43zg3fsa";' >> credentials.php
-        echo '$database = "sma237";' >> credentials.php
-        echo '?>' >> credentials.php
+    - name: Make .env file
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        envkey_SERVER: "sql1.njit.edu"
+        envkey_USERNAME: "sma237"
+        envkey_PASSWORD: ${{ secrets.DATABASE_CONNECT }}
+        envkey_DATABASE: "sma237"
+        directory: src/.env
+        file_name: .env
+        fail_on_empty: false
 
     - name: Run unit tests
       run: composer test

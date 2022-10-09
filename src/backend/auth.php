@@ -1,7 +1,9 @@
 <?php
     // Read from credentials file and connect to database
-    include("../.env/credentials.php");
-    $connection = mysqli_connect($server, $username, $password, $database);
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+
+    $connection = mysqli_connect($_ENV['SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DATABASE']);
 
     // Prompt error if database connection doesn't work and exit the script
     if (mysqli_connect_error()) {

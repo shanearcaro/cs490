@@ -17,5 +17,8 @@
         "test": [
             "vendor/bin/phpunit -v --debug"
         ]
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
     }
 }
