@@ -1,6 +1,6 @@
 <?php
     // Read from credentials file and connect to database
-    include("credentials.php");
+    include("../.env/credentials.php");
     $connection = mysqli_connect($server, $username, $password, $database);
 
     // Prompt error if database connection doesn't work and exit the script

@@ -3,8 +3,11 @@ namespace Tests\Post;
 use PHPUnit\Framework\TestCase;
 
 class Database extends TestCase {
+    public function test_connection(): void {
+        // Get username and password from Malcolm's login screen and create a data array
+        $username = "student";
+        $password = "password";
 
-    public function account($username, $password): string {
         $data = array('username' => $username, 'password' => $password);
 
         // Encode the data into JSON format
@@ -23,41 +26,6 @@ class Database extends TestCase {
         // Decode the results of sending the data
         $result = json_decode(curl_exec($ch));
         curl_close($ch);
-
-        if (strpos($result, "Student"))
-            return "student";
-        else if (strpos($result, "Teacher"))
-            return "teacher";
-        else 
-            return "invalid";
-    }
-
-    public function test_student(): void {
-        $result = $this->account("student", "password");
-        $actual = "student";
-        $this->assertEquals($result, $actual);
-        printf("Result = " . $result . " Actual = " . $actual . "\n");
-    }
-
-    public function test_teacher(): void {
-        $result = $this->account("teacher", "password");
-        $actual = "teacher";
-        $this->assertEquals($result, $actual);
-        printf("Result = " . $result . " Actual = " . $actual . "\n");
-    }
-
-    public function test_invalid_login(): void {
-        $result = $this->account("invalid", "password");
-        $actual = "invalid";
-        $this->assertEquals($result, $actual);
-        printf("Result = " . $result . " Actual = " . $actual . "\n");
-    }
-
-    public function test_no_input(): void {
-        $result = $this->account("", "");
-        $actual = "invalid";
-        $this->assertEquals($result, $actual);
-        printf("Result = " . $result . " Actual = " . $actual . "\n");
     }
 }
 ?>

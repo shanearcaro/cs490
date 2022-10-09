@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP Unit Testing
 
 on:
   push:
@@ -35,19 +35,20 @@ jobs:
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
-    - name: Account Tests
-      env:
-        SERVER: sql1.njit.edu
-        USERNAME: sma237
-        PASSWORD: ${{ secrets.DATABASE_CONNECT }}
-        DATABASE: sma237
+    - name: Create .env file
       run: |
-        rm -rf src/backend/credentials.php
-        touch src/backend/credentials.php
-        echo '<?php' >> src/backend/credentials.php
-        echo '$server = "$SERVER";' >> src/backend/credentials.php
-        echo '$username = "$USERNAME";' >> src/backend/credentials.php
-        echo '$password = "$PASSWORD";' >> src/backend/credentials.php
-        echo '$server = "$DATABASE";' >> src/backend/credentials.php
-        cat src/backend/credentials.php
-        vendor/bin/phpunit -v --debug
+        mkdir ../src/.env
+        cd ../src/.env
+        touch credentails.php
+
+    - name: Write to file
+      run: |
+        echo '<?php' >> credentials.php
+        echo '$username = "sma237";' >> credentials.php
+        echo '$password = "Cr43zg3fsa";' >> credentials.php
+        echo '$database = "sma237";' >> credentials.php
+        echo '?>' >> credentials.php
+
+    - name: Run unit tests
+      run: composer test
+
