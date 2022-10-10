@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  testing:
+    container_name: cs490
+    network_mode: bridge
+    build: .
+
+    # Bridge and host produce different errors
+    # Create local db with each run and query local db instead?
+
+
+    # Local mysql db linked to build container to run tests locally?
