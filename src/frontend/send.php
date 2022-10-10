@@ -9,7 +9,7 @@
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'https://afsaccess4.njit.edu/~sma237/CS490/middle/validate.php';
+    $url = '../middle/validate.php';
 
     // Initialized a cURL session
     $ch = curl_init();

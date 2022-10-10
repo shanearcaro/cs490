@@ -9,7 +9,7 @@
     $password = $user_data->{'password'};
     $data = array('username' => $username, 'password' => $password);
 
-    $url = 'https://afsaccess4.njit.edu/~sma237/CS490/backend/auth.php';
+    $url = '../backend/auth.php';
 
     // Initialized a cURL session
     $ch = curl_init();
@@ -22,5 +22,4 @@
     $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     echo $result;
-
 ?>
