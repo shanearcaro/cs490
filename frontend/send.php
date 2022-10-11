@@ -25,11 +25,11 @@
    curl_close($ch);
 
    if (strpos($result, "Student")) {
-	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/student.php");
+	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/StudentPages/student.php");
 	   exit();
    }
    else if (strpos($result, "Teacher")) {
-	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/teacher.php");
+	   header("Location: https://afsaccess4.njit.edu/~mcs43/cs490/frontend/TeacherPages/teacher.php");
 	   exit();
    }
    else {
