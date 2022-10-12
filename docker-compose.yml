@@ -1,13 +1,47 @@
-version: '3'
+version: '3.8'
 
 services:
-  testing:
-    container_name: cs490
-    network_mode: bridge
+  nginx:
+    image: nginx:1.11.8-alpine
+    ports:
+      - "8081:80"
+    # volumes:
+    #   - ./code:/usr/share/nginx/html
+    #   - ./html:/myapp
+    #   - ./site.conf:/etc/nginx/conf.d/site.conf
+    #   - ./default.conf:/etc/nginx/conf.d/default.conf
+    #   - ./error.log:/var/log/nginx/error.log
+    #   - ./nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - phpfpm
+    networks:
+      - local-db
+  phpfpm:
     build: .
-
-    # Bridge and host produce different errors
-    # Create local db with each run and query local db instead?
-
-
-    # Local mysql db linked to build container to run tests locally?
+    ports:
+      - "9000:9000"
+    # volumes:
+    #   -  ./code:/usr/share/nginx/html
+    links:
+      - db_mysql
+    networks:
+      - local-db
+  db_mysql:
+    image: mysql:5.7.17
+    volumes:
+      - db_data:/var/lib/mysql
+    # restart: no
+    ports:
+      - "3305:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: CS490
+      MYSQL_USER: shane
+      MYSQL_PASSWORD: password
+    networks:
+      - local-db
+volumes:
+  db_data:
+networks:
+  local-db:
+    driver: bridge
