@@ -29,12 +29,18 @@
 	   $get_teacher = $row['isTeacher'];
     }
 
+<<<<<<< HEAD
+=======
     // If username is blank that means the query found no results, bad login.
+>>>>>>> main
     if ($get_username == '') {
 	    echo json_encode("Bad login");
     }
     else {
+<<<<<<< HEAD
+=======
         // Determine if the user account is a teacher or a student
+>>>>>>> main
 	    if ($get_teacher == 0)
 		    echo json_encode("Student");
 	    else
