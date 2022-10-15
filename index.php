@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Login Page</title>
-        <link rel="Stylesheet" href="./style/login.css"/>
+        <link rel="Stylesheet" href="./src/frontend/style/login.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
     <body>
         <div class="login">
             <!-- Need to use send.php to cURL the information instead of standards post -->
-            <form name = "loginForm" method = "post" action = "send.php">
+            <form name = "loginForm" method = "post" action = "./src/frontend/send.php">
                 <h1>Login</h1>
                 <label for="username">Username</label><br>
                 <input type="text" id="username" name="username" placeholder="Type your username"><br>

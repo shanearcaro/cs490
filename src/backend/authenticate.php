@@ -1,23 +1,25 @@
 <?php
+    require_once realpath(dirname(__DIR__, 2) . '/vendor/autoload.php');
     // Read from credentials file and connect to database
     $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
     $dotenv->load();
 
-    $connection = mysqli_connect($_ENV['SERVER'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DATABASE']);
+    $connection = new mysqli($_ENV['HOST'], $_ENV['USER'], $_ENV['PASSWORD'], $_ENV['DATABASE']);
 
     // Prompt error if database connection doesn't work and exit the script
-    if (mysqli_connect_error()) {
+    if ($connection->connect_error) {
 	    echo "Failed to connect to MYSQL: " . mysqli_connect_error();
         exit();
     }
 
-    // Read posted user data from the middle
-    $user_data = file_get_contents('php://input');
-
-    // Extract username and password
+    // Read posted user data from the front end
+    $user_data = json_decode(file_get_contents('php://input'));
+    
+    // Data received is already json encoded
+    // Instead of decoding to just encode just send encoded data
     $username = $user_data->{'username'};
     $password = $user_data->{'password'};
-	
+    
     // Extract user info given username and password
     $query = "SELECT * FROM UserAccounts WHERE username='{$username}' AND password='{$password}' LIMIT 1";
     $result = mysqli_query($connection, $query);
@@ -31,17 +33,20 @@
 	   $get_teacher = $row['isTeacher'];
     }
 
-    // If username is blank that means the query found no results, bad login.
+    $response = "";
+
     if ($get_username == '') {
-	    echo json_encode("Bad login");
+	    $response = "Bad Login";
     }
     else {
         // Determine if the user account is a teacher or a student
 	    if ($get_teacher == 0)
-		    echo json_encode("Student");
+            $response = "Student";
 	    else
-		    echo json_encode("Teacher");
+            $response = "Teacher";
     }
+    $response = json_encode($response);
+    echo $response;
 
-    mysqli_close($connection);
+    $connection->close();
  ?>
