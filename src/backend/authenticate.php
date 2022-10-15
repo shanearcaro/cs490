@@ -39,7 +39,6 @@
 	    $response = "Bad Login";
     }
     else {
-        // Determine if the user account is a teacher or a student
 	    if ($get_teacher == 0)
             $response = "Student";
 	    else
