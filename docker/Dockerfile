@@ -4,4 +4,4 @@ RUN apt-get update && apt-get upgrade -y
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-CMD [ "composer", "test" ]
+# CMD [ "composer", "test" ]
