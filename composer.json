@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "cs490/project",
     "description": "CS490 Senior Project",
     "license": "MIT",
@@ -20,5 +21,14 @@
     },
     "require": {
         "vlucas/phpdotenv": "^5.4"
+=======
+    "autoload": {
+        "classmap": [
+            "../src/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+>>>>>>> f386557 (Adding composer and phpunit to the project)
     }
 }

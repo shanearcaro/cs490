@@ -5,18 +5,31 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+<<<<<<< HEAD
         'reference' => '994d128c109d2155d6aae2a3924344247df7d01c',
         'name' => 'cs490/project',
         'dev' => true,
     ),
     'versions' => array(
         'cs490/project' => array(
+=======
+        'reference' => '5b098552cbf85293191d11082bedd1a646242490',
+        'name' => '__root__',
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+>>>>>>> f386557 (Adding composer and phpunit to the project)
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
+<<<<<<< HEAD
             'reference' => '994d128c109d2155d6aae2a3924344247df7d01c',
+=======
+            'reference' => '5b098552cbf85293191d11082bedd1a646242490',
+>>>>>>> f386557 (Adding composer and phpunit to the project)
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
@@ -28,6 +41,7 @@
             'reference' => '10dcfce151b967d20fde1b34ae6640712c3891bc',
             'dev_requirement' => true,
         ),
+<<<<<<< HEAD
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.1.0',
             'version' => '1.1.0.0',
@@ -37,6 +51,8 @@
             'reference' => 'a878d45c1914464426dc94da61c9e1d36ae262a8',
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> f386557 (Adding composer and phpunit to the project)
         'myclabs/deep-copy' => array(
             'pretty_version' => '1.11.0',
             'version' => '1.11.0.0',
@@ -73,6 +89,7 @@
             'reference' => '4f7fd7836c6f332bb2933569e566a0d6c4cbed74',
             'dev_requirement' => true,
         ),
+<<<<<<< HEAD
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.0',
             'version' => '1.9.0.0',
@@ -82,6 +99,8 @@
             'reference' => 'dc5ff11e274a90cc1c743f66c9ad700ce50db9ab',
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> f386557 (Adding composer and phpunit to the project)
         'phpunit/php-code-coverage' => array(
             'pretty_version' => '9.2.17',
             'version' => '9.2.17.0',
@@ -280,6 +299,7 @@
             'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
             'dev_requirement' => true,
         ),
+<<<<<<< HEAD
         'symfony/polyfill-ctype' => array(
             'pretty_version' => 'v1.26.0',
             'version' => '1.26.0.0',
@@ -307,6 +327,8 @@
             'reference' => 'cfa0ae98841b9e461207c13ab093d76b0fa7bace',
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> f386557 (Adding composer and phpunit to the project)
         'theseer/tokenizer' => array(
             'pretty_version' => '1.2.1',
             'version' => '1.2.1.0',
@@ -316,6 +338,7 @@
             'reference' => '34a41e998c2183e22995f158c581e7b5e755ab9e',
             'dev_requirement' => true,
         ),
+<<<<<<< HEAD
         'vlucas/phpdotenv' => array(
             'pretty_version' => 'v5.4.1',
             'version' => '5.4.1.0',
@@ -325,5 +348,7 @@
             'reference' => '264dce589e7ce37a7ba99cb901eed8249fbec92f',
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> f386557 (Adding composer and phpunit to the project)
     ),
 );

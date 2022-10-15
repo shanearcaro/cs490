@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "e9001e772d35fea791e4a6fb13e2abd4",
     "packages": [
         {
@@ -472,6 +473,10 @@
             "time": "2021-12-12T23:22:04+00:00"
         }
     ],
+=======
+    "content-hash": "eaf427e91c04d06abdb542687ebc4d5d",
+    "packages": [],
+>>>>>>> f386557 (Adding composer and phpunit to the project)
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
