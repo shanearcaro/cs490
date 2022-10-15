@@ -74,7 +74,6 @@
             "install-path": "../doctrine/instantiator"
         },
         {
-<<<<<<< HEAD
             "name": "graham-campbell/result-type",
             "version": "v1.1.0",
             "version_normalized": "1.1.0.0",
@@ -140,8 +139,6 @@
             "install-path": "../graham-campbell/result-type"
         },
         {
-=======
->>>>>>> f386557 (Adding composer and phpunit to the project)
             "name": "myclabs/deep-copy",
             "version": "1.11.0",
             "version_normalized": "1.11.0.0",
@@ -380,7 +377,6 @@
             "install-path": "../phar-io/version"
         },
         {
-<<<<<<< HEAD
             "name": "phpoption/phpoption",
             "version": "1.9.0",
             "version_normalized": "1.9.0.0",
@@ -459,8 +455,6 @@
             "install-path": "../phpoption/phpoption"
         },
         {
-=======
->>>>>>> f386557 (Adding composer and phpunit to the project)
             "name": "phpunit/php-code-coverage",
             "version": "9.2.17",
             "version_normalized": "9.2.17.0",
@@ -1911,7 +1905,6 @@
             "install-path": "../sebastian/version"
         },
         {
-<<<<<<< HEAD
             "name": "symfony/polyfill-ctype",
             "version": "v1.26.0",
             "version_normalized": "1.26.0.0",
@@ -2169,8 +2162,6 @@
             "install-path": "../symfony/polyfill-php80"
         },
         {
-=======
->>>>>>> f386557 (Adding composer and phpunit to the project)
             "name": "theseer/tokenizer",
             "version": "1.2.1",
             "version_normalized": "1.2.1.0",
@@ -2222,7 +2213,6 @@
                 }
             ],
             "install-path": "../theseer/tokenizer"
-<<<<<<< HEAD
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2306,8 +2296,6 @@
                 }
             ],
             "install-path": "../vlucas/phpdotenv"
-=======
->>>>>>> f386557 (Adding composer and phpunit to the project)
         }
     ],
     "dev": true,
