@@ -14,7 +14,7 @@ class Database extends TestCase {
         // Looing for .env at the root directory
         $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
         $dotenv->load();
-        $this->assertEquals($_ENV['USER'], "shane");
+        $this->assertEquals($_ENV['USER'], "user");
     }
 
     public function test_env_database(): void {
