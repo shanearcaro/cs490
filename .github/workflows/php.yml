@@ -37,8 +37,8 @@ jobs:
       with:
         envkey_ROOT_PASSWORD: ${{ secrets.ROOT_PASSWORD }}
         envkey_HOST: ${{ secrets.HOST }}
-        envkey_USERNAME: ${{ secrets.USER }}
-        envkey_PASSWORD: ${{ secrets.PASSWORD }}
+        envkey_NAME: ${{ secrets.USER }}
+        envkey_PASS: ${{ secrets.PASSWORD }}
         envkey_DATABASE: ${{ secrets.DATABASE }}
         file_name: .env
         fail_on_empty: false
