@@ -22,11 +22,8 @@ class ComposerAutoloaderInit09b5c1316150af211da1899ea0c64946
             return self::$loader;
         }
 
-<<<<<<< HEAD
         require __DIR__ . '/platform_check.php';
 
-=======
->>>>>>> f386557 (Adding composer and phpunit to the project)
         spl_autoload_register(array('ComposerAutoloaderInit09b5c1316150af211da1899ea0c64946', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(\dirname(__FILE__)));
         spl_autoload_unregister(array('ComposerAutoloaderInit09b5c1316150af211da1899ea0c64946', 'loadClassLoader'));
