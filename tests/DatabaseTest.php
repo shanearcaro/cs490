@@ -14,7 +14,7 @@ class Database extends TestCase {
         // Looing for .env at the root directory
         $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
         $dotenv->load();
-        $this->assertEquals($_ENV['USERNAME'], "user");
+        $this->assertEquals($_ENV['USER'], "user");
     }
 
     public function test_env_database(): void {
@@ -29,7 +29,7 @@ class Database extends TestCase {
         $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
         $dotenv->load();
 
-        $connection = new mysqli($_ENV['HOST'], $_ENV['USERNAME'], $_ENV['PASSWORD'], $_ENV['DATABASE']);
+        $connection = new mysqli($_ENV['HOST'], $_ENV['USER'], $_ENV['PASS'], $_ENV['DATABASE']);
 
         $this->assertEquals($connection->connect_error, null);
     }
