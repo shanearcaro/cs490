@@ -42,8 +42,9 @@ jobs:
         envkey_DATABASE: ${{ secrets.DATABASE }}
         file_name: .env
         fail_on_empty: false
+
     - name: Create docker containers
-      run: docker-compose up --build
+      run: docker-compose build db
 
     - name: Run unit tests
       run: composer test
