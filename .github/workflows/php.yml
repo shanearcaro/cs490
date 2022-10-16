@@ -43,12 +43,12 @@ jobs:
         file_name: .env
         fail_on_empty: false
 
-    - name: Create docker containers
-      run: docker-compose up db
+    # - name: Create docker containers
+    #   run: docker-compose up db
 
     - name: Run unit tests
       run: composer test
 
-    - name: Shutdown docker containers
-      run: docker-compose down
+    # - name: Shutdown docker containers
+    #   run: docker-compose down
 
