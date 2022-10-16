@@ -4,7 +4,7 @@
     $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
     $dotenv->load();
 
-    $connection = new mysqli($_ENV['HOST'], $_ENV['USER'], $_ENV['PASSWORD'], $_ENV['DATABASE']);
+    $connection = new mysqli($_ENV['HOST'], $_ENV['NAME'], $_ENV['PASS'], $_ENV['DATABASE']);
 
     // Prompt error if database connection doesn't work and exit the script
     if ($connection->connect_error) {
