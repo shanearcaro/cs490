@@ -42,9 +42,12 @@ jobs:
         envkey_DATABASE: ${{ secrets.DATABASE }}
         file_name: .env
         fail_on_empty: false
-    - name: Validate .env
-      run: cat .env
+    - name: Create docker containers
+      run: docker-compose up --build
 
     - name: Run unit tests
       run: composer test
+
+    - name: Shutdown docker containers
+      run: docker-compose down
 
