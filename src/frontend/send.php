@@ -31,7 +31,7 @@
         header("Location: student.php");
     }
     else if ($result == "Teacher") {
-        header("Location: teacher.php");
+        echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
     }
     else {
         echo "<script>alert('Invalid Credentials');window.location.href='/';</script>";

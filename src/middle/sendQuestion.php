@@ -12,13 +12,19 @@
     //Send the question to the backend to be stored in the database
     $url = 'localhost/src/backend/storeQuestion.php';
 
-    //Initialized the curl session
+    // Initialized a cURL session
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
-    curl_exec($ch);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $result = json_decode($result);
     curl_close($ch);
 
-    header("Location: ../frontend/TeacherPages/questionBank.php");
+    echo $result;
+
+    // header("Location: ../frontend/TeacherPages/teacher.php");
 ?>
