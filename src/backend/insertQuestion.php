@@ -26,7 +26,6 @@
     $query = "INSERT INTO Questions (question, testcase1, testcase2) VALUES ('{$question}', '{$testcase1}', '{$testcase2}')";
     $result = mysqli_query($connection, $query);
 
-    // Extract the username is isTeacher from the query results
     $response = $result ? "Success" : "Failure";
 
     $response = json_encode($response);
