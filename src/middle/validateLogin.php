@@ -1,7 +1,7 @@
 <?php
     // Read posted user data from the front end
     $user_data = json_decode(file_get_contents('php://input'));
-    
+
     $username = $user_data->{'username'};
     $password = $user_data->{'password'};
 
@@ -11,7 +11,7 @@
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/backend/authenticate.php';
+    $url = 'localhost/src/backend/authenticateLogin.php';
 
     // Initialized a cURL session
     $ch = curl_init();

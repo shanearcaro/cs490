@@ -6,7 +6,7 @@
     <h1>Welcome Teacher! What would you like to do?</h1>
     <body>
         <!--Move to question creation page -->
-        <form action="questionBank.php">
+        <form action="./questionBank.php">
             <input type="submit" name="b1" value="Create Questions">
         </form>
         <!--Move to the exam creation page -->

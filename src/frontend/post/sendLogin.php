@@ -1,5 +1,7 @@
 <?php
-    require_once realpath(dirname(__DIR__, 2) . '/vendor/autoload.php');
+    // Start new session
+    session_start();
+    
     // Get username and password from Malcolm's login screen and create a data array
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -10,7 +12,7 @@
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validate.php';
+    $url = 'localhost/src/middle/validateLogin.php';
 
     // Initialized a cURL session
     $ch = curl_init();
@@ -26,7 +28,6 @@
 
     // Contacting the back end will return Student, Teacher, or Bad Login.
     // Update the current page depending on the result from the database.
-   
     if ($result == "Student") {
         header("Location: student.php");
     }
