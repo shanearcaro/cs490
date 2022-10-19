@@ -23,7 +23,8 @@
     $testcase2 = $user_data->{'testcase2'};
     
     //Insert question data into question table
-    $query = "INSERT INTO Questions (question, testcase1, testcase2) VALUES ('{$question}', '{$testcase1}', '{$testcase2}')";
+    $query = "INSERT INTO Questions (question, testcase1, testcase2) VALUES ('{$question}', '{$testcase1}', '{$testcase2}')"; 
+
     $result = mysqli_query($connection, $query);
 
     $response = $result ? "Success" : "Failure";

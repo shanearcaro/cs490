@@ -31,6 +31,7 @@
     while ($row = mysqli_fetch_array($result)) {
 	   $get_username = $row['username'];
 	   $get_teacher = $row['isTeacher'];
+       $_SESSION['user'] = $row['accountID'];
     }
 
     $response = "";
