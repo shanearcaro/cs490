@@ -31,4 +31,6 @@
     else {
         echo "<script>alert('Question failed to create.');</script>";
     }
+    echo "<script>window.location.href='../TeacherPages/teacher.php';</script>";
+    header("Location: ../TeacherPages/teacher.php");
 ?>
