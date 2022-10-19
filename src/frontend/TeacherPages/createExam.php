@@ -49,32 +49,20 @@
         echo '<div class="tableLabels">';
 
         echo '<ul><li>Question</li><li>Test Case 1</li><li>Test Case 2</li></ul>';
+        echo '</div>';
         echo '<div class="questionRows">';
         $counter = 1;
         while ($row = mysqli_fetch_array($result)) {
+            echo '<div class="row">';
+            echo '<input type="checkbox" id="checkBox" class="questionCheckBoxes"' . $counter . '">';
             echo '<ul><li class="element">' . nl2br($row['question']) . '</li><li class="element">' . $row['testcase1'] . '</li><li class="element">' . $row['testcase2'] . '</li></ul>';
+            echo '</div>';
             $counter++;
         }
-        echo '</div>';
 
         echo '</div>';
         echo '</div>';
         echo '</div>';
-        // echo "<div class=container>";
-        // echo '<h1 id="title">Create an Exam</h1>';
-        // echo "<table id='database_table'>";
-        // echo '<tr><th class="label">' . 'Question' .
-        //     '</td><th class="label">' . 'Test Case 1' .
-        //     '</td><th class="label">' . 'Test Case 2' . '</td></tr>';
-        // $counter = 1;
-        // while ($row = mysqli_fetch_array($result)) {
-        //     echo '<tr class="questionRow" id="row' . $counter . '"><input type="checkbox" id="button' . $counter . '"><td class="questionCol">' . $row['question'] . 
-        //         '</td><td class="questionCol">' . $row["testcase1"] . 
-        //         '</td><td class="questionCol">' . $row["testcase2"] . "</td></tr>";
-        //     $counter++;    
-        // }
-        // echo "</table>";
-        // echo '</div>';
     }
 
     $connection->close();
