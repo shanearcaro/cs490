@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // Read posted user data from the front end
     $user_data = file_get_contents('php://input');
 

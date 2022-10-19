@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once realpath(dirname(__DIR__, 2) . '/vendor/autoload.php');
 
     // Read from credentials file and connect to database

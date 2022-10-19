@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <HTML>
     <head>
         <Title>Create Question</Title>

@@ -1,5 +1,6 @@
 
 <?php
+    session_start();
     // Get username and password from Malcolm's login screen and create a data array
     $question  = $_POST['questionBox'];
     $testcase1 = $_POST['testCase1'];

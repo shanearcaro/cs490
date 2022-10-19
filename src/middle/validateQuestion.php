@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // Read posted user data from the front end
     $user_data = json_decode(file_get_contents('php://input'));
 

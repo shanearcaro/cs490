@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $questionBank = array();
     for ($i = 0; $i < count($_POST['checkBox']); $i++) {
         $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
