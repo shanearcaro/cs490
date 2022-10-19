@@ -68,7 +68,7 @@ body {
     margin-right: 0.25vw;
 }
 
-#checkBox {
+.checkBox {
     margin-top: 1.5rem;
     width: 2vw;
     height: 2vh;

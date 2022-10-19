@@ -1,7 +1,7 @@
 <?php
     // Start new session
     session_start();
-    
+
     // Get username and password from Malcolm's login screen and create a data array
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -29,7 +29,7 @@
     // Contacting the back end will return Student, Teacher, or Bad Login.
     // Update the current page depending on the result from the database.
     if ($result == "Student") {
-        header("Location: student.php");
+        header("Location: ../student.php");
     }
     else if ($result == "Teacher") {
         echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";

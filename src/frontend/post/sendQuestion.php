@@ -31,7 +31,4 @@
     else {
         echo "<script>alert('Question failed to create.');</script>";
     }
-
-    // Contacting the back end will return Student, Teacher, or Bad Login.
-    // Update the current page depending on the result from the database.
 ?>

@@ -51,15 +51,17 @@
         echo '<ul><li>Question</li><li>Test Case 1</li><li>Test Case 2</li></ul>';
         echo '</div>';
         echo '<div class="questionRows">';
+        echo '<form name="createExam" method="post" action="../post/sendExam.php">';
         $counter = 1;
         while ($row = mysqli_fetch_array($result)) {
             echo '<div class="row">';
-            echo '<input type="checkbox" id="checkBox" class="questionCheckBoxes"' . $counter . '">';
+            echo '<input type="checkbox" name="checkBox[]" class="checkBox" value="' . $row["id"] . '">';
             echo '<ul><li class="element">' . nl2br($row['question']) . '</li><li class="element">' . $row['testcase1'] . '</li><li class="element">' . $row['testcase2'] . '</li></ul>';
             echo '</div>';
             $counter++;
         }
-
+        echo '<input type="submit" name="submit" value="submit">';
+        echo '</form>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
