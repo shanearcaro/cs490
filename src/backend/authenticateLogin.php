@@ -21,30 +21,42 @@
     $password = $user_data->{'password'};
     
     // Extract user info given username and password
-    $query = "SELECT * FROM UserAccounts WHERE username='{$username}' AND password='{$password}' LIMIT 1";
+    $query = "SELECT * FROM Users WHERE username='{$username}' AND password='{$password}' LIMIT 1";
     $result = mysqli_query($connection, $query);
 
-    // Extract the username is isTeacher from the query results
-    $get_username = '';
-    $get_teacher  = 0;
+    // // Extract the username is isTeacher from the query results
+    $accountID = -1;
+    $get_teacher = 0;
 
     while ($row = mysqli_fetch_array($result)) {
-	   $get_username = $row['username'];
-	   $get_teacher = $row['isTeacher'];
-       $_SESSION['user'] = $row['accountID'];
+	   $accountID = $row['accountID'];
     }
 
-    $response = "";
+    $query = "SELECT username FROM Users Inner JOIN Teachers ON Users.accountID=Teachers.accountID WHERE Users.accountID='{$accountID}'";
+    $result = mysqli_query($connection, $query);
 
-    if ($get_username == '') {
+    $total = mysqli_num_rows($result);
+
+    if ($total == 1)
+        $get_teacher = 1;
+
+    $accountType;
+
+    if ($accountID == -1) {
 	    $response = "Bad Login";
     }
     else {
 	    if ($get_teacher == 0)
-            $response = "Student";
+            $accountType = "Student";
 	    else
-            $response = "Teacher";
+            $accountType = "Teacher";
     }
+
+    $response = array(
+        "type" => $accountType,
+        "accountID" => $accountID
+    );
+
     $response = json_encode($response);
     echo $response;
 

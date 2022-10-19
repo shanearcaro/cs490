@@ -41,40 +41,41 @@
         echo '<h1 id="title">No questions created</h1>';
     }
     else {
-        echo '<div class="questionBank">';
+        echo $_SESSION['accountID'];
+        // echo '<div class="questionBank">';
 
-        echo '<h1 id="title">Create an Exam</h1>';
-        echo '<div class="questionTable">';
+        // echo '<h1 id="title">Create an Exam</h1>';
+        // echo '<div class="questionTable">';
 
-        echo '<div class="tableLabels">';
+        // echo '<div class="tableLabels">';
 
-        echo '<ul>';
-        echo '<li class="labels">Question</li>';
-        echo '<li class="labels">Test Case 1</li>';
-        echo '<li class="labels">Test Case 2</li>';
-        echo '<li class="labels">Points</li>';
-        echo '</ul>';
-        echo '</div>';
-        echo '<div class="questionRows">';
-        echo '<form name="createExam" method="post" action="../post/sendExam.php">';
+        // echo '<ul>';
+        // echo '<li class="labels">Question</li>';
+        // echo '<li class="labels">Test Case 1</li>';
+        // echo '<li class="labels">Test Case 2</li>';
+        // echo '<li class="labels">Points</li>';
+        // echo '</ul>';
+        // echo '</div>';
+        // echo '<div class="questionRows">';
+        // echo '<form name="createExam" method="post" action="../post/sendExam.php">';
         $counter = 1;
         while ($row = mysqli_fetch_array($result)) {
-            echo '<div class="row">';
-            echo '<ul>';
-            echo '<li class="element-button"><input type="checkbox" name="checkBox[]" class="checkBox" value="' . $row["id"] . '"></li>';
-            echo '<li class="element">' . nl2br($row['question']) . '</li>';
-            echo '<li class="element">' . $row['testcase1'] . '</li>';
-            echo '<li class="element">' . $row['testcase2'] . '</li>';
-            echo '<li class="element"><input type="text" class="element-text" name="points[]" value="0">';
-            echo '</ul>';
-            echo '</div>';
-            $counter++;
+            // echo '<div class="row">';
+            // echo '<ul>';
+            // echo '<li class="element-button"><input type="checkbox" name="checkBox[]" class="checkBox" value="' . $row["id"] . '"></li>';
+            // echo '<li class="element">' . nl2br($row['question']) . '</li>';
+            // echo '<li class="element">' . $row['testcase1'] . '</li>';
+            // echo '<li class="element">' . $row['testcase2'] . '</li>';
+            // echo '<li class="element"><input type="text" class="element-text" name="points[]" value="0">';
+            // echo '</ul>';
+            // echo '</div>';
+            // $counter++;
         }
-        echo '<input class="button" type="submit" name="submit" value="Submit">';
-        echo '</form>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
+        // echo '<input class="button" type="submit" name="submit" value="Submit">';
+        // echo '</form>';
+        // echo '</div>';
+        // echo '</div>';
+        // echo '</div>';
     }
 
     $connection->close();

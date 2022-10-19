@@ -3,7 +3,7 @@ USE sma237;
 
 CREATE TABLE IF NOT EXISTS Users (
     accountID INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR NOT NULL,
+    username VARCHAR(20) NOT NULL,
     password TEXT(255) NOT NULL,
     PRIMARY KEY(accountID)
 );
