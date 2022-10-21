@@ -1,4 +1,3 @@
-
 <?php
     session_start();
     // Get username and password from Malcolm's login screen and create a data array
@@ -26,12 +25,15 @@
     $result = json_decode($result);
     curl_close($ch);
 
+    /**
+     * TODO: This doesn't work but it doesn't really matter right now
+     * Just need to get the project done and then I can worry about this
+     */
     if ($result == "Success") {
         echo "<script>alert('Question created successfully.');</script>";
     }
     else {
         echo "<script>alert('Question failed to create.');</script>";
     }
-    echo "<script>window.location.href='../TeacherPages/teacher.php';</script>";
-    header("Location: ../TeacherPages/teacher.php");
+    echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
 ?>

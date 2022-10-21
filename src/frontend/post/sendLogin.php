@@ -26,9 +26,8 @@
 
     $accountType = $result->{'type'};
     $accountID = $result->{'accountID'};
-
-    echo $accountType . ": " . $accountID;
     $_SESSION['accountID'] = $accountID;
+
     // Contacting the back end will return Student, Teacher, or Bad Login.
     // Update the current page depending on the result from the database.
     if ($accountType == "Student") {

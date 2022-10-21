@@ -57,3 +57,6 @@ CREATE TABLE IF NOT EXISTS ExamQuestions (
 
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'student', 'student');
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'teacher', 'teacher');
+
+INSERT INTO `Students` (`accountID`, `studentID`) VALUES ('1', NULL);
+INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('2', NULL);

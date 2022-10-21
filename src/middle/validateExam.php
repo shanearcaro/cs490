@@ -15,6 +15,6 @@
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
-    echo $result;
     curl_close($ch);
+    echo $result;
 ?>

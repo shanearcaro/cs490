@@ -1,13 +1,12 @@
 <?php
     session_start();
     $questionBank = array();
-    for ($i = 0; $i < count($_POST['checkBox']); $i++) {
-        $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
+    if (isset($_POST['checkBox'])) {
+        for ($i = 0; $i < count($_POST['checkBox']); $i++) {
+            $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
+        }
     }
-
-    foreach($questionBank as $key=>$value) {
-        echo $key . "=" . $value . " ";
-    }
+    array_push($questionBank, $_SESSION['accountID']);
 
     // Encode the data into JSON format
     $encoded = json_encode($questionBank);
@@ -27,26 +26,14 @@
     $result = json_decode($result);
     curl_close($ch);
 
+    print_r($questionBank);
     echo "[ " . $result . " ]";
 
-    // Contacting the back end will return Student, Teacher, or Bad Login.
-    // Update the current page depending on the result from the database.
-    // if ($result == "Student") {
-    //     header("Location: ../student.php");
-    // }
-    // else if ($result == "Teacher") {
-    //     echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
-    // }
-    // else {
-    //     echo "<script>alert('Invalid Credentials');window.location.href='/';</script>";
-    // }
-
     /**
-     * Right now we have two post arrays, $_POST['checkBox'] and $_POST['points].
-     * The code above combines both these arrays together in key, value pairs but I did this too early.
-     * 
-     * This information has to be sent to the middle and then to the back end because it can be put into a database
+     * Need to look at sendExam.php, validateExam.php, and insertExam.php, and find the error
+     * that's stoping the curl session from working properly. The exam and the exam questions
+     * should all be created and the result should either be "Blank" meaning that no questions
+     * were added, or "x number of questions were added" indicating the number of questions that
+     * were added to the database.
      */
-
-    //  SELECT AUTO_INCREMEMNT FROM Exam;
 ?>
