@@ -71,7 +71,7 @@
             echo '<li class="element">' . nl2br($questionText) . '</li>';
             echo '<li class="element">' . $testcase1 . '</li>';
             echo '<li class="element">' . $testcase2 . '</li>';
-            echo '<li class="element"><input type="text" class="element-text" name="points[]" value="0">';
+            echo '<li class="element"><input type="number" class="element-text" name="points[]" value="0" min="0" required pattern="[0-9]">';
             echo '</ul>';
             echo '</div>';
         }

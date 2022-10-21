@@ -91,14 +91,10 @@ body {
 } */
 
 .element-text {
-    /* width: 50%; */
+    width: 100%;
+    height: 100%;
     border: none;
-    /* width: 100%;
-    height: 100%; */
-    /* background-color: white;
-    padding: 10px;
-    border: 1px solid black; */
-    text-align: center;
+    text-align: left;
 }
 
 .checkBox {
@@ -115,6 +111,7 @@ body {
     border-radius: 25px;
 }
 
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -123,4 +120,8 @@ input::-webkit-inner-spin-button {
 
 input[type=number]{
     -moz-appearance: textfield;
+}
+
+textarea {
+    resize: none;
 }
