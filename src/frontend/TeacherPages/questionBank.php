@@ -14,7 +14,7 @@
     </head>
     <h1>Create Question</h1>
     <body>
-        <form name = "question" method = "post" action = "../post/sendQuestion.php", target="hiddenFrame">
+        <form name = "question" method = "post" action = "../post/sendQuestion.php">
             <label for="questionBox">Enter a Question:</label><br>
             <textarea type="textarea" id="questionBox" name="questionBox" class="questionBox" required></textarea><br>
             <label for="testCase1">Enter your first test case:</label><br>
@@ -28,5 +28,4 @@
     <form action="teacher.php">
         <input type="submit" name="b1" value="Back">
     </form>
-    <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 </HTML>

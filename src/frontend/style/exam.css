@@ -38,6 +38,10 @@ body {
     margin-left: 1rem;
 }
 
+.questionTable {
+    padding-bottom: 2vh;
+}
+
 .questionRows {
     border: 5px solid black;
     padding: 0.75vw 0.5vw 0.5vw 0.5vw;

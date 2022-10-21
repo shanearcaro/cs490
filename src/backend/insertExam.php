@@ -62,90 +62,26 @@
     array_pop($questionList);
     array_pop($pointsList);
 
-    $response = "Working" . $teacherID;
     $totalPointValue = array_sum($pointsList);
 
     // No questions were selected when creating an exam
     if ($numberOfQuestions == 0) {
-        $response = "Empty";
+        $response = "Empty Exam";
     }
     else {
-        /**
-         * numberOfQuestions is the correct size, the problem is that the size of keys
-         * is always one which is causing an ArrayOutOfBounds exception.
-         * 
-         * Have to figure out why array_keys is returning an array of size 1, or find
-         * out how to get the keys of the array with a different method.
-         */
-        // $accountID = array_key_last($usable_data);
-        // $keys = array_keys($usable_data);
-        // $response = count($keys) . " " . count($usable_data);
-        // for ($i = 0; $i < $numberOfQuestions; $i++) {
-            // $questionID = $keys[$i];
-            // $pointValue = $usable_data[$keys[$i]];
-            // $response = $pointValue;
-            // $response .= "S";
-            // $totalPointvalue += $pointValue;
-        }
+        // Create an Exam and ExamQuestions that link questions to a specific exam
         $query = "INSERT INTO Exams (examID, examPoints, numberOfQuestions, teacherID) VALUES ('{$examID}', '{$totalPointValue}', '{$numberOfQuestions}', '{$teacherID}')";
         mysqli_query($connection, $query);
-        // for ($i = 0; $i < $numberOfQuestions; $i++) {
-        //     $questionID = $questionList[$i];
-        //     $pointValue = $pointsList[$i];
-        //     $totalPointValue += $pointValue;
-        //     $query = "INSERT INTO ExamQuestions (examID, questionID, questionPoints) VALUES ('{$examID}', '{$questionID}', '{$pointValue}')";
-        //     mysqli_query($connection, $query);
-        // }
-        // $response = $usable_data[0];
-        // $query = "INSERT INTO Exams (examID, examPoints, numberOfQuestions, teacherID) VALUES ('{$examID}', '{$totalPointValue}', '{$numberOfQuestions}', '{$accountID}')";
-        // mysqli_query($connection, $query);
-
-    //     for ($i = 0; $i < $numberOfQuestions; $i++) {
-    //         $questionID = $keys[$i];
-    //         $pointValue = $user_data[$keys[$i]];
-    //         $query = "INSERT INTO ExamQuestions (examID, questionID, questionPoints) VALUES ('{$examID}', '{$questionID}', '{$pointValue}')";
-    //         mysqli_query($connection, $query);
-    //     }
-    //     $response = $numberOfQuestions . " number of questions created";
-    // }
-
-    $connection->close();
-    
-
-    // $connection = new mysqli($_ENV['HOST'], $_ENV['NAME'], $_ENV['PASS'], $_ENV['DATABASE']);
-
-    // // Prompt error if database connection doesn't work and exit the script
-    // if ($connection->connect_error) {
-	//     echo "Failed to connect to MYSQL: " . mysqli_connect_error();
-    //     exit();
-    // }
-
-    // $query = "SELECT * FROM Exams WHERE examID=(SELECT max(examID) FROM Exams)";
-    // $result = mysqli_query($connection, $query);
-
-    // $total = mysqli_num_rows($result);
-
-    // $examID = -1;
-    // if ($total == 1) {
-    //     while ($row = mysqli_fetch_array($result)) {
-    //         $maxID = $row['id'];
-    //     }
-    //     $examID = $maxID + 1;
-    // }
-    // else
-    //     $examID = 1;
-
-    // // Read posted user data from the front end
-    // $user_data = json_decode(file_get_contents('php://input'));
-    
+        for ($i = 0; $i < $numberOfQuestions; $i++) {
+            $questionID = $questionList[$i];
+            $pointValue = $pointsList[$i];
+            $query = "INSERT INTO ExamQuestions (examID, questionID, questionPoints) VALUES ('{$examID}', '{$questionID}', '{$pointValue}')";
+            mysqli_query($connection, $query);
+        }
+        $response = "Exam Created";
+    }
     $response = json_encode($response);
     echo $response;
 
-    /**
-     * Need a way to get the ID of the user that is currently logged in
-     * The UserAccounts table also should be changed to include a teacher
-     * and a students table to that students aren't able to create exams
-     */
-
-    // $connection->close();
+    $connection->close();
  ?>

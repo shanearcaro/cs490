@@ -1,5 +1,4 @@
 <?php
-    session_start();
     // Get username and password from Malcolm's login screen and create a data array
     $question  = $_POST['questionBox'];
     $testcase1 = $_POST['testCase1'];
@@ -30,10 +29,10 @@
      * Just need to get the project done and then I can worry about this
      */
     if ($result == "Success") {
-        echo "<script>alert('Question created successfully.');</script>";
+        echo "<script>alert('Exam created successfully.');</script>";
     }
     else {
-        echo "<script>alert('Question failed to create.');</script>";
+        echo "<script>alert('Exam failed to create.');</script>";
     }
-    echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+    echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
 ?>

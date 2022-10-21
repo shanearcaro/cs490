@@ -26,14 +26,23 @@
     $result = json_decode($result);
     curl_close($ch);
 
-    print_r($questionBank);
-    echo "[ " . $result . " ]";
+    if ($result == "Exam Created") {
+        echo "<script>alert('Exam created successfully.');</script>";
+    }
+    else {
+        echo "<script>alert('Exam failed to create.');</script>";
+    }
+    echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
 
     /**
-     * Need to look at sendExam.php, validateExam.php, and insertExam.php, and find the error
-     * that's stoping the curl session from working properly. The exam and the exam questions
-     * should all be created and the result should either be "Blank" meaning that no questions
-     * were added, or "x number of questions were added" indicating the number of questions that
-     * were added to the database.
+     * Exams can be successfully created now. Need to decide here where to go once and exam is created
+     * or if it fails. The value of $result is either going to be Exam Created or Empty Exam.
+     * 
+     * Students need to be able to view all the exams created by teachers and be able to take the exams.
+     * Once this happens I can finally start working on the auto grader.
+     * 
+     * 
+     * Also if you have time: implement some Javascript to put a counter on the screen of the point values when creating an exam.
+     * ALso should change how the input box works on exams so that it only accepts number input.
      */
 ?>
