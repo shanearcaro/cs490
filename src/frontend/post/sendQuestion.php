@@ -30,10 +30,10 @@
 
     // Update page on success
     if ($result == "Success") {
-        echo "<script>alert('Exam created successfully.');</script>";
+        echo "<script>alert('Question created successfully.');</script>";
     }
     else {
-        echo "<script>alert('Exam failed to create.');</script>";
+        echo "<script>alert('Question failed to create.');</script>";
     }
     echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
 ?>

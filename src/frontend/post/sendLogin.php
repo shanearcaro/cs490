@@ -31,10 +31,10 @@
     // Contacting the back end will return Student, Teacher, or Bad Login.
     // Update the current page depending on the result from the database.
     if ($accountType == "Student") {
-        header("Location: ../student.php");
+        echo "<script>window.location.href='/src/frontend/StudentPages/student.php';</script>";
     }
     else if ($accountType == "Teacher") {
-        echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+        echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
     }
     else {
         echo "<script>alert('Invalid Credentials');window.location.href='/';</script>";

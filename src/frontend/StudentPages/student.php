@@ -4,7 +4,7 @@
 <HTML>
     <head>
         <Title>Student Portal</Title>
-        <link rel="Stylesheet" href="./style/takeExam.css"/>
+        <link rel="Stylesheet" href="../../../style/takeExam.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,7 @@
         echo '</ul>';
         echo '</div>';
         echo '<div class="questionRows">';
-        echo '<form name="createExam" method="post" action="../post/sendExam.php">';
+        echo '<form name="createExam" method="post" action="./exam.php">';
         for ($i = 0; $i < count($exams); $i++) {
             $exam = $exams[$i];
             $examID = $exam->{'examID'};
