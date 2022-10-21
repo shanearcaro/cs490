@@ -69,7 +69,7 @@
             echo '</ul>';
             echo '</div>';
         }
-        echo '<input class="button" type="submit" name="submit" value="Submit">';
+        echo '<input class="button" type="submit" name="submit" value="Take Exam">';
         echo '</form>';
         echo '</div>';
         echo '</div>';
