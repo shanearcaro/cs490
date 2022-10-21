@@ -30,12 +30,11 @@
     while ($row = mysqli_fetch_array($result)) {
         $teacherID = $row['teacherID'];
     }
-    
+
     //Insert question data into question table
     $query = "INSERT INTO Questions (teacherID, question, testcase1, testcase2) VALUES ('{$teacherID}', '{$question}', '{$testcase1}', '{$testcase2}')"; 
 
     $result = mysqli_query($connection, $query);
-
     $response = $result ? "Success" : "Failure";
 
     $response = json_encode($response);

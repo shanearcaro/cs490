@@ -26,7 +26,6 @@
     $result = json_decode($result);
     curl_close($ch);
 
-    echo $result;
 
     // Update page on success
     if ($result == "Success") {
