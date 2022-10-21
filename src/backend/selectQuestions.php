@@ -1,5 +1,7 @@
 <?php
+    session_start();
     require_once realpath(dirname(__DIR__, 2) . '/vendor/autoload.php');
+
     // Read from credentials file and connect to database
     $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
     $dotenv->load();
@@ -17,34 +19,28 @@
     
     // Data received is already json encoded
     // Instead of decoding to just encode just send encoded data
-    $username = $user_data->{'username'};
-    $password = $user_data->{'password'};
+    $accountID = $user_data->{'accountID'};
+
+    // We have the accountID but to create an exam we need the teacherID
+    $query = "SELECT teacherID FROM Teachers WHERE accountID='{$accountID}'";
+    $result = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_array($result)) {
+        $teacherID = $row['teacherID'];
+    }
     
-    // Extract user info given username and password
-    $query = "SELECT * FROM UserAccounts WHERE username='{$username}' AND password='{$password}' LIMIT 1";
+    //Insert question data into question table
+    $query = "SELECT * FROM Questions WHERE teacherID='{$teacherID}'"; 
     $result = mysqli_query($connection, $query);
 
-    // Extract the username is isTeacher from the query results
-    $get_username = '';
-    $get_teacher  = 0;
+    $questions = array();
 
     while ($row = mysqli_fetch_array($result)) {
-	   $get_username = $row['username'];
-	   $get_teacher = $row['isTeacher'];
+        $question = array('questionID' => $row['questionID'], 'question' => 
+            $row['question'], 'testcase1' => $row['testcase1'], 'testcase2' => $row['testcase2']);
+        array_push($questions, $question);
     }
 
-    $response = "";
-
-    if ($get_username == '') {
-	    $response = "Bad Login";
-    }
-    else {
-	    if ($get_teacher == 0)
-            $response = "Student";
-	    else
-            $response = "Teacher";
-    }
-    $response = json_encode($response);
+    $response = json_encode($questions);
     echo $response;
 
     $connection->close();

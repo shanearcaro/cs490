@@ -1,5 +1,5 @@
 <?php
-    require_once realpath(dirname(__DIR__, 2) . '/vendor/autoload.php');
+    session_start();
     // Get username and password from Malcolm's login screen and create a data array
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -10,7 +10,7 @@
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validate.php';
+    $url = 'localhost/src/middle/validateLogin.php';
 
     // Initialized a cURL session
     $ch = curl_init();
@@ -24,14 +24,17 @@
     $result = json_decode($result);
     curl_close($ch);
 
+    $accountType = $result->{'type'};
+    $accountID = $result->{'accountID'};
+    $_SESSION['accountID'] = $accountID;
+
     // Contacting the back end will return Student, Teacher, or Bad Login.
     // Update the current page depending on the result from the database.
-   
-    if ($result == "Student") {
-        header("Location: student.php");
+    if ($accountType == "Student") {
+        header("Location: ../student.php");
     }
-    else if ($result == "Teacher") {
-        header("Location: teacher.php");
+    else if ($accountType == "Teacher") {
+        echo "<script>;window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
     }
     else {
         echo "<script>alert('Invalid Credentials');window.location.href='/';</script>";
