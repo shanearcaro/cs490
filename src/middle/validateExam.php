@@ -17,4 +17,6 @@
     $result = curl_exec($ch);
     curl_close($ch);
     echo $result;
+
+    // Make middle into one file instead of validateX
 ?>

@@ -19,9 +19,6 @@
     
     // Data received is already json encoded
     // Instead of decoding to just encode just send encoded data
-    $question = $user_data->{'question'};
-    $testcase1 = $user_data->{'testcase1'};
-    $testcase2 = $user_data->{'testcase2'};
     $accountID = $user_data->{'accountID'};
 
     // We have the accountID but to create an exam we need the teacherID
@@ -32,13 +29,18 @@
     }
     
     //Insert question data into question table
-    $query = "INSERT INTO Questions (teacherID, question, testcase1, testcase2) VALUES ('{$teacherID}', '{$question}', '{$testcase1}', '{$testcase2}')"; 
-
+    $query = "SELECT * FROM Questions WHERE teacherID='{$teacherID}'"; 
     $result = mysqli_query($connection, $query);
 
-    $response = $result ? "Success" : "Failure";
+    $questions = array();
 
-    $response = json_encode($response);
+    while ($row = mysqli_fetch_array($result)) {
+        $question = array('questionID' => $row['questionID'], 'question' => 
+            $row['question'], 'testcase1' => $row['testcase1'], 'testcase2' => $row['testcase2']);
+        array_push($questions, $question);
+    }
+
+    $response = json_encode($questions);
     echo $response;
 
     $connection->close();

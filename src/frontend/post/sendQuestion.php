@@ -1,10 +1,12 @@
 <?php
+    session_start();
     // Get username and password from Malcolm's login screen and create a data array
     $question  = $_POST['questionBox'];
     $testcase1 = $_POST['testCase1'];
     $testcase2 = $_POST['testCase2'];
+    $accountID = $_SESSION['accountID'];
 
-    $data = array('question' => $question, 'testcase1' => $testcase1, 'testcase2' => $testcase2);
+    $data = array('question' => $question, 'testcase1' => $testcase1, 'testcase2' => $testcase2, 'accountID' => $accountID);
 
     // Encode the data into JSON format
     $encoded = json_encode($data);
@@ -24,10 +26,9 @@
     $result = json_decode($result);
     curl_close($ch);
 
-    /**
-     * TODO: This doesn't work but it doesn't really matter right now
-     * Just need to get the project done and then I can worry about this
-     */
+    echo $result;
+
+    // Update page on success
     if ($result == "Success") {
         echo "<script>alert('Exam created successfully.');</script>";
     }

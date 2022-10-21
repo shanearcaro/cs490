@@ -34,22 +34,34 @@
         exit();
     }
 
-    //Insert question data into question table
-    $query = "SELECT * FROM Questions";
-    $result = mysqli_query($connection, $query);
+    // Send the accountID with the request
+    $data = array('accountID' => $_SESSION['accountID']);
+    // Encode the data into JSON format
+    $encoded = json_encode($data);
 
-    $total = mysqli_num_rows($result);
+    // Connection for the middle end
+    $url = 'localhost/src/middle/requestQuestions.php';
 
-    if ($total == 0) {
+    // Initialized a cURL session
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $questions = json_decode($result);
+    curl_close($ch);
+
+    // Render all questions on the screen
+    if (count($questions) == 0) {
         echo '<h1 id="title">No questions created</h1>';
     }
     else {
-        echo $_SESSION['accountID'];
         echo '<div class="questionBank">';
-
         echo '<h1 id="title">Create an Exam</h1>';
         echo '<div class="questionTable">';
-
         echo '<div class="tableLabels">';
 
         echo '<ul>';
@@ -61,13 +73,18 @@
         echo '</div>';
         echo '<div class="questionRows">';
         echo '<form name="createExam" method="post" action="../post/sendExam.php">';
-        while ($row = mysqli_fetch_array($result)) {
+        for ($i = 0; $i < count($questions); $i++) {
+            $question = $questions[$i];
+            $questionID = $question->{'questionID'};
+            $questionText = $question->{'question'};
+            $testcase1 = $question->{'testcase1'};
+            $testcase2 = $question->{'testcase2'};
             echo '<div class="row">';
             echo '<ul>';
-            echo '<li class="element-button"><input type="checkbox" class="checkBox" name="checkBox[]" value="'. $row['questionID'] .'">';
-            echo '<li class="element">' . nl2br($row['question']) . '</li>';
-            echo '<li class="element">' . $row['testcase1'] . '</li>';
-            echo '<li class="element">' . $row['testcase2'] . '</li>';
+            echo '<li class="element-button"><input type="checkbox" class="checkBox" name="checkBox[]" value="'. $questionID .'">';
+            echo '<li class="element">' . nl2br($questionText) . '</li>';
+            echo '<li class="element">' . $testcase1 . '</li>';
+            echo '<li class="element">' . $testcase2 . '</li>';
             echo '<li class="element"><input type="text" class="element-text" name="points[]" value="0">';
             echo '</ul>';
             echo '</div>';
