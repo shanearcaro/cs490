@@ -20,20 +20,6 @@
 </html>
 
 <?php
-    require_once realpath(dirname(__DIR__, 3) . '/vendor/autoload.php');
-    
-    // Read from credentials file and connect to database
-    $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 3));
-    $dotenv->load();
-
-    $connection = new mysqli($_ENV['HOST'], $_ENV['NAME'], $_ENV['PASS'], $_ENV['DATABASE']);
-
-    // Prompt error if database connection doesn't work and exit the script
-    if ($connection->connect_error) {
-	    echo "Failed to connect to MYSQL: " . mysqli_connect_error();
-        exit();
-    }
-
     // Send the accountID with the request
     $data = array('accountID' => $_SESSION['accountID']);
     // Encode the data into JSON format
@@ -95,6 +81,4 @@
         echo '</div>';
         echo '</div>';
     }
-
-    $connection->close();
 ?>
