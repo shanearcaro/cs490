@@ -22,6 +22,10 @@
     $examID = $user_data[0];
     $studentID = $user_data[1];
 
+    // Create new Student Exam
+    $query = "INSERT INTO StudentExams (studentID, examID, score) VALUES ('{$studentID}', '{$examID}', -1)";
+    mysqli_query($connection, $query);
+
     // Insert question data into question table
     $query = "SELECT q.questionID, q.question, eq.questionPoints FROM ExamQuestions as eq 
         INNER JOIN Exams AS e ON eq.examID=e.examID

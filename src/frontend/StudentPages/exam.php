@@ -57,7 +57,7 @@
     echo '</ul>';
     echo '</div>';
     echo '<div class="questionRows">';
-    echo '<form name="createExam" method="post" action="../post/sendCompletedExam.php">';
+    echo '<form name="createExam" method="post" id="examForm" action="../post/sendCompletedExam.php">';
     for ($i = 0; $i < count($examQuestions); $i++) {
         $question = $examQuestions[$i];
         $questionText = $question->{'question'};
@@ -67,7 +67,7 @@
         echo '<ul>';
         echo '<li class="element">' . nl2br($questionText) . '</li>';
         echo '<li class="element">' . $pointValue . '</li>';
-        echo '<li class="element"><textarea class="element-text" name="answer[]" required></textarea>';
+        echo '<li class="element"><textarea form="examForm" class="element-text" name="answer[]" required></textarea>';
         echo '</ul>';
         echo '</div>';
     }
