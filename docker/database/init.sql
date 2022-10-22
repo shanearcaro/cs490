@@ -46,7 +46,9 @@ CREATE TABLE IF NOT EXISTS Questions (
     teacherID INT NOT NULL,
     question TEXT(255) NOT NULL,
     testcase1 VARCHAR(20) NOT NULL,
+    caseAnswer1 TEXT(255) NOT NULL,
     testcase2 VARCHAR(20) NOT NULL,
+    caseAnswe2 TEXT(255) NOT NULL,
     PRIMARY KEY(questionID),
     FOREIGN KEY(teacherID) REFERENCES Teachers(teacherID)
 );
