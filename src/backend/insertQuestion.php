@@ -21,7 +21,9 @@
     // Instead of decoding to just encode just send encoded data
     $question = $user_data->{'question'};
     $testcase1 = $user_data->{'testcase1'};
+    $caseAnswer1 = $user_data->{'caseAnswer1'};
     $testcase2 = $user_data->{'testcase2'};
+    $caseAnswer2 = $user_data->{'caseAnswer2'};
     $accountID = $user_data->{'accountID'};
 
     // We have the accountID but to create an exam we need the teacherID
@@ -32,7 +34,8 @@
     }
 
     //Insert question data into question table
-    $query = "INSERT INTO Questions (teacherID, question, testcase1, testcase2) VALUES ('{$teacherID}', '{$question}', '{$testcase1}', '{$testcase2}')"; 
+    $query = "INSERT INTO Questions (teacherID, question, testcase1, caseAnswer1, testcase2, caseAnswer2) 
+              VALUES ('{$teacherID}', '{$question}', '{$testcase1}', '{$caseAnswer1}', '{$testcase2}', '{$caseAnswer2}')"; 
 
     $result = mysqli_query($connection, $query);
     $response = $result ? "Success" : "Failure";
