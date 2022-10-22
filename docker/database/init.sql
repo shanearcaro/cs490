@@ -68,9 +68,12 @@ CREATE TABLE IF NOT EXISTS ExamQuestions (
 );
 
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'student', 'student');
+INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'malcolm', 'student');
+
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'teacher', 'teacher');
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'shane', 'teacher');
 
 INSERT INTO `Students` (`accountID`, `studentID`) VALUES ('1', NULL);
-INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('2', NULL);
+INSERT INTO `Students` (`accountID`, `studentID`) VALUES ('2', NULL);
 INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('3', NULL);
+INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('4', NULL);
