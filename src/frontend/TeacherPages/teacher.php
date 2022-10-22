@@ -6,6 +6,7 @@
     <head>
         <Title>Teacher Portal</Title>
     </head>
+    <link rel="Stylesheet" href="../../../style/default.css?<?php echo time();?>"/>
     <h1>Welcome Teacher! What would you like to do?</h1>
     <body>
         <!--Move to question creation page -->

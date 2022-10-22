@@ -11,6 +11,7 @@
                 font-size: 16px;
             }
         </style>
+        <link rel="Stylesheet" href="../../../style/default.css?<?php echo time();?>"/>
     </head>
     <h1>Create Question</h1>
     <body>
