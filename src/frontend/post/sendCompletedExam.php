@@ -6,13 +6,16 @@
             $answers[$i] = $_POST['answer'][$i];
         }
     }
+
+    // Need to send the examID and the accountID with the answers
+    array_push($answers, $_SESSION['examID']);
     array_push($answers, $_SESSION['accountID']);
 
     // Encode the data into JSON format
     $encoded = json_encode($answers);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validateCreatedExam.php';
+    $url = 'localhost/src/middle/validateCompletedExam.php';
 
     // Initialized a cURL session
     $ch = curl_init();

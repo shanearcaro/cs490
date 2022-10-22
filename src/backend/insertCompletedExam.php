@@ -14,10 +14,35 @@
         exit();
     }
 
-    $response = "Working";
     $user_data = json_decode(file_get_contents('php://input'));
-    $response = $user_data;
+    $answers = $user_data;
 
+    // Get the accountID and the examID
+    $accountID = array_pop($answers);
+    $examID = array_pop($answers);
+
+    // We have the accountID but to create an exam we need the studentID
+    $query = "SELECT studentID FROM Students WHERE accountID='{$accountID}'";
+    $result = mysqli_query($connection, $query);
+    $row = mysqli_fetch_array($result);
+    $studentID = $row['studentID'];
+
+    // We have the accountID but to create an exam we need the teacherID
+    $query = "SELECT studentExamID FROM StudentExams WHERE studentID='{$studentID}' AND examID='{$examID}'";
+    $result = mysqli_query($connection, $query);
+    $studentExamID = $row['studentExamID'];
+
+    // Get all the questionIDs for the current exam
+    $query = "SELECT questionID FROM ExamQuestions WHERE examID='{$examID}'";
+    $result = mysqli_query($connection, $query);
+    $response = $result;
+
+
+
+
+    // for ($i = 0; $i < count($answers); $i++) {
+    //     $query = "INSERT INTO CompletedExam (studentExamID, questionID, answer) VALUES ('{$studentExamID}', '{$answers[$i]}', '{$}')";
+    // }
     // // Get max id from Exams table
     // $query = "SELECT * FROM Exams WHERE examID=(SELECT max(examID) FROM Exams)";
     // $result = mysqli_query($connection, $query);

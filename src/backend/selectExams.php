@@ -28,13 +28,6 @@
         $studentID = $row['studentID'];
     }
 
-    //Insert question data into question table
-    // $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username FROM Exams as e 
-    //     INNER JOIN Teachers AS t ON e.teacherID=t.teacherID
-    //     INNER JOIN Users AS u ON t.accountID=u.accountID
-    //     INNER JOIN StudentExams AS se on e.examID=se.examID"; 
-    // $result = mysqli_query($connection, $query);
-
     $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username 
                 FROM Exams as e 
                 INNER JOIN Teachers AS t ON e.teacherID=t.teacherID

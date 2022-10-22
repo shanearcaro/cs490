@@ -27,6 +27,7 @@
         }
     }
     array_push($exam, $_SESSION['accountID']);
+    $_SESSION['examID'] = $exam[0];
 
     // // Encode the data into JSON format
     $encoded = json_encode($exam);
@@ -57,6 +58,7 @@
     echo '</ul>';
     echo '</div>';
     echo '<div class="questionRows">';
+    echo "EXAM ID: " . $_SESSION['examID'];
     echo '<form name="createExam" method="post" id="examForm" action="../post/sendCompletedExam.php">';
     for ($i = 0; $i < count($examQuestions); $i++) {
         $question = $examQuestions[$i];
