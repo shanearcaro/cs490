@@ -14,10 +14,37 @@
         exit();
     }
 
+    // Read posted user data from the front end
+    $user_data = json_decode(file_get_contents('php://input'));
+    
+    // Data received is already json encoded
+    // Instead of decoding to just encode just send encoded data
+    $accountID = $user_data->{'accountID'};
+
+    // We have the accountID but to create an exam we need the studentID
+    $query = "SELECT studentID FROM Students WHERE accountID='{$accountID}'";
+    $result = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_array($result)) {
+        $studentID = $row['studentID'];
+    }
+
     //Insert question data into question table
-    $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username FROM Exams as e 
-        INNER JOIN Teachers AS t ON e.teacherID=t.teacherID
-        INNER JOIN Users AS u ON t.accountID=u.accountID"; 
+    // $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username FROM Exams as e 
+    //     INNER JOIN Teachers AS t ON e.teacherID=t.teacherID
+    //     INNER JOIN Users AS u ON t.accountID=u.accountID
+    //     INNER JOIN StudentExams AS se on e.examID=se.examID"; 
+    // $result = mysqli_query($connection, $query);
+
+    $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username 
+                FROM Exams as e 
+                INNER JOIN Teachers AS t ON e.teacherID=t.teacherID
+                INNER JOIN Users AS u ON t.accountID=u.accountID
+                LEFT OUTER JOIN StudentExams AS se on e.examID=se.examID
+                WHERE e.examID NOT IN (
+                    SELECT examID FROM StudentExams
+                    WHERE studentID='{$studentID}'
+                );";
+                
     $result = mysqli_query($connection, $query);
 
     $exams = array();
