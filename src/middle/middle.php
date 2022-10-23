@@ -3,8 +3,7 @@
     $user_data = json_decode(file_get_contents('php://input'), true);
 
     // Pulls the backend url from the array and removes it from the array
-    $url = end($user_data);
-    array_pop($user_data);
+    $url = array_pop($user_data);
     $encoded = json_encode($user_data);
 
 
