@@ -7,8 +7,31 @@
         echo "<script>alert('Session invalid, logging out.');</script>";
         echo "<script>window.location.href='/';</script>";
         exit();
-        
     }
+    $name = array();
+    array_push($name, $_SESSION['accountID']);
+
+    $backend_url = 'localhost/src/backend/selectName.php';
+    array_push($name, $backend_url);
+
+    // // Encode the data into JSON format
+    $encoded = json_encode($name);
+
+    // Connection for the middle end
+    $url = 'localhost/src/middle/middle.php';
+
+    // Initialized a cURL session
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $username = json_decode($result);
+    echo "<h1>Welcome " . $username . "!</h1>";
+    curl_close($ch);
 ?>
 
 <!DOCTYPE html>
@@ -34,20 +57,33 @@
 </HTML>
 
 <?php
-    // If session is restarted or session data is unavailable log the user out
-    if (!isset($_SESSION['accountID'])) {
-        echo "<script>alert('Session expired, logging out.');";
-        /**
-         * JUST NEED TO MAKE IT SO THAT THE PAGE DIRECTS AND LOGS OUT
-         * 
-         * Once this is set up the auto grade can start to be worked on. I just want a
-         * reliable version of the project before I start working on the auto grader.
-         * I don't want to have to program this entire thing for a lot of minor changes
-         * to take place to just break it.
-         */
-        $url = '/page.php';
-        echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL='.$url.'">';
-        exit();
+
+    // Send the accountID with the request
+    $data = array('accountID' => $_SESSION['accountID']);
+    // Encode the data into JSON format
+
+    $backend_url = 'localhost/src/backend/selectExamsStudent.php';
+    array_push($data, $backend_url);
+    $encoded = json_encode($data);
+
+    // Connection for the middle end
+    $url = 'localhost/src/middle/middle.php';
+
+    // Initialized a cURL session
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $exams = json_decode($result);
+    curl_close($ch);
+
+    // Render all questions on the screen
+    if ($exams == "Empty") {
+        echo '<h1 id="title">No exams available</h1>';
     }
     else {
         echo $_SESSION['accountID'];

@@ -52,10 +52,8 @@
     curl_close($ch);
 
     // Render all questions on the screen
-    if (count($questions) == 0) {
-        echo '<h1 id="title">No questions created </h1>';
-        include 'teacherBackButton.php';
-    }
+    if ($questions == "Empty") {
+        echo '<h1 id="title">No questions created</h1>';
     else {
         echo '<div class="questionBank">';
         echo '<h1 id="title">Create an Exam</h1>';
