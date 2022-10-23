@@ -7,8 +7,31 @@
         echo "<script>alert('Session invalid, logging out.');</script>";
         echo "<script>window.location.href='/';</script>";
         exit();
-        
     }
+    $name = array();
+    array_push($name, $_SESSION['accountID']);
+
+    $backend_url = 'localhost/src/backend/selectName.php';
+    array_push($name, $backend_url);
+
+    // // Encode the data into JSON format
+    $encoded = json_encode($name);
+
+    // Connection for the middle end
+    $url = 'localhost/src/middle/middle.php';
+
+    // Initialized a cURL session
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $username = json_decode($result);
+    echo "<h1>Welcome " . $username . "! What would you like to do?</h1>";
+    curl_close($ch);
 ?>
 <!DOCTYPE html>
 <HTML lang ="en">
@@ -16,7 +39,6 @@
         <Title>Teacher Portal</Title>
     </head>
     <link rel="Stylesheet" href="../../../style/default.css?<?php echo time();?>"/>
-    <h1>Welcome Teacher! What would you like to do?</h1>
     <body>
         <div class="teacherLanding">
             <!--Move to question creation page -->
@@ -33,5 +55,4 @@
             </form>
         </div>
     </body>
-    
 </HTML>

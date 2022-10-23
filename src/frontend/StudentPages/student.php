@@ -7,8 +7,31 @@
         echo "<script>alert('Session invalid, logging out.');</script>";
         echo "<script>window.location.href='/';</script>";
         exit();
-        
     }
+    $name = array();
+    array_push($name, $_SESSION['accountID']);
+
+    $backend_url = 'localhost/src/backend/selectName.php';
+    array_push($name, $backend_url);
+
+    // // Encode the data into JSON format
+    $encoded = json_encode($name);
+
+    // Connection for the middle end
+    $url = 'localhost/src/middle/middle.php';
+
+    // Initialized a cURL session
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $username = json_decode($result);
+    echo "<h1>Welcome " . $username . "!</h1>";
+    curl_close($ch);
 ?>
 <HTML>
     <head>
@@ -34,7 +57,7 @@
     $data = array('accountID' => $_SESSION['accountID']);
     // Encode the data into JSON format
 
-    $backend_url = 'localhost/src/backend/selectExams.php';
+    $backend_url = 'localhost/src/backend/selectExamsStudent.php';
     array_push($data, $backend_url);
     $encoded = json_encode($data);
 
@@ -54,7 +77,7 @@
     curl_close($ch);
 
     // Render all questions on the screen
-    if (count($exams) == 0) {
+    if ($exams == "Empty") {
         echo '<h1 id="title">No exams available</h1>';
     }
     else {
