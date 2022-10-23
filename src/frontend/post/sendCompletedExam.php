@@ -32,16 +32,15 @@
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
-    // $result = json_decode($result);
+    $result = json_decode($result);
     curl_close($ch);
-    echo "[ " . $result . " ]";
 
-    // if ($result == "Exam Created") {
-    //     echo "<script>alert('Exam created successfully.');</script>";
-    // }
-    // else {
-    //     echo "<script>alert('Exam failed to create.');</script>";
-    // }
-    // echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+    if ($result == "Success") {
+        echo "<script>alert('Exam submitted successfully.');</script>";
+    }
+    else {
+        echo "<script>alert('Exam failed to submit.');</script>";
+    }
+    echo "<script>window.location.href='/src/frontend/StudentPages/student.php';</script>";
 
 ?>

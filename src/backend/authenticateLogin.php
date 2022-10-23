@@ -53,10 +53,7 @@
             $accountType = "Teacher";
     }
 
-    $response = array(
-        "type" => $accountType,
-        "accountID" => $accountID
-    );
+    $response = array("type" => $accountType, "accountID" => $accountID);
 
     $response = json_encode($response);
     echo $response;
