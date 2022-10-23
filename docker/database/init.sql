@@ -32,9 +32,11 @@ CREATE TABLE IF NOT EXISTS Exams (
 );
 
 CREATE TABLE IF NOT EXISTS StudentExams (
+    studentExamID INT NOT NULL AUTO_INCREMENT,
     studentID INT NOT NULL,
     examID INT NOT NULL,
     score INT,
+    PRIMARY KEY(studentExamID),
     FOREIGN KEY (studentID) REFERENCES Students(studentID),
     FOREIGN KEY (examID) REFERENCES Exams(examID)
 );
@@ -43,10 +45,20 @@ CREATE TABLE IF NOT EXISTS Questions (
     questionID INT NOT NULL AUTO_INCREMENT,
     teacherID INT NOT NULL,
     question TEXT(255) NOT NULL,
-    testcase1 VARCHAR(20) NOT NULL,
-    testcase2 VARCHAR(20) NOT NULL,
+    testcase1 VARCHAR(50) NOT NULL,
+    caseAnswer1 VARCHAR(50) NOT NULL,
+    testcase2 VARCHAR(50) NOT NULL,
+    caseAnswer2 VARCHAR(50) NOT NULL,
     PRIMARY KEY(questionID),
     FOREIGN KEY(teacherID) REFERENCES Teachers(teacherID)
+);
+
+CREATE TABLE IF NOT EXISTS CompletedExam (
+    studentExamID INT NOT NULL,
+    questionID INT NOT NULL,
+    answer TEXT(255) NOT NULL,
+    FOREIGN KEY (studentExamID) REFERENCES StudentExams(studentExamID),
+    FOREIGN KEY (questionID) REFERENCES Questions(questionID)
 );
 
 CREATE TABLE IF NOT EXISTS ExamQuestions (
@@ -58,7 +70,12 @@ CREATE TABLE IF NOT EXISTS ExamQuestions (
 );
 
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'student', 'student');
+INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'malcolm', 'student');
+
 INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'teacher', 'teacher');
+INSERT INTO `Users` (`accountID`, `username`, `password`) VALUES (NULL, 'shane', 'teacher');
 
 INSERT INTO `Students` (`accountID`, `studentID`) VALUES ('1', NULL);
-INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('2', NULL);
+INSERT INTO `Students` (`accountID`, `studentID`) VALUES ('2', NULL);
+INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('3', NULL);
+INSERT INTO `Teachers` (`accountID`, `teacherID`) VALUES ('4', NULL);

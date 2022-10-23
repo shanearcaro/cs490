@@ -1,5 +1,14 @@
 <?php
     session_start();
+
+    // Log the user out if the session isn't valid anymore.
+    // This can happen because of a refresh or if the url is typed manually and the user doesn't log in.
+    if (!isset($_SESSION['accountID'])) {
+        echo "<script>alert('Session invalid, logging out.');</script>";
+        echo "<script>window.location.href='/';</script>";
+        exit();
+        
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Exam</title>
-    <link rel="Stylesheet" href="../style/exam.css"/>
+    <link rel="Stylesheet" href="../../../style/exam.css?<?php echo time();?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,27 +29,15 @@
 </html>
 
 <?php
-    require_once realpath(dirname(__DIR__, 3) . '/vendor/autoload.php');
-    
-    // Read from credentials file and connect to database
-    $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 3));
-    $dotenv->load();
-
-    $connection = new mysqli($_ENV['HOST'], $_ENV['NAME'], $_ENV['PASS'], $_ENV['DATABASE']);
-
-    // Prompt error if database connection doesn't work and exit the script
-    if ($connection->connect_error) {
-	    echo "Failed to connect to MYSQL: " . mysqli_connect_error();
-        exit();
-    }
-
     // Send the accountID with the request
     $data = array('accountID' => $_SESSION['accountID']);
+    $backend_url = 'localhost/src/backend/selectQuestions.php';
+    array_push($data, $backend_url);
     // Encode the data into JSON format
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/requestQuestions.php';
+    $url = 'localhost/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();
@@ -85,7 +82,7 @@
             echo '<li class="element">' . nl2br($questionText) . '</li>';
             echo '<li class="element">' . $testcase1 . '</li>';
             echo '<li class="element">' . $testcase2 . '</li>';
-            echo '<li class="element"><input type="text" class="element-text" name="points[]" value="0">';
+            echo '<li class="element"><input type="number" class="element-text" name="points[]" value="0" min="0" required pattern="[0-9]">';
             echo '</ul>';
             echo '</div>';
         }
@@ -95,6 +92,4 @@
         echo '</div>';
         echo '</div>';
     }
-
-    $connection->close();
 ?>

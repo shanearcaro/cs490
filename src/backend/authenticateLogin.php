@@ -33,7 +33,7 @@
 	   $accountID = $row['accountID'];
     }
 
-    $query = "SELECT username FROM Users Inner JOIN Teachers ON Users.accountID=Teachers.accountID WHERE Users.accountID='{$accountID}'";
+    $query = "SELECT username FROM Users INNER JOIN Teachers ON Users.accountID=Teachers.accountID WHERE Users.accountID='{$accountID}'";
     $result = mysqli_query($connection, $query);
 
     $total = mysqli_num_rows($result);
@@ -53,10 +53,7 @@
             $accountType = "Teacher";
     }
 
-    $response = array(
-        "type" => $accountType,
-        "accountID" => $accountID
-    );
+    $response = array("type" => $accountType, "accountID" => $accountID);
 
     $response = json_encode($response);
     echo $response;

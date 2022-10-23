@@ -10,22 +10,25 @@
         
     }
 
-    // Get username and password from Malcolm's login screen and create a data array
-    $question     = $_POST['questionBox'];
-    $testcase1    = $_POST['testCase1'];
-    $caseAnswer1  = $_POST['caseAnswer1'];
-    $testcase2    = $_POST['testCase2'];
-    $caseAnswer2  = $_POST['caseAnswer2'];
-    $accountID    = $_SESSION['accountID'];
+    $answers = array();
+    if (isset($_POST['answer'])) {
+        for ($i = 0; $i < count($_POST['answer']); $i++) {
+            $answers[$i] = $_POST['answer'][$i];
+        }
+    }
 
-    $data = array('question' => $question, 'testcase1' => $testcase1, 'caseAnswer1' => $caseAnswer1,
-    'testcase2' => $testcase2, 'caseAnswer2' => $caseAnswer2, 'accountID' => $accountID);
+    //URL for the backend
+    $backend_url = 'localhost/src/backend/insertCompletedExam.php';
 
-    $backend_url = 'localhost/src/backend/insertQuestion.php';
-    array_push($data, $backend_url);
+    // Need to send the examID and the accountID with the answers
+    array_push($answers, $_SESSION['examID']);
+    array_push($answers, $_SESSION['accountID']);
+
+    //Need to add the url to the backend as well.
+    array_push($answers, $backend_url);
 
     // Encode the data into JSON format
-    $encoded = json_encode($data);
+    $encoded = json_encode($answers);
 
     // Connection for the middle end
     $url = 'localhost/src/middle/middle.php';
@@ -42,12 +45,12 @@
     $result = json_decode($result);
     curl_close($ch);
 
-    // Update page on success
     if ($result == "Success") {
-        echo "<script>alert('Question created successfully.');</script>";
+        echo "<script>alert('Exam submitted successfully.');</script>";
     }
     else {
-        echo "<script>alert('Question failed to create.');</script>";
+        echo "<script>alert('Exam failed to submit.');</script>";
     }
-    echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+    echo "<script>window.location.href='/src/frontend/StudentPages/student.php';</script>";
+
 ?>

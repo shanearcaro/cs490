@@ -1,18 +1,37 @@
 <?php
     session_start();
+
+    // Log the user out if the session isn't valid anymore.
+    // This can happen because of a refresh or if the url is typed manually and the user doesn't log in.
+    if (!isset($_SESSION['accountID'])) {
+        echo "<script>alert('Session invalid, logging out.');</script>";
+        echo "<script>window.location.href='/';</script>";
+        exit();
+        
+    }
+
     $questionBank = array();
+    $pointsBank = array();
+    // Need to remove all unset values from points
+    for ($i = 0; $i < count($_POST['checkBox']); $i++) {
+        $points = $_POST['points'][$_POST['checkBox'][$i] - 1];
+        array_push($pointsBank, $points);
+    }
+
     if (isset($_POST['checkBox'])) {
         for ($i = 0; $i < count($_POST['checkBox']); $i++) {
-            $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
+            $questionBank[$_POST['checkBox'][$i]] = $pointsBank[$i];
         }
     }
+    $backend_url = 'localhost/src/backend/insertExam.php';
     array_push($questionBank, $_SESSION['accountID']);
+    array_push($questionBank, $backend_url);
 
     // Encode the data into JSON format
     $encoded = json_encode($questionBank);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validateExam.php';
+    $url = 'localhost/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();
