@@ -31,7 +31,6 @@
 <?php
     // Send the accountID with the request
     $data = array('accountID' => $_SESSION['accountID']);
-    // Encode the data into JSON format
 
     $backend_url = 'localhost/src/backend/selectExamsTeacher.php';
     array_push($data, $backend_url);
@@ -55,40 +54,36 @@
     // Need to do this to get multiple values at once
     $index = $_POST['index'][0];
     $selectedExam = $exams[$index];
+    $studentExamID = $selectedExam->{'studentExamID'};
     $selectedExam = json_encode($selectedExam);
 
-    echo $selectedExam;
-    // array_push($exam, $_SESSION['accountID']);
-    // array_push($exam, $_POST['studentID']);
-    // array_push($exam, $_POST['examID']);
-    // // $_SESSION['examID'] = $exam[0];
+    // Sending accountID, studentExamID, and the url to the backend
+    $sendData = array();
+    array_push($sendData, $_SESSION['accountID']);
+    array_push($sendData, $studentExamID);
 
-    // // Add exam id to autograder
-    // // array_push($exam, $_SESSION['examID']);
+    $backend_url = 'localhost/src/backend/selectCompletedExam.php';
+    array_push($sendData, $backend_url);
 
-    // $backend_url = 'localhost/src/backend/selectCompletedExam.php';
-    // array_push($exam, $backend_url);
+    // Encode the data into JSON format
+    $encoded = json_encode($sendData);
 
-    // // // Encode the data into JSON format
-    // $encoded = json_encode($exam);
-    // echo $encoded;
-
-    // // Connection for the middle end
-    // $url = 'localhost/src/middle/autoGrader.php';
+    // Connection for the middle end
+    $url = 'localhost/src/middle/autoGrader.php';
 
     // Initialized a cURL session
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_POST, 1);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    // curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
 
-    // // Decode the results of sending the data
-    // $result = curl_exec($ch);
-    // $examQuestions = json_decode($result);
-    // curl_close($ch);
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    $examQuestions = json_decode($result);
+    curl_close($ch);
 
-    // echo $result;
+    echo $result;
 
     // echo '<div class="questionBank">';
     // echo '<h1 id="title">Exam</h1>';
