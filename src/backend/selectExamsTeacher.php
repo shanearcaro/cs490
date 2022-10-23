@@ -32,7 +32,8 @@
                 INNER JOIN Exams AS e on se.examID=e.examID
                 INNER JOIN Students AS s ON se.studentID=s.studentID
                 INNER JOIN Users AS u on s.accountID=u.accountID
-                WHERE se.score=-1 AND e.teacherID='{$teacherID}'";
+                WHERE se.score=-1 AND e.teacherID='{$teacherID}'
+                ORDER BY se.examID ASC";
                 
     $result = mysqli_query($connection, $query);
 
