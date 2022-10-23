@@ -14,7 +14,11 @@
         <link rel="Stylesheet" href="../../../style/default.css?<?php echo time();?>"/>
     </head>
     <h1>Create Question</h1>
-    <body>
+    <body onLoad="noBack();">
+        <script type="text/javascript">
+            window.history.forward();
+            function noBack() { window.history.forward(); }
+        </script>
         <form name = "question" method = "post" action = "../post/sendQuestion.php">
             <label for="questionBox">Enter a Question:</label><br>
             <textarea type="textarea" id="questionBox" name="questionBox" class="questionBox" required></textarea><br>

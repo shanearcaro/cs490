@@ -14,7 +14,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet"> 
     </head>
-    <body>
+    <body onLoad="noBack();">
+        <script type="text/javascript">
+            window.history.forward();
+            function noBack() { window.history.forward(); }
+        </script>
         <div class="login">
             <!-- Need to use send.php to cURL the information instead of standards post -->
             <form name = "loginForm" method = "post" action = "./src/frontend/post/sendLogin.php">
