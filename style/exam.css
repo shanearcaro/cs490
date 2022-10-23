@@ -108,8 +108,9 @@ body {
 
 .button {
     margin-top: 1vh;
-    margin-left: 47%;
-    width: 4vw;
+
+    margin-left: 48%;
+    width: 8vw;
     height: 4vh;
     background-color: rgb(59, 204, 59);
     border: none;

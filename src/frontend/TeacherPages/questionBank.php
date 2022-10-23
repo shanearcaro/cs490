@@ -42,8 +42,7 @@
             <input type="submit" name="submit" value="Submit">
         </form>
     </body>
-
-    <form action="teacher.php">
-        <input type="submit" name="b1" value="Back">
-    </form>
+    <?php
+        include 'teacherBackButton.php';
+    ?>
 </HTML>

@@ -54,7 +54,6 @@
     // Render all questions on the screen
     if ($questions == "Empty") {
         echo '<h1 id="title">No questions created</h1>';
-    }
     else {
         echo '<div class="questionBank">';
         echo '<h1 id="title">Create an Exam</h1>';
@@ -88,8 +87,10 @@
         }
         echo '<input class="button" type="submit" name="submit" value="Submit">';
         echo '</form>';
+        include 'teacherBackButton.php';
         echo '</div>';
         echo '</div>';
         echo '</div>';
+
     }
 ?>
