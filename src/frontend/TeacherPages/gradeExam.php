@@ -56,8 +56,6 @@
     $exams = json_decode($result);
     curl_close($ch);
 
-    // echo "[ " . $result . " ]";
-
     // Render all exams on the screen
     if ($exams == "Empty") {
         echo '<h1 id="title">No exams available</h1>';
@@ -78,11 +76,12 @@
         for ($i = 0; $i < count($exams); $i++) {
             $exam = $exams[$i];
             $examID = $exam->{'examID'};
+            $studentID = $exam->{'studentID'};
             $studentName = $exam->{'username'};
             $username = $exam->{'username'};
             echo '<div class="row">';
             echo '<ul>';
-            echo '<li class="element-button"><input type="radio" class="checkBox" name="checkBox[]" value="'. $examID .'">';
+            echo '<li class="element-button"><input type="radio" class="checkBox" name="index[]" value="'. $i .'">';
             echo '<li class="element">' . $examID . '</li>';
             echo '<li class="element">' . nl2br($username) . '</li>';
             echo '</ul>';
