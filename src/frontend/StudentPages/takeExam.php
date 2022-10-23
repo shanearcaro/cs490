@@ -34,7 +34,7 @@
     $data = array('accountID' => $_SESSION['accountID']);
     // Encode the data into JSON format
 
-    $backend_url = 'localhost/src/backend/selectExams.php';
+    $backend_url = 'localhost/src/backend/selectExamsStudent.php';
     array_push($data, $backend_url);
     $encoded = json_encode($data);
 
