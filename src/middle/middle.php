@@ -6,7 +6,6 @@
     $url = array_pop($user_data);
     $encoded = json_encode($user_data);
 
-
     // Initialized a cURL session
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -18,6 +17,4 @@
     $result = curl_exec($ch);
     curl_close($ch);
     echo $result;
-
-    // Make middle into one file instead of validateX
 ?>
