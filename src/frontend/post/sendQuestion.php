@@ -1,12 +1,12 @@
 <?php
     session_start();
     // Get username and password from Malcolm's login screen and create a data array
-    $question  = $_POST['questionBox'];
-    $testcase1 = $_POST['testCase1'];
-    $caseAnswer1 = $_POST['caseAnswer1'];
-    $testcase2 = $_POST['testCase2'];
-    $caseAnswer2 = $_POST['caseAnswer2'];
-    $accountID = $_SESSION['accountID'];
+    $question     = $_POST['questionBox'];
+    $testcase1    = $_POST['testCase1'];
+    $caseAnswer1  = $_POST['caseAnswer1'];
+    $testcase2    = $_POST['testCase2'];
+    $caseAnswer2  = $_POST['caseAnswer2'];
+    $accountID    = $_SESSION['accountID'];
 
     $data = array('question' => $question, 'testcase1' => $testcase1, 'caseAnswer1' => $caseAnswer1,
     'testcase2' => $testcase2, 'caseAnswer2' => $caseAnswer2, 'accountID' => $accountID);
@@ -31,7 +31,6 @@
     $result = curl_exec($ch);
     $result = json_decode($result);
     curl_close($ch);
-
 
     // Update page on success
     if ($result == "Success") {
