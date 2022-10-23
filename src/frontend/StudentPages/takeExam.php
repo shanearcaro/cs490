@@ -54,7 +54,7 @@
     curl_close($ch);
 
     // Render all questions on the screen
-    if (count($exams) == 0) {
+    if ($exams == "Empty") {
         echo '<h1 id="title">No exams available</h1>';
         echo '<body>';
         include 'studentBackButton.php';
