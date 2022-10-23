@@ -53,7 +53,8 @@
 
     // Render all questions on the screen
     if (count($questions) == 0) {
-        echo '<h1 id="title">No questions created</h1>';
+        echo '<h1 id="title">No questions created </h1>';
+        include 'teacherBackButton.php';
     }
     else {
         echo '<div class="questionBank">';
@@ -88,8 +89,10 @@
         }
         echo '<input class="button" type="submit" name="submit" value="Submit">';
         echo '</form>';
+        include 'teacherBackButton.php';
         echo '</div>';
         echo '</div>';
         echo '</div>';
+
     }
 ?>
