@@ -1,14 +1,5 @@
 <?php
     session_start();
-
-    // Log the user out if the session isn't valid anymore.
-    // This can happen because of a refresh or if the url is typed manually and the user doesn't log in.
-    if (!isset($_SESSION['accountID'])) {
-        echo "<script>alert('Session invalid, logging out.');</script>";
-        echo "<script>window.location.href='/';</script>";
-        exit();
-        
-    }
     
     // Get username and password from Malcolm's login screen and create a data array
     $username = $_POST['username'];
