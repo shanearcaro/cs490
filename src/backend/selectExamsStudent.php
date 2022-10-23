@@ -24,19 +24,17 @@
     // We have the accountID but to create an exam we need the studentID
     $query = "SELECT studentID FROM Students WHERE accountID='{$accountID}'";
     $result = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_array($result)) {
-        $studentID = $row['studentID'];
-    }
+    $row = mysqli_fetch_array($result);
+    $studentID = $row['studentID'];
 
-    $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username 
+    $query = "SELECT e.examID, e.examPoints, e.numberOfQuestions, e.teacherID, u.username
                 FROM Exams as e 
-                INNER JOIN Teachers AS t ON e.teacherID=t.teacherID
-                INNER JOIN Users AS u ON t.accountID=u.accountID
-                LEFT OUTER JOIN StudentExams AS se on e.examID=se.examID
-                WHERE e.examID NOT IN (
-                    SELECT examID FROM StudentExams
-                    WHERE studentID='{$studentID}'
-                );";
+                INNER JOIN Teachers as t ON t.teacherID=e.teacherID
+                INNER JOIN Users as u ON u.accountID=t.accountID
+                WHERE examID NOT IN (
+                    SELECT sei.examID FROM Exams AS ei JOIN StudentExams AS sei ON ei.examID=sei.examID WHERE sei.studentID='{$studentID}'
+                )
+                ORDER BY e.examID ASC;";
                 
     $result = mysqli_query($connection, $query);
 
@@ -48,7 +46,8 @@
         array_push($exams, $exam);
     }
 
-    $response = json_encode($exams);
+    $response = count($exams) == 0 ? "Empty" : $exams;
+    $response = json_encode($response);
     echo $response;
 
     $connection->close();

@@ -20,26 +20,31 @@
     // Data received is already json encoded
     // Instead of decoding to just encode just send encoded data
     $accountID = $user_data->{'accountID'};
+    $response = $accountID;
 
-    // We have the accountID but to create an exam we need the teacherID
+    // We have the accountID but to create an exam we need the studentID
     $query = "SELECT teacherID FROM Teachers WHERE accountID='{$accountID}'";
     $result = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result);
     $teacherID = $row['teacherID'];
-    
-    //Insert question data into question table
-    $query = "SELECT * FROM Questions WHERE teacherID='{$teacherID}'"; 
+
+    $query = "SELECT se.studentExamID, se.studentID, se.examID, e.examPoints, u.username FROM StudentExams AS se
+                INNER JOIN Exams AS e on se.examID=e.examID
+                INNER JOIN Students AS s ON se.studentID=s.studentID
+                INNER JOIN Users AS u on s.accountID=u.accountID
+                WHERE se.score=-1 AND e.teacherID='{$teacherID}'";
+                
     $result = mysqli_query($connection, $query);
 
-    $questions = array();
+    $exams = array();
 
     while ($row = mysqli_fetch_array($result)) {
-        $question = array('questionID' => $row['questionID'], 'question' => 
-            $row['question'], 'testcase1' => $row['testcase1'], 'testcase2' => $row['testcase2']);
-        array_push($questions, $question);
+        $exam = array('studentExamID' => $row['studentExamID'], 'studentID' => $row['studentID'], 
+        'examID' => $row['examID'], 'examPoints' => $row['examPoints'], 'username' => $row['username']);
+        array_push($exams, $exam);
     }
 
-    $response = count($questions) == 0 ? "Empty" : $questions;
+    $response = count($exams) == 0 ? "Empty" : $exams;
     $response = json_encode($response);
     echo $response;
 

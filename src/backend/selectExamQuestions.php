@@ -39,18 +39,8 @@
         $exam = array('questionID' => $row['questionID'], 'question' => $row['question'], 'questionPoints' => $row['questionPoints']); 
         array_push($exams, $exam);
     }
-
     $response = json_encode($exams);
     echo $response;
 
     $connection->close();
-
-    /**
-     * Students can not retrieve exam questions for the exam they are trying to take
-     * 
-     * Need to push all the changes:
-     *  1. The style folder changes
-     *  2. The random extra folder merge deletions
-     *  3. The acutal changes
-     */
  ?>
