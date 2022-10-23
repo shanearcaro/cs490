@@ -1,5 +1,15 @@
 <?php
     session_start();
+
+    // Log the user out if the session isn't valid anymore.
+    // This can happen because of a refresh or if the url is typed manually and the user doesn't log in.
+    if (!isset($_SESSION['accountID'])) {
+        echo "<script>alert('Session invalid, logging out.');</script>";
+        echo "<script>window.location.href='/';</script>";
+        exit();
+        
+    }
+
     $answers = array();
     if (isset($_POST['answer'])) {
         for ($i = 0; $i < count($_POST['answer']); $i++) {
