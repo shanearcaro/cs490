@@ -44,48 +44,14 @@
     <body>
         <div class="teacherLanding">
             <!--Move to take exam page -->
-            <form action="takeExam.php">
+            <form action="./takeExam.php">
                 <input type="submit" name="b1" value="Take Exam">
             </form>
             <!--Move to the exam review page -->
-            <form action="reviewExam.php">
+            <form action="./reviewExam.php">
                 <input type="submit" name="b2" value="Review Exam">
             </form>
         </div>
     </body>
     
 </HTML>
-
-<?php
-
-    // Send the accountID with the request
-    $data = array('accountID' => $_SESSION['accountID']);
-    // Encode the data into JSON format
-
-    $backend_url = 'localhost/src/backend/selectExamsStudent.php';
-    array_push($data, $backend_url);
-    $encoded = json_encode($data);
-
-    // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
-
-    // Initialized a cURL session
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
-
-    // Decode the results of sending the data
-    $result = curl_exec($ch);
-    $exams = json_decode($result);
-    curl_close($ch);
-
-    // Render all questions on the screen
-    if ($exams == "Empty") {
-        echo '<h1 id="title">No exams available</h1>';
-    }
-    else {
-        echo $_SESSION['accountID'];
-    }
-?>
