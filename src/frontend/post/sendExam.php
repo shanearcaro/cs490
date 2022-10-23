@@ -1,9 +1,16 @@
 <?php
     session_start();
     $questionBank = array();
+    $pointsBank = array();
+    // Need to remove all unset values from points
+    for ($i = 0; $i < count($_POST['checkBox']); $i++) {
+        $points = $_POST['points'][$_POST['checkBox'][$i] - 1];
+        array_push($pointsBank, $points);
+    }
+
     if (isset($_POST['checkBox'])) {
         for ($i = 0; $i < count($_POST['checkBox']); $i++) {
-            $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
+            $questionBank[$_POST['checkBox'][$i]] = $pointsBank[$i];
         }
     }
     $backend_url = 'localhost/src/backend/insertExam.php';
