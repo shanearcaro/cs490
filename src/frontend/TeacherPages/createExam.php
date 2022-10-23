@@ -22,11 +22,13 @@
 <?php
     // Send the accountID with the request
     $data = array('accountID' => $_SESSION['accountID']);
+    $backend_url = 'localhost/src/backend/selectQuestions.php';
+    array_push($data, $backend_url);
     // Encode the data into JSON format
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/requestQuestions.php';
+    $url = 'localhost/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

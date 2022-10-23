@@ -7,15 +7,21 @@
         }
     }
 
+    //URL for the backend
+    $backend_url = 'localhost/src/backend/insertCompletedExam.php';
+
     // Need to send the examID and the accountID with the answers
     array_push($answers, $_SESSION['examID']);
     array_push($answers, $_SESSION['accountID']);
+
+    //Need to add the url to the backend as well.
+    array_push($answers, $backend_url);
 
     // Encode the data into JSON format
     $encoded = json_encode($answers);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validateCompletedExam.php';
+    $url = 'localhost/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

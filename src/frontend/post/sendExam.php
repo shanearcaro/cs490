@@ -6,13 +6,15 @@
             $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
         }
     }
+    $backend_url = 'localhost/src/backend/insertExam.php';
     array_push($questionBank, $_SESSION['accountID']);
+    array_push($questionBank, $backend_url);
 
     // Encode the data into JSON format
     $encoded = json_encode($questionBank);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validateExam.php';
+    $url = 'localhost/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

@@ -11,11 +11,14 @@
     $data = array('question' => $question, 'testcase1' => $testcase1, 'caseAnswer1' => $caseAnswer1,
     'testcase2' => $testcase2, 'caseAnswer2' => $caseAnswer2, 'accountID' => $accountID);
 
+    $backend_url = 'localhost/src/backend/insertQuestion.php';
+    array_push($data, $backend_url);
+
     // Encode the data into JSON format
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/validateQuestion.php';
+    $url = 'localhost/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();
