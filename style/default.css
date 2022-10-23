@@ -23,12 +23,26 @@ h1 {
 }
 
 form {
+
+}
+
+form input {
+    background-color: rgb(35, 35, 35);
+    color: white;
+}
+
+textarea {
+    background-color: rgb(35, 35, 35);
+    color: white;
+}
+
+.teacherLanding form {
     display: flex;
     justify-content: center;
     flex-direction: row;
 }
 
-form input {
+.teacherLanding form input {
     background-color: green;
     border: 1px solid black;
     border-radius: 15px;
