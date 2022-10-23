@@ -26,12 +26,16 @@
     $questionAnswers = array();
     
     // Get all answers for the exam
-    $query = "SELECT questionID, answer FROM CompletedExam WHERE studentExamID='{$studentExamID}'";
+    $query = "SELECT ce.studentExamID, ce.questionID, ce.answer, eq.questionPoints FROM CompletedExam AS ce
+                INNER JOIN StudentExams AS se ON ce.studentExamID=se.studentExamID
+                INNER JOIN ExamQuestions AS eq on se.examID=eq.examID AND ce.questionID=eq.questionID
+                WHERE ce.studentExamID='{$studentExamID}';";
     $result = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_array($result)) {
         $questionID = $row['questionID'];
         $answer = $row['answer'];
-        $questionResponse = array($questionID=>$answer);
+        $points = $row['questionPoints'];
+        $questionResponse = array('questionID'=>$questionID, 'answer'=>$answer, 'points'=>$points);
         array_push($questionAnswers, $questionResponse);
     }
 
