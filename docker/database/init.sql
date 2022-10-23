@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS Questions (
     questionID INT NOT NULL AUTO_INCREMENT,
     teacherID INT NOT NULL,
     question TEXT(255) NOT NULL,
-    testcase1 VARCHAR(20) NOT NULL,
-    caseAnswer1 TEXT(255) NOT NULL,
-    testcase2 VARCHAR(20) NOT NULL,
-    caseAnswe2 TEXT(255) NOT NULL,
+    testcase1 VARCHAR(50) NOT NULL,
+    caseAnswer1 VARCHAR(50) NOT NULL,
+    testcase2 VARCHAR(50) NOT NULL,
+    caseAnswer2 VARCHAR(50) NOT NULL,
     PRIMARY KEY(questionID),
     FOREIGN KEY(teacherID) REFERENCES Teachers(teacherID)
 );

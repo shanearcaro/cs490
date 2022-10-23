@@ -26,14 +26,13 @@
     $caseAnswer2 = $user_data->{'caseAnswer2'};
     $accountID = $user_data->{'accountID'};
 
-    // We have the accountID but to create an exam we need the teacherID
+    // // We have the accountID but to create an exam we need the teacherID
     $query = "SELECT teacherID FROM Teachers WHERE accountID='{$accountID}'";
     $result = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_array($result)) {
-        $teacherID = $row['teacherID'];
-    }
+    $row = mysqli_fetch_array($result);
+    $teacherID = $row['teacherID'];
 
-    //Insert question data into question table
+    // //Insert question data into question table
     $query = "INSERT INTO Questions (teacherID, question, testcase1, caseAnswer1, testcase2, caseAnswer2) 
               VALUES ('{$teacherID}', '{$question}', '{$testcase1}', '{$caseAnswer1}', '{$testcase2}', '{$caseAnswer2}')"; 
 
