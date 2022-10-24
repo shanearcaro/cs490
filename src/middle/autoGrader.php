@@ -5,7 +5,7 @@
     // Pulls the backend url from the array and removes it from the array
     $url = array_pop($user_data);
     $examID = end($user_data);
-    $studentID = end($user_data);
+    $studentExamID = end($user_data);
     $encoded = json_encode($user_data);
 
     // Initialized a cURL session
@@ -19,8 +19,16 @@
     $result = curl_exec($ch);
     curl_close($ch);
 
+    // Queried the completedExam and its properites
     $autoGrade = array();
 
+    /**
+     * Execute a python script from php using shell.
+     * This is going tob e an issue later on on the live server beause question.py
+     * is not going to have executable permissions or AFS executable permissions.
+     * 
+     * *****N E E D S     T O     B E     F I X E D     L A T E R*****"
+     */
     function executePythonScript($case, $answer) {
         $fileName = 'question.py';
         $file = fopen($fileName, 'w') or die('Unable to open file!');
@@ -92,7 +100,19 @@
         $autoGrade[$i + 1]['newPoints'] = $points;
     }
 
-    // Instead of just echoing the data back this is going to have to run the auto grader logic
-    $result = json_encode($autoGrade);
-    echo $result;
+    array_push($autoGrade, $_SESSION['accountID']);
+    array_push($autoGrade, $studentExamID);
+
+    // Initialized a cURL session
+    $encoded = json_encode($autoGrade);
+    $ch = curl_init();
+    $url = "../backend/updateScore.php";
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+
+    // Decode the results of sending the data
+    $result = curl_exec($ch);
+    curl_close($ch);
 ?>

@@ -43,14 +43,12 @@
     $result = json_decode($result);
     curl_close($ch);
 
-    echo "[ " . $result . " ]";
-
-    // if ($result == "Exam Created") {
-    //     echo "<script>alert('Exam updated successfully.');</script>";
-    // }
-    // else {
-    //     echo "<script>alert('Exam failed to update.');</script>";
-    // }
-    // echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+    if ($result == "Success") {
+        echo "<script>alert('Exam graded successfully.');</script>";
+    }
+    else {
+        echo "<script>alert('Exam failed to grade.');</script>";
+    }
+    echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
 
 ?>
