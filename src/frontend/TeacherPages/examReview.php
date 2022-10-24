@@ -62,8 +62,6 @@
     array_push($sendData, $_SESSION['accountID']);
     array_push($sendData, $studentExamID);
 
-    // POTENTIAL BUG WITH STUDENT EXAM ID AND EXAM ID MIX UP IN THE AUTO GRADER AND RIGHT HERE
-
     $backend_url = 'localhost/src/backend/selectCompletedExam.php';
     array_push($sendData, $backend_url);
 
