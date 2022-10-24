@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam</title>
-    <link rel="Stylesheet" href="../../../style/studentExam.css?<?php echo time();?>"/>
+    <link rel="Stylesheet" href="../../../style/examReview.css?<?php echo time();?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,6 +62,8 @@
     array_push($sendData, $_SESSION['accountID']);
     array_push($sendData, $studentExamID);
 
+    // POTENTIAL BUG WITH STUDENT EXAM ID AND EXAM ID MIX UP IN THE AUTO GRADER AND RIGHT HERE
+
     $backend_url = 'localhost/src/backend/selectCompletedExam.php';
     array_push($sendData, $backend_url);
 
@@ -83,37 +85,45 @@
     $examQuestions = json_decode($result);
     curl_close($ch);
 
-    echo "[ " . $result . " ]";
+    // echo "[ " . $result . " ]";
+    // answer, case, points, newPoints, result, expected, quesitonID
 
-    // echo '<div class="questionBank">';
-    // echo '<h1 id="title">Exam</h1>';
-    // echo '<div class="questionTable">';
-    // echo '<div class="tableLabels">';
-    // echo '<ul>';
-    // echo '<li class="labels">Question</li>';
-    // echo '<li class="labels">Point Value</li>';
-    // echo '<li class="labels">Answer</li>';
-    // echo '</ul>';
-    // echo '</div>';
-    // echo '<div class="questionRows">';
-    // echo "EXAM ID: " . $_SESSION['examID'];
-    // echo '<form name="createExam" method="post" id="examForm" action="../post/sendCompletedExam.php">';
-    // for ($i = 0; $i < count($examQuestions); $i++) {
-    //     $question = $examQuestions[$i];
-    //     $questionText = $question->{'question'};
-    //     $pointValue = $question->{'questionPoints'};
-    //     $questionID = $question->{'questionID'};
-    //     echo '<div class="row">';
-    //     echo '<ul>';
-    //     echo '<li class="element">' . nl2br($questionText) . '</li>';
-    //     echo '<li class="element">' . $pointValue . '</li>';
-    //     echo '<li class="element"><textarea form="examForm" class="element-text" name="answer[]" required></textarea>';
-    //     echo '</ul>';
-    //     echo '</div>';
-    // }
-    // echo '<input class="button" type="submit" name="submit" value="Submit">';
-    // echo '</form>';
-    // echo '</div>';
-    // echo '</div>';
-    // echo '</div>';
+    echo '<div class="questionBank">';
+    echo '<h1 id="title">Exam</h1>';
+    echo '<div class="questionTable">';
+    echo '<div class="tableLabels">';
+    echo '<ul>';
+    echo '<li class="labels">Question</li>';
+    echo '<li class="labels">Answer</li>';
+    echo '<li class="labels">Grade</li>';
+    echo '<li class="labels">Points Possible</li>';
+    echo '<li class="labels">Comments</li>';
+    echo '</ul>';
+    echo '</div>';
+    echo '<div class="questionRows">';
+    echo "EXAM ID: " . $_SESSION['examID'];
+    echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
+    for ($i = 0; $i < count($examQuestions); $i++) {
+        $row = $examQuestions[$i];
+        $question = $row->{'question'};
+        $answer = $row->{'answer'};
+        $pointValue = $row->{'points'};
+        $score = $row->{'newPoints'};
+        $questionID = $row->{'questionID'};
+        $score = (int) $score;
+        echo '<div class="row">';
+        echo '<ul>';
+        echo '<li class="element">' . $question . '</li>';
+        echo '<li class="element">' . $answer . '</li>';
+        echo '<li class="element"><input type=number class="element-text" name="score[]" value="' . $score . '" required min=0 max="' . $pointValue . '"></li>';
+        echo '<li class="element">' . $pointValue . '</li>';
+        echo '<li class="element"><textarea form="examForm" class="element-text" name="comment[]"></textarea></li>';
+        echo '</ul>';
+        echo '</div>';
+    }
+    echo '<input class="button" type="submit" name="submit" value="Submit">';
+    echo '</form>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
 ?>
