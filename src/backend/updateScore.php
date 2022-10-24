@@ -29,9 +29,10 @@
         $score = $record->{'score'};
         $comment = $record->{'comment'};
         $questionID = $record->{'questionID'};
+        $result = $record->{'result'};
         $totalPoints += $score;
 
-        $query = "UPDATE CompletedExam SET score='{$score}', comment='{$comment}' WHERE questionID='{$questionID}' AND studentExamID='{$studentExamID}'";
+        $query = "UPDATE CompletedExam SET score='{$score}', comment='{$comment}', result='{$result}' WHERE questionID='{$questionID}' AND studentExamID='{$studentExamID}'";
         $result = mysqli_query($connection, $query);
         if (!$result)
             $response = "Failure";

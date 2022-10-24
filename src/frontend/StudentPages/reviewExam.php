@@ -74,7 +74,7 @@
         echo '</ul>';
         echo '</div>';
         echo '<div class="questionRows">';
-        
+        echo '<form name="createExam" method="post" action="./results.php">';
         for($i = 0; $i < count($exams); $i++){
             $exam = $exams[$i];
             $examID = $exam -> {'examID'};
@@ -83,13 +83,17 @@
             $totalPoints = $exam -> {'examPoints'};
             echo '<div class="row">';
             echo '<ul>';
+            echo '<li class="element-button"><input type="radio" class="checkBox" name="examID[]" value="'. $examID .'"></li>';
             echo '<li class="element">' . $examID . '</li>';
             echo '<li class="element">' . $studentName . '</li>';
             echo '<li class="element">' . $score . '</li>';
             echo '<li class="element">' . $totalPoints . '</li>';
             echo '</ul>';
+            
             echo '</div>';
         }
+        echo '<input class="button" type="submit" name="submit" value="Submit">';
+        echo '</form>';
         include 'studentBackButton.php';
         echo '</div>';
         echo '</div>';

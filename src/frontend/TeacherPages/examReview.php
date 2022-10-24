@@ -134,6 +134,7 @@
         echo '<li class="element">' . $expected . '</li>';
         echo '<input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">';
         echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
+        echo '<input type=hidden class="element-text" name="result[]" value="' . $result . '">';
         echo '<li class="element"><input type=text class="element-text" name="comment[]" placeholder="Comment"></li>';
         echo '</ul>';
         echo '</div>';

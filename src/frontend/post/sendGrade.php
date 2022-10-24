@@ -16,7 +16,7 @@
     $data = array();
 
     for ($i = 0; $i < count($scores); $i++) {
-        $row = array('score'=>$scores[$i], 'comment'=>$comments[$i], 'questionID'=>$questionID[$i]);
+        $row = array('score'=>$scores[$i], 'comment'=>$comments[$i], 'questionID'=>$questionID[$i], 'result'=>$result[$i]);
         array_push($data, $row);
     }
     array_push($data, $studentExamID);
