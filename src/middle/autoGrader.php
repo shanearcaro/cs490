@@ -17,6 +17,7 @@
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
+    curl_close($ch);
 
     $autoGrade = array();
 
@@ -47,6 +48,7 @@
     for ($i = 0; $i < count($questionAnswers); $i++) {
         $questionIndex = $questionAnswers[$i];
         $questionID = $questionIndex->{'questionID'};
+        $question = $questionIndex->{'question'};
         $answer = $questionIndex->{'answer'} . "\n";
         $points = $questionIndex->{'points'};
         $testcase1 = $questionIndex->{'testcase1'};
@@ -57,19 +59,36 @@
         // This is where the auto grader should run its logic
         $tc1 = executePythonScript($testcase1, $answer);
         $tc2 = executePythonScript($testcase2, $answer);
-        $testcaseAnswer1 = array('answer'=>$answer, 'case'=>$testcase1, 'points'=>$points, 
-            'result'=>$tc1[0], 'expected'=>$caseAnswer1, 'questionID'=>$questionID);
-        $testcaseAnswer2 = array('answer'=>$answer, 'case'=>$testcase2, 'points'=>$points, 
-            'result'=>$tc2[0], 'expected'=>$caseAnswer2, 'questionID'=>$questionID);
+        $testcaseAnswer1 = array('question'=>$question, 'answer'=>$answer, 'case'=>$testcase1, 'points'=>$points, 
+            'newPoints'=>$points, 'result'=>$tc1[0], 'expected'=>$caseAnswer1, 'questionID'=>$questionID);
+        $testcaseAnswer2 = array('question'=>$question, 'answer'=>$answer, 'case'=>$testcase2, 'points'=>$points, 
+            'newPoints'=>$points, 'result'=>$tc2[0], 'expected'=>$caseAnswer2, 'questionID'=>$questionID);
 
         array_push($autoGrade, $testcaseAnswer1);
         array_push($autoGrade, $testcaseAnswer2);
     }
 
     // Have all the information needed at this point to calculate point deductions
+    for ($i = 0; $i < count($autoGrade); $i += 2) {
+        $first = $autoGrade[$i];
+        $second = $autoGrade[$i + 1];
+        $points = $first['points'];
+        $testcasePointDeduction = $points / 4;
+        
+        $expected1 = $first['expected'];
+        $expected2 = $second['expected'];
+
+        $result1 = $first['result'];
+        $result2 = $second['result'];
+
+        // Deduct points if the expected result doesn't equal the actual value
+        if ($expected1 != $result1) $points -= $testcasePointDeduction;
+        if ($expected2 != $result2) $points -= $testcasePointDeduction;
+        $autoGrade[$i]['newPoints'] = $points;
+        $autoGrade[$i + 1]['newPoints'] = $points;
+    }
 
     // Instead of just echoing the data back this is going to have to run the auto grader logic
-    curl_close($ch);
     $result = json_encode($autoGrade);
     echo $result;
 ?>

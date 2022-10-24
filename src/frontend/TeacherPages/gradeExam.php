@@ -78,7 +78,7 @@
             $username = $exam->{'username'};
             echo '<div class="row">';
             echo '<ul>';
-            echo '<li class="element-button"><input type="radio" class="checkBox" name="index[]" value="'. $i .'">';
+            echo '<li class="element-button"><input type="radio" class="checkBox" name="index[]" value="'. $i .'"></li>';
             echo '<li class="element">' . $examID . '</li>';
             echo '<li class="element">' . nl2br($username) . '</li>';
             echo '</ul>';
