@@ -28,7 +28,6 @@
     $result = json_decode($result);
     curl_close($ch);
 
-
     $accountType = $result->{'type'};
     $accountID = $result->{'accountID'};
     $_SESSION['accountID'] = $accountID;
