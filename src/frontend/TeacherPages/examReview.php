@@ -83,7 +83,7 @@
     $examQuestions = json_decode($result);
     curl_close($ch);
 
-    echo $result;
+    echo "[ " . $result . " ]";
 
     // echo '<div class="questionBank">';
     // echo '<h1 id="title">Exam</h1>';
