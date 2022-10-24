@@ -17,14 +17,12 @@
     // Read posted user data from the front end
     $user_data = json_decode(file_get_contents('php://input'));
     $user_data2 = file_get_contents('php://input');
-    $response = "WORKING";
 
     $accountID = array_pop($user_data);
     $studentExamID = array_pop($user_data);
     $totalPoints = 0;
 
     $response = $accountID . " " . $studentExamID;
-
 
     /**
      * There is a problem here that is not updating the CompletedExam table properly.
@@ -43,7 +41,7 @@
         $query = "UPDATE CompletedExam SET score='{$score}', comment='{$comment}' WHERE questionID='{$questionID}' AND studentExamID='{$studentExamID}'";
         mysqli_query($connection, $query);
     }
-    $query = "UPDATE StudentExams SET score='{$score}' WHERE studentExamID='{$studentExamID}'";
+    $query = "UPDATE StudentExams SET score='{$totalPoints}' WHERE studentExamID='{$studentExamID}'";
     mysqli_query($connection, $query);
     
     // Data received is already json encoded
