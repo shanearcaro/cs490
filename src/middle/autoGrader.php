@@ -18,9 +18,11 @@
     // Decode the results of sending the data
     $result = curl_exec($ch);
 
+    $autoGrade = array();
+
     // This is a list of questionIDS->answers
     $questionAnswers = json_decode($result);
-
+    $resultCode = 0;
     // Loop through every question from the exam
     for ($i = 0; $i < count($questionAnswers); $i++) {
         $questionIndex = $questionAnswers[$i];
@@ -33,22 +35,25 @@
 
         // This is where the auto grader should run its logic
         $fileName = 'question.py';
-        $filePath = __DIR__ . DIRECTORY_SEPARATOR . $fileName . "";
-        $file = fopen($filePath, 'w') or die('Unable to open file!');
+        $file = fopen($fileName, 'w') or die('Unable to open file!');
 
         // Write shell shebang
-        $shebang = '#!/usr/bin/env python' . "\n";
+        $shebang = '#!/usr/bin/python3.9' . "\n";
+        $testcaseOuput = "print(" . $testcase1 . ")";
         fwrite($file, $shebang);
         fwrite($file, $answer);
-        fwrite($file, $testcase1);
+        fwrite($file, $testcaseOuput);
         fclose($file);
 
-        // $output = fread($filePath, filesize($file));
-
+        $command = escapeshellcmd("/usr/bin/python3.9 question.py");
+        exec($command, $result, $resultCode);
+        array_push($autoGrade, $result);
+        array_push($autoGrade, $resultCode);
     }
 
 
     // Instead of just echoing the data back this is going to have to run the auto grader logic
     curl_close($ch);
-    echo $filePath;
+    $result = json_encode($autoGrade);
+    echo $result;
 ?>
