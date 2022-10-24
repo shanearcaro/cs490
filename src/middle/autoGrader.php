@@ -20,9 +20,29 @@
 
     $autoGrade = array();
 
+    function executePythonScript($case, $answer) {
+        $fileName = 'question.py';
+        $file = fopen($fileName, 'w') or die('Unable to open file!');
+        $execResult = "";
+
+        // Write shell shebang
+        $shebang = '#!/usr/bin/python3.9' . "\n";
+        $testcaseOuput = "print(" . $case . ")";
+        fwrite($file, $shebang);
+        fwrite($file, $answer);
+        fwrite($file, $testcaseOuput);
+        fclose($file);
+
+        $command = escapeshellcmd("/usr/bin/python3.9 question.py");
+        exec($command, $execResult);
+        return $execResult;
+    }
+
     // This is a list of questionIDS->answers
     $questionAnswers = json_decode($result);
-    $resultCode = 0;
+    $question1 = json_encode($questionAnswers[0]);
+    $question2 = json_encode($questionAnswers[1]);
+
     // Loop through every question from the exam
     for ($i = 0; $i < count($questionAnswers); $i++) {
         $questionIndex = $questionAnswers[$i];
@@ -31,24 +51,19 @@
         $points = $questionIndex->{'points'};
         $testcase1 = $questionIndex->{'testcase1'};
         $testcase2 = $questionIndex->{'testcase2'} . "\n";
-
+        $caseAnswer1 = $questionIndex->{'caseAnswer1'};
+        $caseAnswer2 = $questionIndex->{'caseAnswer2'};
 
         // This is where the auto grader should run its logic
-        $fileName = 'question.py';
-        $file = fopen($fileName, 'w') or die('Unable to open file!');
+        $tc1 = executePythonScript($testcase1, $answer);
+        $tc2 = executePythonScript($testcase2, $answer);
+        $testcaseAnswer1 = array('answer'=>$answer, 'case'=>$testcase1, 'points'=>$points, 
+            'result'=>$tc1[0], 'expected'=>$caseAnswer1, 'questionID'=>$questionID);
+        $testcaseAnswer2 = array('answer'=>$answer, 'case'=>$testcase2, 'points'=>$points, 
+            'result'=>$tc2[0], 'expected'=>$caseAnswer2, 'questionID'=>$questionID);
 
-        // Write shell shebang
-        $shebang = '#!/usr/bin/python3.9' . "\n";
-        $testcaseOuput = "print(" . $testcase1 . ")";
-        fwrite($file, $shebang);
-        fwrite($file, $answer);
-        fwrite($file, $testcaseOuput);
-        fclose($file);
-
-        $command = escapeshellcmd("/usr/bin/python3.9 question.py");
-        exec($command, $result, $resultCode);
-        array_push($autoGrade, $result);
-        array_push($autoGrade, $resultCode);
+        array_push($autoGrade, $testcaseAnswer1);
+        array_push($autoGrade, $testcaseAnswer2);
     }
 
 

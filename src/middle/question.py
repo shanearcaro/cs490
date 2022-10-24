@@ -1,4 +1,5 @@
 #!/usr/bin/python3.9
-def subtract(a, b):
-    return a + b
-print(subtract(10, 5))
+def mult(a, b):
+    return a * b
+print(mult(2, 50)
+)
