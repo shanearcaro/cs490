@@ -103,7 +103,6 @@
     echo '</ul>';
     echo '</div>';
     echo '<div class="questionRows">';
-    echo "EXAM ID: " . $_SESSION['examID'];
     echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
     for ($i = 0; $i < count($examQuestions); $i+=2) {
         $row = $examQuestions[$i];
@@ -148,7 +147,6 @@
         echo '<li class="element">' . $testcase2 . '</li>';
         echo '<li class="element">' . $result2 . '</li>';
         echo '<li class="element">' . $expected2 . '</li>';
-        echo '<input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">';
         echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
         echo '<li class="element"></li>';
         echo '</ul>';
