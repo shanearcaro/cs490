@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.9
 def subtract(a, b):
     return a + b
-subtract(10, 5)
+print(subtract(10, 5))
