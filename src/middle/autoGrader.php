@@ -66,6 +66,7 @@
         array_push($autoGrade, $testcaseAnswer2);
     }
 
+    // Have all the information needed at this point to calculate point deductions
 
     // Instead of just echoing the data back this is going to have to run the auto grader logic
     curl_close($ch);

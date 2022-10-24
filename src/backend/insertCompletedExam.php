@@ -50,8 +50,8 @@
 
     // Loop through every question and insert the answer into the database
     for ($i = 0; $i < count($questionIDs); $i++) {
-        $query = "INSERT INTO CompletedExam (studentExamID, questionID, answer) 
-            VALUES ('{$studentExamID}', '{$questionIDs[$i]}', '{$answers[$i]}')";
+        $query = "INSERT INTO CompletedExam (studentExamID, questionID, answer, score, comment) 
+            VALUES ('{$studentExamID}', '{$questionIDs[$i]}', '{$answers[$i]}', 0, NULL)";
         
         $result = mysqli_query($connection, $query);
         if (!$result) $response = "Failure";
