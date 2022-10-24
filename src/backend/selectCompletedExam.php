@@ -16,7 +16,6 @@
 
     // Read posted user data from the front end
     $user_data = json_decode(file_get_contents('php://input'));
-    $user_data2 = file_get_contents('php://input');
         
     // Data received is already json encoded
     // Instead of decoding to just encode just send encoded data

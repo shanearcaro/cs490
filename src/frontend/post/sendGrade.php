@@ -9,20 +9,24 @@
         exit();
     }
 
-    $questionBank = array();
+    $scores = $_POST['score'];
+    $comments = $_POST['comment'];
+    $questionID = $_POST['questionID'];
+    $studentExamID = $_POST['studentExamID'];
+    $data = array();
 
-    if (isset($_POST['comments'])) {
-        for ($i = 0; $i < count($_POST['comment']); $i++) {
-            $questionBank[$_POST['comments'][$i]] = $_POST['score'][$i];
-        }
+    for ($i = 0; $i < count($scores); $i++) {
+        $row = array('score'=>$scores[$i], 'comment'=>$comments[$i], 'questionID'=>$questionID[$i]);
+        array_push($data, $row);
     }
+    array_push($data, $studentExamID);
+
     $backend_url = 'localhost/src/backend/updateScore.php';
-    array_push($questionBank, $_SESSION['accountID']);
-    array_push($questionBank, $backend_url);
+    array_push($data, $_SESSION['accountID']);
+    array_push($data, $backend_url);
 
     // Encode the data into JSON format
-    $encoded = json_encode($questionBank);
-    echo $encoded;
+    $encoded = json_encode($data);
 
     // Connection for the middle end
     $url = 'localhost/src/middle/middle.php';
@@ -39,12 +43,14 @@
     $result = json_decode($result);
     curl_close($ch);
 
-    if ($result == "Exam Created") {
-        echo "<script>alert('Exam updated successfully.');</script>";
-    }
-    else {
-        echo "<script>alert('Exam failed to update.');</script>";
-    }
-    echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+    echo "[ " . $result . " ]";
+
+    // if ($result == "Exam Created") {
+    //     echo "<script>alert('Exam updated successfully.');</script>";
+    // }
+    // else {
+    //     echo "<script>alert('Exam failed to update.');</script>";
+    // }
+    // echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
 
 ?>
