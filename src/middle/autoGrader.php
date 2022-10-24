@@ -59,6 +59,10 @@
         // This is where the auto grader should run its logic
         $tc1 = executePythonScript($testcase1, $answer);
         $tc2 = executePythonScript($testcase2, $answer);
+
+
+        if (!$tc1) $tc1 = "***EXECUTION FAILED";
+        if (!$tc2) $tc2 = "***EXECUTION FAILED";
         $testcaseAnswer1 = array('question'=>$question, 'answer'=>$answer, 'case'=>$testcase1, 'points'=>$points, 
             'newPoints'=>$points, 'result'=>$tc1[0], 'expected'=>$caseAnswer1, 'questionID'=>$questionID);
         $testcaseAnswer2 = array('question'=>$question, 'answer'=>$answer, 'case'=>$testcase2, 'points'=>$points, 
