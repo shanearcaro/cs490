@@ -68,13 +68,14 @@
         $tc1 = executePythonScript($testcase1, $answer);
         $tc2 = executePythonScript($testcase2, $answer);
 
+        // Syntax error in python script
+        if (!$tc1) $tc1 = "*";
+        if (!$tc2) $tc2 = "*";
 
-        if (!$tc1) $tc1 = "***EXECUTION FAILED";
-        if (!$tc2) $tc2 = "***EXECUTION FAILED";
         $testcaseAnswer1 = array('question'=>$question, 'answer'=>$answer, 'case'=>$testcase1, 'points'=>$points, 
-            'newPoints'=>$points, 'result'=>$tc1[0], 'expected'=>$caseAnswer1, 'questionID'=>$questionID);
+            'newPoints'=>$points, 'result'=>$tc1 == "*" ? "syntax error" : $tc1[0], 'expected'=>$caseAnswer1, 'questionID'=>$questionID);
         $testcaseAnswer2 = array('question'=>$question, 'answer'=>$answer, 'case'=>$testcase2, 'points'=>$points, 
-            'newPoints'=>$points, 'result'=>$tc2[0], 'expected'=>$caseAnswer2, 'questionID'=>$questionID);
+            'newPoints'=>$points, 'result'=>$tc2 == "*" ? "syntax error" : $tc2[0], 'expected'=>$caseAnswer2, 'questionID'=>$questionID);
 
         array_push($autoGrade, $testcaseAnswer1);
         array_push($autoGrade, $testcaseAnswer2);
@@ -94,8 +95,17 @@
         $result2 = $second['result'];
 
         // Deduct points if the expected result doesn't equal the actual value
-        if ($expected1 != $result1) $points -= $testcasePointDeduction;
-        if ($expected2 != $result2) $points -= $testcasePointDeduction;
+        if ($result1 == "syntax error")
+            $points -= 2 * $testcasePointDeduction;
+        else if ($expected1 != $result1) 
+            $points -= $testcasePointDeduction;
+
+        if ($result2 == "syntax error")
+            $points -= 2 * $testcasePointDeduction;
+        else if ($expected2 != $result2) 
+            $points -= $testcasePointDeduction;
+
+
         $autoGrade[$i]['newPoints'] = $points;
         $autoGrade[$i + 1]['newPoints'] = $points;
     }

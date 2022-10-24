@@ -1,9 +1,5 @@
 #!/usr/bin/python3.9
-def mult(a, b):
-<<<<<<< HEAD
+def mult(a, b)
     return a / b
-=======
-    return a * b
->>>>>>> feature/test-grade-update
 print(mult(10, 10)
 )
