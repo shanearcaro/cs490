@@ -62,6 +62,8 @@
     array_push($sendData, $_SESSION['accountID']);
     array_push($sendData, $studentExamID);
 
+    // POTENTIAL BUG WITH STUDENT EXAM ID AND EXAM ID MIX UP IN THE AUTO GRADER AND RIGHT HERE
+
     $backend_url = 'localhost/src/backend/selectCompletedExam.php';
     array_push($sendData, $backend_url);
 
@@ -101,7 +103,6 @@
     echo '</ul>';
     echo '</div>';
     echo '<div class="questionRows">';
-    echo "EXAM ID: " . $_SESSION['examID'];
     echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
     for ($i = 0; $i < count($examQuestions); $i+=2) {
         $row = $examQuestions[$i];
@@ -146,7 +147,6 @@
         echo '<li class="element">' . $testcase2 . '</li>';
         echo '<li class="element">' . $result2 . '</li>';
         echo '<li class="element">' . $expected2 . '</li>';
-        echo '<input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">';
         echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
         echo '<li class="element"></li>';
         echo '</ul>';

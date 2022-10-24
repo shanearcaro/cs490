@@ -31,6 +31,9 @@
     // Connection for the middle end
     $url = 'localhost/src/middle/middle.php';
 
+    $data = json_encode($data);
+    echo $data;
+
     // Initialized a cURL session
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

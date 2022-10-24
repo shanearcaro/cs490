@@ -16,7 +16,6 @@
 
     // Read posted user data from the front end
     $user_data = json_decode(file_get_contents('php://input'));
-    $user_data2 = file_get_contents('php://input');
 
     $accountID = array_pop($user_data);
     $studentExamID = array_pop($user_data);
@@ -24,7 +23,7 @@
 
     $response = "Success";
 
-    // Loop through questions and update scores and comments
+    // Loop through every reviewed question and update the score in the database
     for ($i = 0; $i < count($user_data); $i++) {
         $record = $user_data[$i];
         $score = $record->{'score'};
@@ -34,20 +33,15 @@
 
         $query = "UPDATE CompletedExam SET score='{$score}', comment='{$comment}' WHERE questionID='{$questionID}' AND studentExamID='{$studentExamID}'";
         $result = mysqli_query($connection, $query);
-
-        // If questions cannot be updated properly express the failure 
-        if (!$result) 
+        if (!$result)
             $response = "Failure";
     }
-
-    // Update the exams score
+    // Update the students overall exam score
     $query = "UPDATE StudentExams SET score='{$totalPoints}' WHERE studentExamID='{$studentExamID}'";
     $result = mysqli_query($connection, $query);
+    if (!$result)
+            $response = "Failure";
     
-    // If questions cannot be updated properly express the failure 
-    if (!$result) 
-        $response = "Failure";
-
     $response = json_encode($response);
     echo $response;
 

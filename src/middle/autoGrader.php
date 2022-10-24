@@ -14,10 +14,10 @@
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+    curl_close($ch);
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
-    curl_close($ch);
 
     // Queried the completedExam and its properites
     $autoGrade = array();
@@ -100,19 +100,7 @@
         $autoGrade[$i + 1]['newPoints'] = $points;
     }
 
-    array_push($autoGrade, $_SESSION['accountID']);
-    array_push($autoGrade, $studentExamID);
-
-    // Initialized a cURL session
-    $encoded = json_encode($autoGrade);
-    $ch = curl_init();
-    $url = "../backend/updateScore.php";
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
-
-    // Decode the results of sending the data
-    $result = curl_exec($ch);
+    echo json_encode($autoGrade);
     curl_close($ch);
+
 ?>
