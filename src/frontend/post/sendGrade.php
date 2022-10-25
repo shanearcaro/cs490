@@ -13,10 +13,12 @@
     $comments = $_POST['comment'];
     $questionID = $_POST['questionID'];
     $studentExamID = $_POST['studentExamID'];
+    $result1 = $_POST['result1'];
+    $result2 = $_POST['result2'];
     $data = array();
 
     for ($i = 0; $i < count($scores); $i++) {
-        $row = array('score'=>$scores[$i], 'comment'=>$comments[$i], 'questionID'=>$questionID[$i], 'result'=>$result[$i]);
+        $row = array('score'=>$scores[$i], 'comment'=>$comments[$i], 'questionID'=>$questionID[$i], 'result1'=>$result1[$i], 'result2'=>$result2[$i]);
         array_push($data, $row);
     }
     array_push($data, $studentExamID);

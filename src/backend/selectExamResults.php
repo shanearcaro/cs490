@@ -32,20 +32,27 @@
     $questionAnswers = array();
     
     // Get all answers for the exam
-    $query = "SELECT ce.studentExamID, ce.questionID, ce.answer, ce.score, ce.comment, eq.questionPoints, q.question, q.testcase1, q.caseAnswer1, q.testcase2, q.caseAnswer2 
+    $query = "SELECT ce.studentExamID, ce.questionID, ce.answer, ce.result1, ce.result2, ce.score, ce.comment, eq.questionPoints, q.question, q.testcase1, q.caseAnswer1, q.testcase2, q.caseAnswer2 
                 FROM CompletedExam AS ce
                 INNER JOIN StudentExams AS se ON ce.studentExamID=se.studentExamID
                 INNER JOIN ExamQuestions AS eq ON se.examID=eq.examID AND ce.questionID=eq.questionID
                 INNER JOIN Questions AS q ON ce.questionID=q.questionID
                 WHERE ce.studentExamID='{$studentExamID}'";
 
+    /**
+     * Results are not being added into the database properly after the auto grader is run 
+     * ** Results meaning the result of running the python script
+     */
+
     $result = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_array($result)) {
         $questionID     = $row['questionID'];
-        $question     = $row['question'];
+        $question       = $row['question'];
         $answer         = $row['answer'];
-        $score         = $row['score'];
-        $comment         = $row['comment'];
+        $result1        = $row['result1'];
+        $result2        = $row['result2'];
+        $score          = $row['score'];
+        $comment        = $row['comment'];
         $points         = $row['questionPoints'];
         $testcase1      = $row['testcase1'];
         $caseAnswer1    = $row['caseAnswer1'];
@@ -54,10 +61,12 @@
 
         $questionResponse = array(
             'questionID'    => $questionID, 
-            'question'    => $question,
-            'answer'        => $answer, 
-            'score'        => $score,
-            'comment'        => $comment, 
+            'question'      => $question,
+            'answer'        => $answer,
+            'result1'       => $result1, 
+            'result2'       => $result2, 
+            'score'         => $score,
+            'comment'       => $comment, 
             'points'        => $points,
             'testcase1'     => $testcase1,
             'caseAnswer1'   => $caseAnswer1,

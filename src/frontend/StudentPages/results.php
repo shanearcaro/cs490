@@ -48,30 +48,30 @@
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
-    // $exams = json_decode($result);
+    $examQuestions = json_decode($result);
     curl_close($ch);
 
     echo "[ " . $result . " ]";
 
-    // questionID, question, answer, comment, points, testcase1, caseAnswer
+    // questionID, question, answer, comment, result, points, testcase1, caseAnswer
 
-    // echo '<div class="questionBank">';
-    // echo '<h1 id="title">Exam</h1>';
-    // echo '<div class="questionTable">';
-    // echo '<div class="tableLabels">';
-    // echo '<ul>';
-    // echo '<li class="labels">Question</li>';
-    // echo '<li class="labels">Answer</li>';
-    // echo '<li class="labels">Grade</li>';
-    // echo '<li class="labels">Points Possible</li>';
-    // echo '<li class="labels">Testcase</li>';
-    // echo '<li class="labels">Actual</li>';
-    // echo '<li class="labels">Expected</li>';
-    // echo '<li class="labels">Comments</li>';
-    // echo '</ul>';
-    // echo '</div>';
-    // echo '<div class="questionRows">';
-    // echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
+    echo '<div class="questionBank">';
+    echo '<h1 id="title">Exam</h1>';
+    echo '<div class="questionTable">';
+    echo '<div class="tableLabels">';
+    echo '<ul>';
+    echo '<li class="labels">Question</li>';
+    echo '<li class="labels">Answer</li>';
+    echo '<li class="labels">Grade</li>';
+    echo '<li class="labels">Points Possible</li>';
+    echo '<li class="labels">Testcase</li>';
+    echo '<li class="labels">Actual</li>';
+    echo '<li class="labels">Expected</li>';
+    echo '<li class="labels">Comments</li>';
+    echo '</ul>';
+    echo '</div>';
+    echo '<div class="questionRows">';
+    echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
     // for ($i = 0; $i < count($examQuestions); $i+=2) {
     //     $row = $examQuestions[$i];
     //     $result = $row->{'result'};
@@ -120,9 +120,9 @@
     //     echo '</ul>';
     //     echo '</div>';
     // }
-    // echo '<input class="button" type="submit" name="submit" value="Submit">';
-    // echo '</form>';
-    // echo '</div>';
-    // echo '</div>';
-    // echo '</div>';
+    echo '<input class="button" type="submit" name="submit" value="Submit">';
+    echo '</form>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
 ?>

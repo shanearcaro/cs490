@@ -106,7 +106,7 @@
     echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
     for ($i = 0; $i < count($examQuestions); $i+=2) {
         $row = $examQuestions[$i];
-        $result = $row->{'result'};
+        $result1 = $row->{'result'};
         $expected = $row->{'expected'};
         $score = $row->{'newPoints'};
         $testcase1 = $row->{'case'};
@@ -130,11 +130,12 @@
         echo '<li class="element"><input type=number class="element-text" name="score[]" value="' . $score . '" required min=0 max="' . $pointValue . '"></li>';
         echo '<li class="element">' . $pointValue . '</li>';
         echo '<li class="element">' . $testcase1 . '</li>';
-        echo '<li class="element">' . $result . '</li>';
+        echo '<li class="element">' . $result1 . '</li>';
         echo '<li class="element">' . $expected . '</li>';
         echo '<input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">';
         echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
-        echo '<input type=hidden class="element-text" name="result[]" value="' . $result . '">';
+        echo '<input type=hidden class="element-text" name="result1[]" value="' . $result1 . '">';
+        echo '<input type=hidden class="element-text" name="result2[]" value="' . $result2 . '">';
         echo '<li class="element"><input type=text class="element-text" name="comment[]" placeholder="Comment"></li>';
         echo '</ul>';
         echo '</div>';
