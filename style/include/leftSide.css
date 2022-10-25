@@ -1,0 +1,60 @@
+/* ===== Global ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* ===== Left Header ===== */
+
+.header {
+    position: absolute;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    top: 20%;
+}
+
+.header h2 {
+    font-size: 3rem;
+}
+
+.header h3 {
+    font-size: 1rem;
+}
+
+.header img {
+    margin-top: -3vh;
+    margin-bottom: 3rem;
+    width: 50%;
+}
+
+.header h4 {
+    font-size: 1rem;
+}
+
+/* ===== Left Panel ===== */
+
+.left {
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    left: 0;
+    background-color: rgb(26, 235, 182);
+    z-index: 1;
+    
+}
+
+/* ===== Right Panel ===== */
+
+.right {
+    position: absolute;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background-color: white;
+    z-index: 1;
+    
+}
