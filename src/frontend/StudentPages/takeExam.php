@@ -125,6 +125,10 @@
                         ';
                     }
                 echo ' 
+                    <div class="examButtons2">
+                        <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
+                        <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                    </div>
                 </div>
             </div>
         </div>
