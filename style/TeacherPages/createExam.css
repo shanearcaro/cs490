@@ -1,4 +1,4 @@
-@import "./include/leftSide.css";
+@import "../include/leftSide.css";
 
 /* ===== Exam Bank ===== */
 .examBank {
@@ -6,7 +6,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    width: 60%;
+    width: 80%;
     height: 100%;
     left: 0;
     right: 0;
@@ -20,12 +20,19 @@
 
 .listElement {
     padding-top: 3vh;
-    width: 20%;
+    width: 25%;
 }
 
 .checkBoxElement {
     position: absolute;
     width: 2%;
+}
+
+
+.checkBoxElement {
+    position: absolute;
+    width: 2%;
+    margin-left: -2rem;
 }
 
 #examsTitle {
@@ -50,7 +57,7 @@
 
 
 .labels ul li {
-    width: 20%;
+    width: 25%;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5rem;
@@ -120,4 +127,20 @@
     border: none;
     font-size: 1.25rem;
     font-weight: 300;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.element-text {
+    min-height: 4vh;
+    text-align: center;
+    /* border: none; */
+    font-size: 1rem;
 }

@@ -17,14 +17,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Exam</title>
+<<<<<<< HEAD
     <link rel="Stylesheet" href="../../../style/tableDisplay.css?<?php echo time();?>"/>
+=======
+    <link rel="Stylesheet" href="../../../style/TeacherPages/createExam.css?<?php echo time();?>"/>
+>>>>>>> feature/css-update
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    
+    <div class="left">
+        <div class="header">
+            <h2 id="title">CS 490</h2>
+            <h3 id="semester">Fall 2022</h3>
+            <img src="../../../assets/njit.png" alt="NJIT LOGO">
+            <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
+        </div>
+    </div>
+</body> 
 </body>
 </html>
 
@@ -51,42 +63,65 @@
     $questions = json_decode($result);
     curl_close($ch);
 
-    // Render all questions on the screen
-    if ($questions == "Empty") {
-        echo '<h1 id="title">No questions created</h1>';
-    }
-    else {
-        echo '<div class="center">';
-        echo '<h1 id="title">Create an Exam</h1>';
-        echo '<div class="tableLabels">';
-        echo '<ul>';
-        echo '<li class="labels">Question</li>';
-        echo '<li class="labels">Test Case 1</li>';
-        echo '<li class="labels">Test Case 2</li>';
-        echo '<li class="labels">Points</li>';
-        echo '</ul>';
-        echo '</div>';
-        echo '<form name="createExam" method="post" action="../post/sendExam.php">';
-        for ($i = 0; $i < count($questions); $i++) {
-            $question = $questions[$i];
-            $questionID = $question->{'questionID'};
-            $questionText = $question->{'question'};
-            $testcase1 = $question->{'testcase1'};
-            $testcase2 = $question->{'testcase2'};
-            echo '<div class="row">';
-            echo '<ul>';
-            echo '<li class="element-button"><input type="checkbox" class="checkBox" name="checkBox[]" value="'. $questionID .'">';
-            echo '<li class="element">' . nl2br($questionText) . '</li>';
-            echo '<li class="element">' . $testcase1 . '</li>';
-            echo '<li class="element">' . $testcase2 . '</li>';
-            echo '<li class="element"><input type="number" class="element-text" name="points[]" value="0" min="0" required pattern="[0-9]"></li>';
-            echo '</ul>';
-            echo '</div>';
-        }
-        echo '<input class="button" type="submit" name="submit" value="Submit">';
-        echo '</form>';
-        include 'teacherBackButton.php';
-        echo '</div>';
+        // Render all exams on the screen
+        echo '
+        <div class="right">
+            <div class="examBank">
+                <div class="examHeader">';
+                    if ($questions == "Empty") 
+                        echo '
+                            <h2 id="examsTitle">No exams available</h2>
+                            <div class="examButtons2">
+                                <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
+                                <form action="http://localhost:8000/src/frontend/TeacherPages/teacher.php" id="backButtonForm"></form>
+                            </div>
+                    ';
+                    else {
+                        echo '
+                            <h2 id="examsTitle">Create Exam</h2>
+                            <div class="labels">
+                                <ul>
+                                    <li id="teacherName">Question</li>
+                                    <li id="examID">Test Case 1</li>
+                                    <li id="points">Test Case 2</li>
+                                    <li id="questions">Points</li>
+                                </ul>
+                            </div>
+                            <div class="examRows">
+                                <form name="createExam" id="pickExam" method="POST" action="../post/sendExam.php">';
+                                    // Loop  through all available exams 
+                                    for ($i = 0; $i < count($questions); $i++) {
+                                            $question = $questions[$i];
+                                            // Get all variables needed for display
+                                            $question       = $questions[$i];
+                                            $questionID     = $question->{'questionID'};
+                                            $questionText   = $question->{'question'};
+                                            $testcase1      = $question->{'testcase1'};
+                                            $testcase2      = $question->{'testcase2'};
 
-    }
+                                            echo '
+                                                <div class="examRow">
+                                                    <div class="checkBoxElement listElement"><input type="checkbox" required class="checkBox" name="checkBox[]" value="'. $questionID .'"></div>
+                                                    <div class="teacherNameElement listElement"<p>' . nl2br($questionText) . '</p></div>
+                                                    <div class="examIDElement listElement"<p>' . $testcase1 . '</p></div>
+                                                    <div class="pointsElement listElement"<p>' . $testcase2 . '</p></div>
+                                                    <div class="pointsElement listElement"><input type="number" form="pickExam" class="element-text" name="points[]" value="0" min="0" required pattern="[0-9]"></div>
+                                                </div>
+                                            ';
+                                    }
+                                echo '                      
+                                <div class="examButtons">
+                                    <input id="submitButton" form="pickExam" type="submit" name="submit" value="Select">
+                                    <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
+                                </div>
+                                </form>
+                                <form action="http://localhost:8000/src/frontend/TeacherPages/teacher.php" id="backButtonForm"></form>
+                            </div>
+                        ';
+                    }
+                echo ' 
+                </div>
+            </div>
+        </div>
+    ';
 ?>

@@ -1,4 +1,4 @@
-@import "./include/leftSide.css";
+@import "../include/leftSide.css";
 
 /* ===== Exam Bank ===== */
 .examBank {
@@ -6,7 +6,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    width: 60%;
+    width: 90%;
     height: 100%;
     left: 0;
     right: 0;
@@ -26,7 +26,7 @@
 
 .listElement {
     padding-top: 3vh;
-    width: 33%;
+    width: 20%;
 }
 
 .checkBoxElement {
@@ -40,26 +40,45 @@
     padding-top: 1vh;
     height: 5%;
     text-align: center;
+    padding-top: 4vh;
+    padding-bottom: 2vh;
 }
 
 .labels {
     margin-top: 2vh;
     padding-bottom: 1vh;
     border-bottom: 1px solid black;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
 }
 
 .labels ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
+    justify-content: space-around;
+    width: 100%;
 }
 
+#question {
+    width: 30%;
+}
+
+.elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
 .labels ul li {
-    width: 33%;
+    min-width: 15%;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .examButtons {
@@ -80,4 +99,25 @@
     border: none;
     font-size: 1.25rem;
     font-weight: 300;
+}
+
+#backButton2 {
+    width: 40%;
+    height: 4vh;
+    background-color: rgb(26, 235, 182);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.question {
+    width: 30%;
+    height: 15%;
+    resize: none;
+}
+
+
+
+.normalElement {
+    width: 15%;
 }

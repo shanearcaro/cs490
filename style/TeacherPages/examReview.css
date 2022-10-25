@@ -1,4 +1,4 @@
-@import "./include/leftSide.css";
+@import "../include/leftSide.css";
 
 /* ===== Exam Bank ===== */
 .examBank {
@@ -6,7 +6,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    width: 80%;
+    width: 90%;
     height: 100%;
     left: 0;
     right: 0;
@@ -18,6 +18,14 @@
     text-align: center;
 }
 
+.fullRow0 {
+    background-color: beige;
+}
+
+.fullRow1 {
+    background-color: whitesmoke;
+}
+
 .examRow {
     display: flex;
     flex-direction: row;
@@ -25,12 +33,12 @@
 
 .listElement {
     padding-top: 3vh;
-    width: 25%;
+    width: 12%;
 }
 
-.checkBoxElement {
-    position: absolute;
-    width: 2%;
+.fillerElement {
+    width: 47%;
+    padding-bottom: 10vh;
 }
 
 #examsTitle {
@@ -45,6 +53,7 @@
     margin-top: 2vh;
     padding-bottom: 1vh;
     border-bottom: 1px solid black;
+    margin-bottom: 2vh;
 }
 
 .labels ul {
@@ -55,7 +64,7 @@
 
 
 .labels ul li {
-    width: 25%;
+    width: 12%;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5rem;
@@ -92,6 +101,18 @@
     width: 50%;
 }
 
+#gradeReview {
+    margin-top: -2vh;
+    width: 50%;
+    height: 4vh;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#commentReview {
+    height: 150%;
+}
+
 #backButton2 {
     width: 40%;
     height: 4vh;
@@ -99,4 +120,16 @@
     border: none;
     font-size: 1.25rem;
     font-weight: 300;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

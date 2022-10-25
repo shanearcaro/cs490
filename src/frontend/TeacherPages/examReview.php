@@ -17,14 +17,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam</title>
-    <link rel="Stylesheet" href="../../../style/examReview.css?<?php echo time();?>"/>
+    <link rel="Stylesheet" href="../../../style/TeacherPages/examReview.css?<?php echo time();?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    
+    <div class="left">
+        <div class="header">
+            <h2 id="title">CS 490</h2>
+            <h3 id="semester">Fall 2022</h3>
+            <img src="../../../assets/njit.png" alt="NJIT LOGO">
+            <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
+        </div>
+    </div>
 </body>
 </html>
 
@@ -87,76 +94,168 @@
 
     // answer, case, points, newPoints, result, expected, quesitonID
 
-    echo '<div class="questionBank">';
-    echo '<h1 id="title">Exam</h1>';
-    echo '<div class="questionTable">';
-    echo '<div class="tableLabels">';
-    echo '<ul>';
-    echo '<li class="labels">Question</li>';
-    echo '<li class="labels">Answer</li>';
-    echo '<li class="labels">Grade</li>';
-    echo '<li class="labels">Points Possible</li>';
-    echo '<li class="labels">Testcase</li>';
-    echo '<li class="labels">Actual</li>';
-    echo '<li class="labels">Expected</li>';
-    echo '<li class="labels">Comments</li>';
-    echo '</ul>';
-    echo '</div>';
-    echo '<div class="questionRows">';
-    echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
-    for ($i = 0; $i < count($examQuestions); $i+=2) {
-        $row = $examQuestions[$i];
-        $result1 = $row->{'result'};
-        $expected = $row->{'expected'};
-        $score = $row->{'newPoints'};
-        $testcase1 = $row->{'case'};
+        // Render all questions on the screen
+        echo '
+        <div class="right">
+            <div class="examBank">
+                <div class="examHeader">';
+                    if ($examQuestions == "Empty") 
+                        echo '
+                        <h2 id="examsTitle">No exams available</h2>
+                        <div class="examButtons2">
+                            <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
+                        </div>
+                        <form action="http://localhost:8000/src/frontend/TeacherPage/teacher.php" id="backButtonForm"></form>
+                        ';
+                    else {
+                        echo '
+                            <h2 id="examsTitle">Review Exams</h2>
+                            <div class="labels">
+                                <ul>
+                                    <li id="teacherName">Question</li>
+                                    <li id="examID">Answer</li>
+                                    <li id="points">Grade</li>
+                                    <li id="points">Points Possible</li>
+                                    <li id="points">Testcase</li>
+                                    <li id="points">Actual</li>
+                                    <li id="points">Expected</li>
+                                    <li id="points">Comments</li>
+                                </ul>
+                            </div>
+                            <div class="examRows">
+                                <form name="createExam" id="pickExam" method="POST" action="../post/sendGrade.php">';
+                                    // Loop  through all available exams 
+                                    for ($i = 0; $i < count($examQuestions); $i+=2) {
+                                            // Get all variables needed for display
+                                            $row            = $examQuestions[$i];
+                                            $result1        = $row->{'result'};
+                                            $expected       = $row->{'expected'};
+                                            $score          = $row->{'newPoints'};
+                                            $testcase1      = $row->{'case'};
+                                    
+                                            $row2           = $examQuestions[$i + 1];
+                                            $score2         = $row2->{'newPoints'};
+                                            $result2        = $row2->{'result'};
+                                            $expected2      = $row2->{'expected'};
+                                            $testcase2      = $row2->{'case'};
+                                    
+                                            $question       = $row->{'question'};
+                                            $answer         = $row->{'answer'};
+                                            $pointValue     = $row->{'points'};
+                                            $questionID     = $row->{'questionID'};
+                                            $score          = (int) $score;
 
-        $row2 = $examQuestions[$i + 1];
-        $score2 = $row2->{'newPoints'};
-        $result2 = $row2->{'result'};
-        $expected2 = $row2->{'expected'};
-        $testcase2 = $row2->{'case'};
+                                            echo '
+                                                <div class="examRow">
+                                                <div class="teacherNameElement listElement"><p>' . $question . '</p></div>
+                                                <div class="examIDElement listElement"><p>' . $answer . '</p></div>
+                                                <div class="examIDElement listElement"><input type=number class="element-text" id="gradeReview" name="score[]" value="' . $score . '" required min=0 max="' . $pointValue . '"></div>
+                                                <div class="teacherNameElement listElement"><p>' . $pointValue . '</p></div>
+                                                <div class="teacherNameElement listElement"><p>' . $testcase1 . '</p></div>
+                                                <div class="teacherNameElement listElement"><p>' . $result1 . '</p></div>
+                                                <div class="teacherNameElement listElement"><p>' . $expected . '</p></div>
+                                                <input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">
+                                                <input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">
+                                                <input type=hidden class="element-text" name="result1[]" value="' . $result1 . '">
+                                                <input type=hidden class="element-text" name="result2[]" value="' . $result2 . '">
+                                                <div class="element"><input type=text class="element-text" name="comment[]" id="commentReview"placeholder=""></div>
+                                                </div>
 
-        $question = $row->{'question'};
-        $answer = $row->{'answer'};
-        $pointValue = $row->{'points'};
-        $questionID = $row->{'questionID'};
-        $score = (int) $score;
+                                                <div class="examRow">
+                                                    <div class="fillerElement"></div>
+                                                    <div class="teacherNameElement listElement">' . $testcase2 . '</div>
+                                                    <div class="teacherNameElement listElement">' . $result2 . '</div>
+                                                    <div class="teacherNameElement listElement"><p>' . $expected2 . '</p></div>
+                                                    <input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">
+                                                </div>
+                                            ';
+                                    }
+                                echo '                      
+                                <div class="examButtons">
+                                    <input id="submitButton" form="pickExam" type="submit" name="submit" value="Select">
+                                    <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
+                                </div>
+                                </form>
+                                <form action="http://localhost:8000/src/frontend/TeacherPage/teacher.php" id="backButtonForm"></form>
+                            </div>
+                        ';
+                    }
+                echo ' 
+                </div>
+            </div>
+        </div>
+    ';
 
-        echo '<div class="row">';
-        echo '<ul>';
-        echo '<li class="element">' . $question . '</li>';
-        echo '<li class="element">' . $answer . '</li>';
-        echo '<li class="element"><input type=number class="element-text" name="score[]" value="' . $score . '" required min=0 max="' . $pointValue . '"></li>';
-        echo '<li class="element">' . $pointValue . '</li>';
-        echo '<li class="element">' . $testcase1 . '</li>';
-        echo '<li class="element">' . $result1 . '</li>';
-        echo '<li class="element">' . $expected . '</li>';
-        echo '<input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">';
-        echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
-        echo '<input type=hidden class="element-text" name="result1[]" value="' . $result1 . '">';
-        echo '<input type=hidden class="element-text" name="result2[]" value="' . $result2 . '">';
-        echo '<li class="element"><input type=text class="element-text" name="comment[]" placeholder="Comment"></li>';
-        echo '</ul>';
-        echo '</div>';
+    // echo '<div class="questionBank">';
+    // echo '<h1 id="title">Exam</h1>';
+    // echo '<div class="questionTable">';
+    // echo '<div class="tableLabels">';
+    // echo '<ul>';
+    // echo '<li class="labels">Question</li>';
+    // echo '<li class="labels">Answer</li>';
+    // echo '<li class="labels">Grade</li>';
+    // echo '<li class="labels">Points Possible</li>';
+    // echo '<li class="labels">Testcase</li>';
+    // echo '<li class="labels">Actual</li>';
+    // echo '<li class="labels">Expected</li>';
+    // echo '<li class="labels">Comments</li>';
+    // echo '</ul>';
+    // echo '</div>';
+    // echo '<div class="questionRows">';
+    // echo '<form name="createExam" method="post" id="examForm" action="../post/sendGrade.php">';
+    // for ($i = 0; $i < count($examQuestions); $i+=2) {
+    //     $row = $examQuestions[$i];
+    //     $result1 = $row->{'result'};
+    //     $expected = $row->{'expected'};
+    //     $score = $row->{'newPoints'};
+    //     $testcase1 = $row->{'case'};
 
-        echo '<div class="row">';
-        echo '<ul>';
-        echo '<li class="element"></li>';
-        echo '<li class="element"></li>';
-        echo '<li class="element"></li>';
-        echo '<li class="element"></li>';
-        echo '<li class="element">' . $testcase2 . '</li>';
-        echo '<li class="element">' . $result2 . '</li>';
-        echo '<li class="element">' . $expected2 . '</li>';
-        echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
-        echo '<li class="element"></li>';
-        echo '</ul>';
-        echo '</div>';
-    }
-    echo '<input class="button" type="submit" name="submit" value="Submit">';
-    echo '</form>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    //     $row2 = $examQuestions[$i + 1];
+    //     $score2 = $row2->{'newPoints'};
+    //     $result2 = $row2->{'result'};
+    //     $expected2 = $row2->{'expected'};
+    //     $testcase2 = $row2->{'case'};
+
+    //     $question = $row->{'question'};
+    //     $answer = $row->{'answer'};
+    //     $pointValue = $row->{'points'};
+    //     $questionID = $row->{'questionID'};
+    //     $score = (int) $score;
+
+    //     echo '<div class="row">';
+    //     echo '<ul>';
+    //     echo '<li class="element">' . $question . '</li>';
+    //     echo '<li class="element">' . $answer . '</li>';
+    //     echo '<li class="element"><input type=number class="element-text" name="score[]" value="' . $score . '" required min=0 max="' . $pointValue . '"></li>';
+    //     echo '<li class="element">' . $pointValue . '</li>';
+    //     echo '<li class="element">' . $testcase1 . '</li>';
+    //     echo '<li class="element">' . $result1 . '</li>';
+    //     echo '<li class="element">' . $expected . '</li>';
+    //     echo '<input type=hidden class="element-text" name="questionID[]" value="' . $questionID . '">';
+    //     echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
+    //     echo '<input type=hidden class="element-text" name="result1[]" value="' . $result1 . '">';
+    //     echo '<input type=hidden class="element-text" name="result2[]" value="' . $result2 . '">';
+    //     echo '<li class="element"><input type=text class="element-text" name="comment[]" placeholder="Comment"></li>';
+    //     echo '</ul>';
+    //     echo '</div>';
+
+    //     echo '<div class="row">';
+    //     echo '<ul>';
+    //     echo '<li class="element"></li>';
+    //     echo '<li class="element"></li>';
+    //     echo '<li class="element"></li>';
+    //     echo '<li class="element"></li>';
+    //     echo '<li class="element">' . $testcase2 . '</li>';
+    //     echo '<li class="element">' . $result2 . '</li>';
+    //     echo '<li class="element">' . $expected2 . '</li>';
+    //     echo '<input type=hidden class="element-text" name="studentExamID" value="' . $studentExamID . '">';
+    //     echo '<li class="element"></li>';
+    //     echo '</ul>';
+    //     echo '</div>';
+    // }
+    // echo '<input class="button" type="submit" name="submit" value="Submit">';
+    // echo '</form>';
+    // echo '</div>';
+    // echo '</div>';
+    // echo '</div>';
 ?>

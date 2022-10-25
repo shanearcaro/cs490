@@ -49,8 +49,6 @@
 
     // This is a list of questionIDS->answers
     $questionAnswers = json_decode($result);
-    $question1 = json_encode($questionAnswers[0]);
-    $question2 = json_encode($questionAnswers[1]);
 
     // Loop through every question from the exam
     for ($i = 0; $i < count($questionAnswers); $i++) {

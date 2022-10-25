@@ -14,7 +14,7 @@
 <HTML>
     <head>
         <Title>Review Exams</Title>
-        <link rel="Stylesheet" href="../../../style/tableDisplay.css?<?php echo time();?>"/>
+        <link rel="Stylesheet" href="../../../style/StudentPages/temp.css?<?php echo time();?>"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,8 +63,13 @@
             <div class="examBank">
                 <div class="examHeader">';
                     if ($exams == "Empty") 
-                        echo '<h2 id="examsTitle">No exams available</h2>';
-
+                        echo '
+                        <h2 id="examsTitle">No exams available</h2>
+                        <div class="examButtons2">
+                            <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
+                        </div>
+                        <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                        ';
                     else {
                         echo '
                             <h2 id="examsTitle">Review Exams</h2>
