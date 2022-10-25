@@ -58,35 +58,4 @@
             </div>
         </div>
     </div>
-            <!-- <div class="form-buttons">
-                <form name = "question" method = "post" action = "../post/sendQuestion.php">
-                    <div class="element">
-                        <label for="questionBox">Enter a Question:</label>
-                        
-                    </div>
-                    <div class="element">
-                        <label for="testCase1">Test case 1:</label>
-                        <input type="text" id="testCase1" name="testCase1" required>
-                    </div>
-                    <div class="element">
-                        <label for="caseAnswer1">Expected Answer:</label>
-                        <input type="text" id="caseAnswer1" name="caseAnswer1" required>
-                    </div>
-                    <div class="element">
-                        <label for="testCase2">Test case 2:</label>
-                        <input type="text" id="testCase2" name="testCase2" required>
-                    </div>
-                    <div class="element">
-                        <label for="caseAnswer2">Expected Answer:</label>
-                        <input type="text" id="caseAnswer2" name="caseAnswer2" required>
-                    </div>
-                    <input type="submit" name="submit" value="Submit">
-                </form>
-            </div> -->
-        </div>
-    </div>
-    </body>
-    <?php
-        include 'teacherBackButton.php';
-    ?>
 </HTML>

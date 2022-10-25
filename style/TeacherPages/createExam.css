@@ -1,0 +1,146 @@
+@import "../include/leftSide.css";
+
+/* ===== Exam Bank ===== */
+.examBank {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 80%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.examHeader {
+    padding-top: 4vh;
+    text-align: center;
+}
+
+.listElement {
+    padding-top: 3vh;
+    width: 25%;
+}
+
+.checkBoxElement {
+    position: absolute;
+    width: 2%;
+}
+
+
+.checkBoxElement {
+    position: absolute;
+    width: 2%;
+    margin-left: -2rem;
+}
+
+#examsTitle {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding-top: 1vh;
+    height: 5%;
+    text-align: center;
+}
+
+.labels {
+    margin-top: 2vh;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid black;
+}
+
+.labels ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+
+.labels ul li {
+    width: 25%;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.examRow {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2vh;
+}
+
+#question {
+    width: 40%;
+}
+
+#answer {
+    width: 40%;
+}
+
+.questionElement {
+    width: 40%;
+    text-align: left;
+}
+
+.answerElement {
+    margin-top: 1vh;
+    color: black;
+    resize: none;
+    width: 40%;
+}
+
+/* Exam buttons when exams are displayed */
+
+.examButtons {
+    padding-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+#submitButton, #backButton {
+    width: 40%;
+    height: 4vh;
+    background-color: rgb(26, 235, 182);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Exam buttons when no exams are available */
+.examButtons2 {
+    padding-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 50%;
+}
+
+#backButton2 {
+    width: 40%;
+    height: 4vh;
+    background-color: rgb(26, 235, 182);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.element-text {
+    min-height: 4vh;
+    text-align: center;
+    /* border: none; */
+    font-size: 1rem;
+}
