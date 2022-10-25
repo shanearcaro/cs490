@@ -1,4 +1,4 @@
-@import "./include/leftSide.css";
+@import "../include/leftSide.css";
 
 /* ===== Exam Bank ===== */
 .examBank {
@@ -6,11 +6,12 @@
     margin-left: auto;
     margin-right: auto;
 
-    width: 80%;
+    width: 60%;
     height: 100%;
     left: 0;
     right: 0;
     z-index: 2;
+    /* background-color: blue; */
 }
 
 .examHeader {
@@ -25,7 +26,7 @@
 
 .listElement {
     padding-top: 3vh;
-    width: 25%;
+    width: 33%;
 }
 
 .checkBoxElement {
@@ -55,13 +56,11 @@
 
 
 .labels ul li {
-    width: 25%;
+    width: 33%;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5rem;
 }
-
-/* Exam buttons when exams are displayed */
 
 .examButtons {
     padding-top: 4vh;
