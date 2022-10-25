@@ -63,7 +63,13 @@
             <div class="examBank">
                 <div class="examHeader">';
                     if ($exams == "Empty") 
-                        echo '<h2 id="examsTitle">No exams available</h2>';
+                        echo '
+                        <h2 id="examsTitle">No exams available</h2>
+                        <div class="examButtons2">
+                            <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
+                        </div>
+                        <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                        ';
                     else {
                         echo '
                             <h2 id="examsTitle">Review Exams</h2>
