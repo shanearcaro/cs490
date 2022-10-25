@@ -53,7 +53,8 @@
 
     // echo "[ " . $result . " ]";
 
-    // questionID, question, answer, result1, result2, score, comment, points, testcase1, caseAnswer1, testcase2, caseAnswer2,
+    // questionID, question, answer, result1, result2, score, studentGrade, 
+    // comment, points, testcase1, caseAnswer1, testcase2, caseAnswer2,examPoints
 
     echo '<div class="questionBank">';
     echo '<h1 id="title">Exam</h1>';
@@ -70,6 +71,11 @@
     echo '</ul>';
     echo '</div>';
     echo '<div class="questionRows">';
+    echo '<div class="row">';
+    echo '<ul>';
+    echo '<li class="element">EXAM GRADE: ' . $examQuestions[0]->{'studentGrade'} . " out of " . $examQuestions[0]->{'examPoints'} . '</li>';
+    echo '</ul>';
+    echo '</div>';
     for ($i = 0; $i < count($examQuestions); $i++) {
         $row = $examQuestions[$i];
         $question = $row->{'question'};

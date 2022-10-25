@@ -32,11 +32,13 @@
     $questionAnswers = array();
     
     // Get all answers for the exam
-    $query = "SELECT ce.studentExamID, ce.questionID, ce.answer, ce.result1, ce.result2, ce.score, ce.comment, eq.questionPoints, q.question, q.testcase1, q.caseAnswer1, q.testcase2, q.caseAnswer2 
+    $query = "SELECT ce.studentExamID, ce.questionID, ce.answer, ce.result1, ce.result2, ce.score, ce.comment, 
+                se.score AS studentGrade, eq.questionPoints, q.question, q.testcase1, q.caseAnswer1, q.testcase2, q.caseAnswer2, e.examPoints
                 FROM CompletedExam AS ce
                 INNER JOIN StudentExams AS se ON ce.studentExamID=se.studentExamID
                 INNER JOIN ExamQuestions AS eq ON se.examID=eq.examID AND ce.questionID=eq.questionID
                 INNER JOIN Questions AS q ON ce.questionID=q.questionID
+                INNER JOIN Exams AS e ON e.examID=se.examID
                 WHERE ce.studentExamID='{$studentExamID}'";
 
     /**
@@ -52,7 +54,9 @@
         $result1        = $row['result1'];
         $result2        = $row['result2'];
         $score          = $row['score'];
+        $studentGrade   = $row['studentGrade'];
         $comment        = $row['comment'];
+        $examPoints     = $row['examPoints'];
         $points         = $row['questionPoints'];
         $testcase1      = $row['testcase1'];
         $caseAnswer1    = $row['caseAnswer1'];
@@ -66,7 +70,9 @@
             'result1'       => $result1, 
             'result2'       => $result2, 
             'score'         => $score,
+            'studentGrade'  => $studentGrade,
             'comment'       => $comment, 
+            'examPoints'    => $examPoints,
             'points'        => $points,
             'testcase1'     => $testcase1,
             'caseAnswer1'   => $caseAnswer1,
