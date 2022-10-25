@@ -17,14 +17,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam</title>
-    <link rel="Stylesheet" href="../../../style/studentExam.css?<?php echo time();?>"/>
+    <link rel="Stylesheet" href="../../../style/displayExam.css?<?php echo time();?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    
+    <div class="left">
+        <div class="header">
+            <h2 id="title">CS 490</h2>
+            <h3 id="semester">Fall 2022</h3>
+            <img src="../../../assets/njit.png" alt="NJIT LOGO">
+            <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
+        </div>
+    </div>
 </body>
 </html>
 
@@ -59,35 +66,48 @@
     $examQuestions = json_decode($result);
     curl_close($ch);
 
-    echo '<div class="questionBank">';
-    echo '<h1 id="title">Exam</h1>';
-    echo '<div class="questionTable">';
-    echo '<div class="tableLabels">';
-    echo '<ul>';
-    echo '<li class="labels">Question</li>';
-    echo '<li class="labels">Point Value</li>';
-    echo '<li class="labels">Answer</li>';
-    echo '</ul>';
-    echo '</div>';
-    echo '<div class="questionRows">';
-    echo "EXAM ID: " . $_SESSION['examID'];
-    echo '<form name="createExam" method="post" id="examForm" action="../post/sendCompletedExam.php">';
-    for ($i = 0; $i < count($examQuestions); $i++) {
-        $question = $examQuestions[$i];
-        $questionText = $question->{'question'};
-        $pointValue = $question->{'questionPoints'};
-        $questionID = $question->{'questionID'};
-        echo '<div class="row">';
-        echo '<ul>';
-        echo '<li class="element">' . nl2br($questionText) . '</li>';
-        echo '<li class="element">' . $pointValue . '</li>';
-        echo '<li class="element"><textarea form="examForm" class="element-text" name="answer[]" required></textarea>';
-        echo '</ul>';
-        echo '</div>';
-    }
-    echo '<input class="button" type="submit" name="submit" value="Submit">';
-    echo '</form>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    // Render all questions on the screen
+    echo '
+        <div class="right">
+            <div class="examBank">
+                <div class="examHeader">';
+                        echo '
+                            <h2 id="examsTitle">Exam</h2>
+                            <div class="labels">
+                                <ul>
+                                    <li id="question">Question</li>
+                                    <li id="points">Points</li>
+                                    <li id="answer">Answer</li>
+                                </ul>
+                            </div>
+                            <div class="examRows">
+                                <form name="createExam" id="pickExam" method="POST" action="../post/sendCompletedExam.php">';
+                                    // Loop  through all available exams 
+                                    for ($i = 0; $i < count($examQuestions); $i++) {
+                                            $examQuestion = $examQuestions[$i];
+                                            // Get all variables needed for display
+                                            $question       = $examQuestions[$i];
+                                            $questionText   = $question->{'question'};
+                                            $pointValue     = $question->{'questionPoints'};
+                                            $questionID     = $question->{'questionID'};
+
+                                            echo '
+                                                <div class="examRow">
+                                                    <div class="questionElement listElement"<p>' . nl2br($questionText) . '</p></div>
+                                                    <div class="pointsElement   listElement"<p>' . $pointValue . '</p></div>
+                                                    <textarea form="pickExam" class="answerElement listElement" name="answer[]" required></textarea>
+                                                </div>';
+                                    };
+                            echo '        
+                                <div class="examButtons">
+                                    <input id="submitButton" form="pickExam" type="submit" name="submit" value="Submit">
+                                </div>
+                                </form>
+                            </div>
+                        ';
+                echo ' 
+                </div>
+            </div>
+        </div>
+    ';
 ?>

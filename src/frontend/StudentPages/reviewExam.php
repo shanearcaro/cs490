@@ -30,8 +30,8 @@
                 <h3 id="semester">Fall 2022</h3>
                 <img src="../../../assets/njit.png" alt="NJIT LOGO">
                 <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
+            </div>
         </div>
-    </div>
     </body>
 </HTML>
 
@@ -56,7 +56,6 @@
     $result = curl_exec($ch);
     $exams = json_decode($result);
     curl_close($ch);
-
 
     // Render all questions on the screen
     echo '
