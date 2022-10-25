@@ -6,7 +6,6 @@
     <head>
         <title>Login Page</title>
         <link rel="Stylesheet" href="./style/login.css?<?php echo time();?>"/>
-        <link rel="Left Side" href="./style/include/leftSide.css?<?php echo time();?>"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
@@ -16,7 +15,14 @@
             window.history.forward();
             function noBack() { window.history.forward(); }
         </script>
-        <?php include("./src/include/leftSide.php");?>
+        <div class="left">
+            <div class="header">
+                <h2 id="title">CS 490</h2>
+                <h3 id="semester">Fall 2022</h3>
+                <img src="./assets/njit.png" alt="NJIT LOGO">
+                <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
+            </div>
+        </div>
         <div class="right">
             <div class="loginBox">
                 <h2>Log in</h2>

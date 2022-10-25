@@ -30,7 +30,7 @@
     // Decode the results of sending the data
     $result = curl_exec($ch);
     $username = json_decode($result);
-    echo "<h1>Welcome " . $username . "! What would you like to do?</h1>";
+    echo "<h1>Welcome " . ucfirst($username) . "! What would you like to do?</h1>";
     curl_close($ch);
 ?>
 <!DOCTYPE html>
