@@ -23,7 +23,7 @@
     }
     array_push($data, $studentExamID);
 
-    $backend_url = 'localhost/src/backend/updateScore.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/updateScore.php';
     array_push($data, $_SESSION['accountID']);
     array_push($data, $backend_url);
 
@@ -31,7 +31,7 @@
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

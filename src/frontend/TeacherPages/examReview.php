@@ -32,12 +32,12 @@
     // Send the accountID with the request
     $data = array('accountID' => $_SESSION['accountID']);
 
-    $backend_url = 'localhost/src/backend/selectExamsTeacher.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/selectExamsTeacher.php';
     array_push($data, $backend_url);
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();
@@ -64,14 +64,14 @@
 
     // POTENTIAL BUG WITH STUDENT EXAM ID AND EXAM ID MIX UP IN THE AUTO GRADER AND RIGHT HERE
 
-    $backend_url = 'localhost/src/backend/selectCompletedExam.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/selectCompletedExam.php';
     array_push($sendData, $backend_url);
 
     // Encode the data into JSON format
     $encoded = json_encode($sendData);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/autoGrader.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/autoGrader.php';
 
     // Initialized a cURL session
     $ch = curl_init();

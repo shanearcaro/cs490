@@ -37,12 +37,12 @@
     $data = array('accountID' => $_SESSION['accountID']);
     // Encode the data into JSON format
 
-    $backend_url = 'localhost/src/backend/selectExamsTeacher.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/selectExamsTeacher.php';
     array_push($data, $backend_url);
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

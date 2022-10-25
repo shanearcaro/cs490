@@ -37,11 +37,11 @@
     //Send the accountID for the request
     $data = array('accountID' => $_SESSION['accountID']);
 
-    $backend_url = 'localhost/src/backend/selectStudentExams.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/selectStudentExams.php';
     array_push($data, $backend_url);
     $encoded = json_encode($data);
 
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

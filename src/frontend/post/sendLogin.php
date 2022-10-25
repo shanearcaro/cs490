@@ -7,14 +7,14 @@
 
     $data = array('username' => $username, 'password' => $password);
 
-    $backend_url = 'localhost/src/backend/authenticateLogin.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/authenticateLogin.php';
     array_push($data, $backend_url);
 
     // Encode the data into JSON format
     $encoded = json_encode($data);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

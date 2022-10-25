@@ -18,7 +18,7 @@
     }
 
     //URL for the backend
-    $backend_url = 'localhost/src/backend/insertCompletedExam.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/insertCompletedExam.php';
 
     // Need to send the examID and the accountID with the answers
     array_push($answers, $_SESSION['examID']);
@@ -31,7 +31,7 @@
     $encoded = json_encode($answers);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

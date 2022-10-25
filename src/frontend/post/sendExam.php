@@ -16,7 +16,7 @@
             $questionBank[$_POST['checkBox'][$i]] = $_POST['points'][$i];
         }
     }
-    $backend_url = 'localhost/src/backend/insertExam.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/insertExam.php';
     array_push($questionBank, $_SESSION['accountID']);
     array_push($questionBank, $backend_url);
 
@@ -25,7 +25,7 @@
     echo $encoded;
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();

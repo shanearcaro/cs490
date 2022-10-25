@@ -11,14 +11,14 @@
     $name = array();
     array_push($name, $_SESSION['accountID']);
 
-    $backend_url = 'localhost/src/backend/selectName.php';
+    $backend_url = 'https://afsaccess4.njit.edu/~mcs43/src/backend/selectName.php';
     array_push($name, $backend_url);
 
     // // Encode the data into JSON format
     $encoded = json_encode($name);
 
     // Connection for the middle end
-    $url = 'localhost/src/middle/middle.php';
+    $url = 'https://afsaccess4.njit.edu/~mcs43/src/middle/middle.php';
 
     // Initialized a cURL session
     $ch = curl_init();
