@@ -10,8 +10,8 @@ html {
 
 body {
     height: 100%;
-    background: rgb(9,59,121);
-    background: linear-gradient(180deg, rgba(9,59,121,1) 27%, rgba(0,212,255,1) 91%);
+    background: rgb(17, 120, 30);
+    background: linear-gradient(180deg, rgb(15, 101, 19) 27%, rgb(68, 237, 94) 91%);
     background-repeat: no-repeat;
 }
 

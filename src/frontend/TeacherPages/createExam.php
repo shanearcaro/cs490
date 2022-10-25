@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Exam</title>
-    <link rel="Stylesheet" href="../../../style/exam.css?<?php echo time();?>"/>
+    <link rel="Stylesheet" href="../../../style/tableDisplay.css?<?php echo time();?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,11 +56,9 @@
         echo '<h1 id="title">No questions created</h1>';
     }
     else {
-        echo '<div class="questionBank">';
+        echo '<div class="center">';
         echo '<h1 id="title">Create an Exam</h1>';
-        echo '<div class="questionTable">';
         echo '<div class="tableLabels">';
-
         echo '<ul>';
         echo '<li class="labels">Question</li>';
         echo '<li class="labels">Test Case 1</li>';
@@ -68,7 +66,6 @@
         echo '<li class="labels">Points</li>';
         echo '</ul>';
         echo '</div>';
-        echo '<div class="questionRows">';
         echo '<form name="createExam" method="post" action="../post/sendExam.php">';
         for ($i = 0; $i < count($questions); $i++) {
             $question = $questions[$i];
@@ -89,8 +86,6 @@
         echo '<input class="button" type="submit" name="submit" value="Submit">';
         echo '</form>';
         include 'teacherBackButton.php';
-        echo '</div>';
-        echo '</div>';
         echo '</div>';
 
     }

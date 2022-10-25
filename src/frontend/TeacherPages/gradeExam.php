@@ -13,7 +13,7 @@
 <HTML>
     <head>
         <Title>Grade Exams</Title>
-        <link rel="Stylesheet" href="../../../style/exam.css?<?php echo time();?>"/>
+        <link rel="Stylesheet" href="../../../style/tableDisplay.css?<?php echo time();?>"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <link rel="preconnect" href="https://fonts.googleapis.com">
