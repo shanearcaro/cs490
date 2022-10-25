@@ -1,0 +1,111 @@
+@import "../include/leftSide.css";
+
+/* ===== Exam Bank ===== */
+.examBank {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 90%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.examHeader {
+    padding-top: 4vh;
+    text-align: center;
+}
+
+.fullRow0 {
+    background-color: beige;
+}
+
+.fullRow1 {
+    background-color: whitesmoke;
+}
+
+.examRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.listElement {
+    padding-top: 3vh;
+    width: 14%;
+}
+
+.fillerElement {
+    width: 42%;
+    padding-bottom: 10vh;
+}
+
+#examsTitle {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding-top: 1vh;
+    height: 5%;
+    text-align: center;
+}
+
+.labels {
+    margin-top: 2vh;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid black;
+    margin-bottom: 2vh;
+}
+
+.labels ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+
+.labels ul li {
+    width: 25%;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+/* Exam buttons when exams are displayed */
+
+.examButtons {
+    padding-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+#submitButton, #backButton {
+    width: 40%;
+    height: 4vh;
+    background-color: rgb(26, 235, 182);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Exam buttons when no exams are available */
+.examButtons2 {
+    padding-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 50%;
+}
+
+#backButton2 {
+    width: 40%;
+    height: 4vh;
+    background-color: rgb(26, 235, 182);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 300;
+}

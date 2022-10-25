@@ -1,4 +1,4 @@
-@import "./include/leftSide.css";
+@import "../include/leftSide.css";
 
 /* ===== Exam Bank ===== */
 .examBank {
@@ -33,11 +33,11 @@
 
 .listElement {
     padding-top: 3vh;
-    width: 14%;
+    width: 12%;
 }
 
 .fillerElement {
-    width: 42%;
+    width: 47%;
     padding-bottom: 10vh;
 }
 
@@ -64,7 +64,7 @@
 
 
 .labels ul li {
-    width: 25%;
+    width: 12%;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5rem;
@@ -101,6 +101,18 @@
     width: 50%;
 }
 
+#gradeReview {
+    margin-top: -2vh;
+    width: 50%;
+    height: 4vh;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#commentReview {
+    height: 150%;
+}
+
 #backButton2 {
     width: 40%;
     height: 4vh;
@@ -108,4 +120,16 @@
     border: none;
     font-size: 1.25rem;
     font-weight: 300;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

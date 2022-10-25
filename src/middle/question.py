@@ -1,4 +1,4 @@
 #!/usr/bin/python3.9
-f
-print(d
+d
+print(hell()
 )
