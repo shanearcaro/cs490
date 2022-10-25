@@ -1,5 +1,4 @@
 #!/usr/bin/python3.9
-def mult(a, b):
-    return a * b
+e
 print(mult(13, 2)
 )
