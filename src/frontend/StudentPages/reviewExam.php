@@ -64,6 +64,7 @@
                 <div class="examHeader">';
                     if ($exams == "Empty") 
                         echo '<h2 id="examsTitle">No exams available</h2>';
+
                     else {
                         echo '
                             <h2 id="examsTitle">Review Exams</h2>
@@ -109,6 +110,7 @@
                                 <div class="examButtons">
                                     <input id="submitButton" form="pickExam" type="submit" name="submit" value="Select">
                                     <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
+                                    
                                 </div>
                                 </form>
                                 <form action="https://afsaccess4.njit.edu/~mcs43/src/frontend/StudentPages/student.php" id="backButtonForm"></form>

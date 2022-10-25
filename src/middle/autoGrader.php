@@ -14,10 +14,10 @@
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
-    curl_close($ch);
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
+    curl_close($ch);
 
     // Queried the completedExam and its properites
     $autoGrade = array();
@@ -42,7 +42,7 @@
         fwrite($file, $testcaseOuput);
         fclose($file);
 
-        $command = escapeshellcmd("/usr/bin/python3.9 question.py");
+        $command = escapeshellcmd("/afs/cad/u/m/c/mcs43/public_html/src/middle/question.py");
         exec($command, $execResult);
         return $execResult;
     }
@@ -111,6 +111,4 @@
     }
 
     echo json_encode($autoGrade);
-    curl_close($ch);
-
 ?>
