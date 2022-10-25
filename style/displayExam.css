@@ -6,7 +6,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    width: 90%;
+    width: 60%;
     height: 100%;
     left: 0;
     right: 0;
@@ -18,27 +18,14 @@
     text-align: center;
 }
 
-.fullRow0 {
-    background-color: beige;
-}
-
-.fullRow1 {
-    background-color: whitesmoke;
-}
-
-.examRow {
-    display: flex;
-    flex-direction: row;
-}
-
 .listElement {
     padding-top: 3vh;
-    width: 14%;
+    width: 20%;
 }
 
-.fillerElement {
-    width: 42%;
-    padding-bottom: 10vh;
+.checkBoxElement {
+    position: absolute;
+    width: 2%;
 }
 
 #examsTitle {
@@ -53,7 +40,6 @@
     margin-top: 2vh;
     padding-bottom: 1vh;
     border-bottom: 1px solid black;
-    margin-bottom: 2vh;
 }
 
 .labels ul {
@@ -64,10 +50,36 @@
 
 
 .labels ul li {
-    width: 25%;
+    width: 20%;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5rem;
+}
+
+.examRow {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2vh;
+}
+
+#question {
+    width: 40%;
+}
+
+#answer {
+    width: 40%;
+}
+
+.questionElement {
+    width: 40%;
+    text-align: left;
+}
+
+.answerElement {
+    margin-top: 1vh;
+    color: black;
+    resize: none;
+    width: 40%;
 }
 
 /* Exam buttons when exams are displayed */

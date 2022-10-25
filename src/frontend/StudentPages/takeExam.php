@@ -26,6 +26,14 @@
                 window.history.forward(); 
             }
         </script>
+        <div class="left">
+            <div class="header">
+                <h2 id="title">CS 490</h2>
+                <h3 id="semester">Fall 2022</h3>
+                <img src="../../../assets/njit.png" alt="NJIT LOGO">
+                <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
+            </div>
+        </div>
     </body>
 </HTML>
 
@@ -53,50 +61,78 @@
     $exams = json_decode($result);
     curl_close($ch);
 
-    // Render all questions on the screen
-    if ($exams == "Empty") {
-        echo '<h1 id="title">No exams available</h1>';
-        echo '<body>';
-        include 'studentBackButton.php';
-        echo '</body>';
-    }
-    else {
-        echo '<div class="questionBank">';
-        echo '<h1 id="title">Take Exam</h1>';
-        echo '<div class="questionTable">';
-        echo '<div class="tableLabels">';
+    // Render all exams on the screen
+    echo '
+        <div class="right">
+            <div class="examBank">
+                <div class="examHeader">';
+                    if ($exams == "Empty") 
+                        echo '
+                            <h2 id="examsTitle">No exams available</h2>
+                            <div class="examButtons2">
+                                <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
+                                <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                            </div>
+                    ';
+                    else {
+                        echo '
+                            <h2 id="examsTitle">Available Exams</h2>
+                            <div class="labels">
+                                <ul>
+                                    <li id="teacherName">Teacher</li>
+                                    <li id="examID">Exam ID</li>
+                                    <li id="points">Points</li>
+                                    <li id="questions">Questions</li>
+                                </ul>
+                            </div>
+                            <div class="examRows">
+                                <form name="createExam" id="pickExam" method="POST" action="./exam.php">';
+                                    // Loop  through all available exams 
+                                    for ($i = 0; $i < count($exams); $i++) {
+                                            $exam = $exams[$i];
+                                            // Get all variables needed for display
+                                            $teacherID          = $exam->{'teacherID'};
+                                            $username           = $exam->{'username'};
+                                            $examID             = $exam->{'examID'};
+                                            $examPoints         = $exam->{'examPoints'};
+                                            $numberOfQuestions  = $exam->{'numberOfQuestions'};
 
-        echo '<ul>';
-        echo '<li class="labels">Professor</li>';
-        echo '<li class="labels">Exam ID</li>';
-        echo '<li class="labels">Points</li>';
-        echo '<li class="labels">Questions</li>';
-        echo '</ul>';
-        echo '</div>';
-        echo '<div class="questionRows">';
-        echo '<form name="createExam" method="post" action="./exam.php">';
-        for ($i = 0; $i < count($exams); $i++) {
-            $exam = $exams[$i];
-            $examID = $exam->{'examID'};
-            $examPoints = $exam->{'examPoints'};
-            $numberOfQuestions = $exam->{'numberOfQuestions'};
-            $teacherID = $exam->{'teacherID'};
-            $username = $exam->{'username'};
-            echo '<div class="row">';
-            echo '<ul>';
-            echo '<li class="element-button"><input type="radio" class="checkBox" name="checkBox[]" value="'. $examID .'">';
-            echo '<li class="element">' . nl2br($username) . '</li>';
-            echo '<li class="element">' . $examID . '</li>';
-            echo '<li class="element">' . $examPoints . '</li>';
-            echo '<li class="element">' . $numberOfQuestions . '</li>';
-            echo '</ul>';
-            echo '</div>';
-        }
-        echo '<input class="button" type="submit" name="submit" value="Take Exam">';
-        echo '</form>';
-        include 'studentBackButton.php';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-    }
+                                            echo '
+                                                <div class="examRow">
+                                                    <div class="checkBoxElement listElement">
+                                                        <input type="radio" required class="checkBox" name="checkBox[]" value="'. $examID .'">
+                                                    </div>
+                                                    <div class="teacherNameElement listElement"
+                                                        <p>' . ucfirst($username) . '</p>
+                                                    </div>
+
+                                                    <div class="examIDElement listElement"
+                                                        <p>' . $examID . '</p>
+                                                    </div>
+
+                                                    <div class="pointsElement listElement"
+                                                        <p>' . $examPoints . '</p>
+                                                    </div>
+
+                                                    <div class="questionsElement listElement"
+                                                        <p>' . $numberOfQuestions . '</p>
+                                                    </div>
+                                                </div>
+                                            ';
+                                    }
+                                echo '                      
+                                <div class="examButtons">
+                                    <input id="submitButton" form="pickExam" type="submit" name="submit" value="Select">
+                                    <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
+                                </div>
+                                </form>
+                                <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                            </div>
+                        ';
+                    }
+                echo ' 
+                </div>
+            </div>
+        </div>
+    ';
 ?>
