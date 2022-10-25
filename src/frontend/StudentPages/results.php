@@ -117,7 +117,6 @@ echo '
                             }
                         echo '                      
                         <div class="examButtons">
-                            <input id="submitButton" form="pickExam" type="submit" name="submit" value="Select">
                             <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
                         </div>
                         </form>
