@@ -53,7 +53,7 @@
                 <img src="../../../assets/njit.png" alt="NJIT LOGO">
                 <h4>Shane Arcaro, Malcolm Shuler, Ege Atay</h4>
             </div>
-        </div>
+    </div>
     <div class="right">
         <div class="studentLanding">
             <?php  echo "<h2>Welcome " . ucfirst($username) . "!</h2>"; ?>

@@ -30,9 +30,10 @@
     // Query to pull all exams that are graded and linked to this student
     $query = "SELECT se.studentExamID, u.username, se.studentID, se.examID, se.score, e.examPoints FROM StudentExams AS se
                 INNER JOIN Exams AS e on se.examID=e.examID
-                INNER JOIN Students AS s ON se.studentID=s.studentID
-                INNER JOIN Users AS u on s.accountID=u.accountID
-                WHERE se.score!=-1 AND se.studentID='{$studentID}'";
+                INNER JOIN Teachers AS t ON e.teacherID=t.teacherID
+                INNER JOIN Users AS u on t.accountID=u.accountID
+                WHERE se.score!=-1 AND se.studentID='{$studentID}'
+                ORDER BY se.examID ASC";
     
     $result = mysqli_query($connection, $query);
 
@@ -41,7 +42,6 @@
     while ($row = mysqli_fetch_array($result)) {
         $exam = array(
             'studentExamID' => $row['studentExamID'], 
-            'studentID'     => $row['studentID'], 
             'examID'        => $row['examID'], 
             'score'         => $row['score'], 
             'examPoints'    => $row['examPoints'],

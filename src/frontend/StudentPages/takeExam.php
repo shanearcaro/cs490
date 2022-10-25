@@ -61,7 +61,7 @@
     $exams = json_decode($result);
     curl_close($ch);
 
-    // Render all questions on the screen
+    // Render all exams on the screen
     echo '
         <div class="right">
             <div class="examBank">
@@ -114,7 +114,8 @@
                                                 </div>
                                             ';
                                     }
-    echo '                      <div class="examButtons">
+                                echo '                      
+                                <div class="examButtons">
                                     <input id="submitButton" form="pickExam" type="submit" name="submit" value="Select">
                                     <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
                                 </div>
@@ -123,47 +124,9 @@
                             </div>
                         ';
                     }
-    echo ' 
+                echo ' 
                 </div>
             </div>
         </div>
     ';
-
-        // echo '<div class="questionBank">';
-        // echo '<h1 id="title">Take Exam</h1>';
-        // echo '<div class="questionTable">';
-        // echo '<div class="tableLabels">';
-
-        // echo '<ul>';
-        // echo '<li class="labels">Professor</li>';
-        // echo '<li class="labels">Exam ID</li>';
-        // echo '<li class="labels">Points</li>';
-        // echo '<li class="labels">Questions</li>';
-        // echo '</ul>';
-        // echo '</div>';
-        // echo '<div class="questionRows">';
-        // echo '<form name="createExam" method="post" action="./exam.php">';
-        // for ($i = 0; $i < count($exams); $i++) {
-        //     $exam = $exams[$i];
-        //     $examID = $exam->{'examID'};
-        //     $examPoints = $exam->{'examPoints'};
-        //     $numberOfQuestions = $exam->{'numberOfQuestions'};
-        //     $teacherID = $exam->{'teacherID'};
-        //     $username = $exam->{'username'};
-        //     echo '<div class="row">';
-        //     echo '<ul>';
-        //     echo '<li class="element-button"><input type="radio" class="checkBox" name="checkBox[]" value="'. $examID .'">';
-        //     echo '<li class="element">' . nl2br($username) . '</li>';
-        //     echo '<li class="element">' . $examID . '</li>';
-        //     echo '<li class="element">' . $examPoints . '</li>';
-        //     echo '<li class="element">' . $numberOfQuestions . '</li>';
-        //     echo '</ul>';
-        //     echo '</div>';
-        // }
-        // echo '<input class="button" type="submit" name="submit" value="Take Exam">';
-        // echo '</form>';
-        // include 'studentBackButton.php';
-        // echo '</div>';
-        // echo '</div>';
-        // echo '</div>';
 ?>
