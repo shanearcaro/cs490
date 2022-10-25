@@ -70,14 +70,14 @@
     echo '</ul>';
     echo '</div>';
     echo '<div class="questionRows">';
-    for ($i = 0; $i < count($examQuestions); $i+=2) {
+    for ($i = 0; $i < count($examQuestions); $i++) {
         $row = $examQuestions[$i];
         $question = $row->{'question'};
         $answer = $row->{'answer'};
         $result1 = $row->{'result1'};
         $result2 = $row->{'result2'};
         $score = $row->{'score'};
-        $comment = $row->{'points'};
+        $comment = $row->{'comment'};
         $points = $row->{'points'};
         $testcase1 = $row->{'testcase1'};
         $caseAnswer1 = $row->{'caseAnswer1'};
