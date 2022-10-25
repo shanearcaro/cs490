@@ -25,6 +25,7 @@
 
     // Decode the results of sending the data
     $result = curl_exec($ch);
+    print_r($result);
     $result = json_decode($result);
     curl_close($ch);
 
@@ -35,10 +36,10 @@
     // Contacting the back end will return Student, Teacher, or Bad Login.
     // Update the current page depending on the result from the database.
     if ($accountType == "Student") {
-        echo "<script>window.location.href='/src/frontend/StudentPages/student.php';</script>";
+        echo "<script>window.location.href='https://afsaccess4.njit.edu/~mcs43/src/frontend/StudentPages/student.php';</script>";
     }
     else if ($accountType == "Teacher") {
-        echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+        echo "<script>window.location.href='https://afsaccess4.njit.edu/~mcs43/src/frontend/TeacherPages/teacher.php';</script>";
     }
     else {
         echo "<script>alert('Invalid Credentials');window.location.href='/';</script>";

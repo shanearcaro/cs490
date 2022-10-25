@@ -1,11 +1,9 @@
 <?php
     session_start();
-    require_once realpath(dirname(__DIR__, 2) . '/vendor/autoload.php');
-    // Read from credentials file and connect to database
-    $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
-    $dotenv->load();
 
-    $connection = new mysqli($_ENV['HOST'], $_ENV['NAME'], $_ENV['PASS'], $_ENV['DATABASE']);
+    $db_credentials = include 'credentials.php';
+
+    $connection = new mysqli($db_credentials['HOST'], $db_credentials['NAME'], $db_credentials['PASS'], $db_credentials['DATABASE']);
 
     // Prompt error if database connection doesn't work and exit the script
     if ($connection->connect_error) {
