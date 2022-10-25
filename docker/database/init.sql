@@ -57,6 +57,8 @@ CREATE TABLE IF NOT EXISTS CompletedExam (
     studentExamID INT NOT NULL,
     questionID INT NOT NULL,
     answer TEXT(255) NOT NULL,
+    result1 TEXT(255),
+    result2 TEXT(255),
     score INT NOT NULL,
     comment TEXT(255),
     FOREIGN KEY (studentExamID) REFERENCES StudentExams(studentExamID),

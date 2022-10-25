@@ -39,9 +39,13 @@
     $exams = array();
 
     while ($row = mysqli_fetch_array($result)) {
-        $exam = array('studentExamID' => $row['studentExamID'], 'studentID' => $row['studentID'], 
-        'examID' => $row['examID'], 'score' => $row['score'], 'examPoints' => $row['examPoints'],
-        'username' => $row['username']);
+        $exam = array(
+            'studentExamID' => $row['studentExamID'], 
+            'studentID'     => $row['studentID'], 
+            'examID'        => $row['examID'], 
+            'score'         => $row['score'], 
+            'examPoints'    => $row['examPoints'],
+            'username'      => $row['username']);
         array_push($exams, $exam);
     }
 
