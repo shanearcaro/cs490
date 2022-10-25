@@ -51,6 +51,6 @@
     else {
         echo "<script>alert('Exam failed to submit.');</script>";
     }
-    echo "<script>window.location.href='/src/frontend/StudentPages/student.php';</script>";
+    echo "<script>window.location.href='https://afsaccess4.njit.edu/~mcs43/src/frontend/StudentPages/student.php';</script>";
 
 ?>

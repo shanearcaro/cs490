@@ -71,7 +71,7 @@
                             <h2 id="examsTitle">No exams available</h2>
                             <div class="examButtons2">
                                 <input id="backButton2" form="backButtonForm" type="submit" name="submit" value="Back">
-                                <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                                <form action="https://afsaccess4.njit.edu/~mcs43/frontend/StudentPages/student.php" id="backButtonForm"></form>
                             </div>
                     ';
                     else {
@@ -126,7 +126,7 @@
                                     <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
                                 </div>
                                 </form>
-                                <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                                <form action="https://afsaccess4.njit.edu/~mcs43/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
                             </div>
                         ';
                     }

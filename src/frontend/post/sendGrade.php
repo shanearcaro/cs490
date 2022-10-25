@@ -51,6 +51,6 @@
     else {
         echo "<script>alert('Exam failed to grade.');</script>";
     }
-    echo "<script>window.location.href='/src/frontend/TeacherPages/teacher.php';</script>";
+    echo "<script>window.location.href='https://afsaccess4.njit.edu/~mcs43/src/frontend/TeacherPages/teacher.php';</script>";
 
 ?>

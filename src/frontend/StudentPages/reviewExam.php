@@ -111,10 +111,11 @@
                                     <input id="backButton" form="backButtonForm" type="submit" name="submit" value="Back">
                                 </div>
                                 </form>
-                                <form action="http://localhost:8000/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
+                                <form action="https://afsaccess4.njit.edu/~mcs43/src/frontend/StudentPages/student.php" id="backButtonForm"></form>
                             </div>
                         ';
                     }
+                    
                 echo ' 
                 </div>
             </div>
