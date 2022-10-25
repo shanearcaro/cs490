@@ -1,0 +1,38 @@
+@import "../include/leftSide.css";
+
+.teacherLanding {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 50%;
+    height: 80%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    top: 20%;
+}
+
+.teacherLanding h2 {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding-bottom: 8vh;
+    text-align: center;
+}
+
+.buttons {
+    width: 100%;
+    height: 4vh;
+    background-color: rgb(26, 235, 182);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 300;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
